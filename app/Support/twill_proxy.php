@@ -123,6 +123,7 @@ if (! function_exists('twill_proxy_img')) {
         ?string $fallbackUrl = null,
         array $attributes = []
     ): string {
+        $alt = (string) ($alt ?? '');
         $media = twill_media($model, $role);
 
         // ─── Fallback: tidak ada media ─────────────────────────────

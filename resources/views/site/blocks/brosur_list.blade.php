@@ -292,7 +292,7 @@
                                                 'cover',
                                                 [400, 800, 1200],
                                                 '(max-width: 768px) 80vw, (max-width: 1024px) 33vw, 25vw',
-                                                $brosur->title,
+                                                (string) ($brosur->title ?? ''),
                                                 [],
                                                 null,
                                                 [
