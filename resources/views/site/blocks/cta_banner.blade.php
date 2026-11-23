@@ -83,16 +83,16 @@
     // ===== Style Mapping =====
     $styles = [
         'gradient-emerald' => [
-            'bg' => 'bg-gradient-to-br from-emerald-600 via-teal-600 to-emerald-700',
+            'bg' => 'bg-gradient-to-br from-[#f7f0ac] via-[#acf7f0] to-[#f0acf7]',
             'text' => 'text-white',
-            'subtext' => 'text-emerald-50',
+            'subtext' => 'text-[#f7f0ac]',
             'badge_bg' => 'bg-white/20',
             'badge_text' => 'text-white',
             'badge_border' => 'border-white/30',
             'highlight' => 'text-amber-300',
         ],
         'gradient-blue' => [
-            'bg' => 'bg-gradient-to-br from-blue-600 via-indigo-600 to-blue-700',
+            'bg' => 'bg-gradient-to-br from-[#acf7f0] via-[#acf7f0] to-[#f0acf7]',
             'text' => 'text-white',
             'subtext' => 'text-blue-50',
             'badge_bg' => 'bg-white/20',
@@ -116,16 +116,16 @@
             'badge_bg' => 'bg-white/10',
             'badge_text' => 'text-white',
             'badge_border' => 'border-white/20',
-            'highlight' => 'text-emerald-400',
+            'highlight' => 'text-[#acf7f0]',
         ],
         'solid-white' => [
             'bg' => 'bg-white border border-slate-200',
             'text' => 'text-slate-900',
             'subtext' => 'text-slate-600',
-            'badge_bg' => 'bg-emerald-50',
-            'badge_text' => 'text-emerald-700',
-            'badge_border' => 'border-emerald-200',
-            'highlight' => 'text-emerald-600',
+            'badge_bg' => 'bg-[#acf7f0]/30',
+            'badge_text' => 'text-slate-900',
+            'badge_border' => 'border-[#f0acf7]',
+            'highlight' => 'text-slate-900',
         ],
     ];
 

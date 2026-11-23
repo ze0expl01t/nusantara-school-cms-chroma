@@ -21,7 +21,7 @@
         <div class="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 shadow-sm relative overflow-hidden [contain:layout_style]">
 
             {{-- Cahaya Latar — blur dikurangi --}}
-            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-20 sm:h-24 bg-emerald-500/5 blur-[50px] rounded-full pointer-events-none [transform:translate3d(-50%,0,0)]" aria-hidden="true"></div>
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-20 sm:h-24 bg-[#acf7f0]/5 blur-[50px] rounded-full pointer-events-none [transform:translate3d(-50%,0,0)]" aria-hidden="true"></div>
 
             <div class="relative z-10">
 
@@ -29,7 +29,7 @@
                     <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-center mb-8 sm:mb-10 tracking-tight text-slate-900 px-2 [text-wrap:balance]">
                         {{ $titleMain }}
                         @if($titleHighlight)
-                            <span class="text-emerald-600">{{ $titleHighlight }}</span>
+                            <span class="text-slate-900">{{ $titleHighlight }}</span>
                         @endif
                     </h2>
                 @endif
@@ -47,7 +47,7 @@
                                 <div class="flex items-baseline gap-1 transform transition-transform duration-300 group-hover:-translate-y-1.5 motion-reduce:transition-none motion-reduce:group-hover:translate-y-0 [transform:translateZ(0)]">
 
                                     @if($number)
-                                        <span class="text-3xl sm:text-4xl md:text-5xl font-black text-emerald-600 drop-shadow-sm tabular-nums leading-none">
+                                        <span class="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 drop-shadow-sm tabular-nums leading-none">
                                             {{ $number }}
                                         </span>
                                     @endif

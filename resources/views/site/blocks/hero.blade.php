@@ -103,7 +103,7 @@
         <div class="absolute inset-0 bg-grid-pattern opacity-40" aria-hidden="true"></div>
 
         {{-- Glow decoratif — animasi DIPERTAHANKAN --}}
-        <div class="absolute top-1/4 left-1/4 w-56 h-56 sm:w-96 sm:h-96 bg-emerald-500 rounded-full mix-blend-screen blur-[120px] opacity-20 animate-pulse motion-reduce:animate-none pointer-events-none" aria-hidden="true"></div>
+        <div class="absolute top-1/4 left-1/4 w-56 h-56 sm:w-96 sm:h-96 bg-[#acf7f0] rounded-full mix-blend-screen blur-[120px] opacity-20 animate-pulse motion-reduce:animate-none pointer-events-none" aria-hidden="true"></div>
     </div>
 
     {{-- Content --}}
@@ -111,8 +111,8 @@
 
         {{-- Badge --}}
         @if($badge)
-            <div class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/10 border border-emerald-400/30 text-emerald-300 text-xs sm:text-sm font-semibold backdrop-blur-md shadow-sm">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping motion-reduce:animate-none" aria-hidden="true"></span>
+            <div class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/10 border border-[#acf7f0]/50 text-[#f7f0ac] text-xs sm:text-sm font-semibold backdrop-blur-md shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-[#acf7f0] animate-ping motion-reduce:animate-none" aria-hidden="true"></span>
                 {{ $badge }}
             </div>
         @endif
@@ -166,7 +166,7 @@
             </h1>
 
             {{-- Baris 2: Animated Word --}}
-            <div class="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.15] text-emerald-400 px-2">
+            <div class="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.15] text-[#acf7f0] px-2">
                 <span class="inline-grid align-bottom text-center">
                     <template x-for="(word, i) in words" :key="i">
                         <span
@@ -177,7 +177,7 @@
                             x-transition:leave="transition ease-in duration-500 motion-reduce:duration-0"
                             x-transition:leave-start="opacity-100 translate-y-0 motion-reduce:transform-none"
                             x-transition:leave-end="opacity-0 -translate-y-6 motion-reduce:transform-none"
-                            class="col-start-1 row-start-1 text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-green-400 leading-[1.15] will-change-transform [transform:translateZ(0)]"
+                            class="col-start-1 row-start-1 text-transparent bg-clip-text bg-gradient-to-r from-[#f7f0ac] via-[#acf7f0] to-[#f0acf7] leading-[1.15] will-change-transform [transform:translateZ(0)]"
                             x-text="word"
                         ></span>
                     </template>
@@ -203,7 +203,7 @@
                     <a
                         href="{{ $primaryUrl }}"
                         data-analytics="hero-cta-primary"
-                        class="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold shadow-lg shadow-emerald-600/30 transition-[transform,background-color,box-shadow] duration-300 transform hover:-translate-y-1 text-center text-sm sm:text-base focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 motion-reduce:transition-none motion-reduce:hover:translate-y-0 [transform:translateZ(0)]"
+                        class="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-full bg-[#f0acf7] hover:bg-[#f0acf7] text-slate-950 font-bold shadow-lg shadow-slate-950/20 transition-[transform,background-color,box-shadow] duration-300 transform hover:-translate-y-1 text-center text-sm sm:text-base focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f7f0ac] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 motion-reduce:transition-none motion-reduce:hover:translate-y-0 [transform:translateZ(0)]"
                     >
                         {{ $primaryText }}
                     </a>

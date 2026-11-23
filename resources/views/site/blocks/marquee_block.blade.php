@@ -77,7 +77,7 @@
             @touchend.passive="paused = false"
             @focusin="paused = true"
             @focusout="paused = false"
-            class="relative w-full bg-white rounded-2xl sm:rounded-3xl py-4 sm:py-5 shadow-sm overflow-hidden transition-[box-shadow,border-color] duration-500 border border-slate-200 hover:shadow-xl hover:shadow-emerald-600/5 hover:border-emerald-500/50 motion-reduce:transition-none [contain:layout_style_paint]"
+            class="relative w-full bg-white rounded-2xl sm:rounded-3xl py-4 sm:py-5 shadow-sm overflow-hidden transition-[box-shadow,border-color] duration-500 border border-slate-200 hover:shadow-xl hover:shadow-slate-950/5 hover:border-[#f0acf7]/50 motion-reduce:transition-none [contain:layout_style_paint]"
             role="region"
             aria-label="Marquee informasi"
         >
@@ -109,18 +109,18 @@
                                         <a
                                             href="{{ $url }}"
                                             data-analytics="marquee-click"
-                                            class="text-xl sm:text-2xl md:text-4xl font-black uppercase tracking-wider text-slate-700 hover:text-emerald-600 transition-[color,transform] duration-300 transform hover:scale-105 whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 rounded motion-reduce:transition-none motion-reduce:hover:scale-100 [transform:translateZ(0)]"
+                                            class="text-xl sm:text-2xl md:text-4xl font-black uppercase tracking-wider text-slate-700 hover:text-slate-950 transition-[color,transform] duration-300 transform hover:scale-105 whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-[#acf7f0] focus-visible:ring-offset-2 rounded motion-reduce:transition-none motion-reduce:hover:scale-100 [transform:translateZ(0)]"
                                         >
                                             {{ $text }}
                                         </a>
                                     @else
-                                        <span class="text-xl sm:text-2xl md:text-4xl font-black uppercase tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-slate-800 via-slate-600 to-emerald-600 transition-transform duration-300 transform group-hover/item:scale-105 whitespace-nowrap motion-reduce:transition-none motion-reduce:group-hover/item:scale-100 [transform:translateZ(0)]">
+                                        <span class="text-xl sm:text-2xl md:text-4xl font-black uppercase tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-slate-800 via-slate-600 to-[#f0acf7] transition-transform duration-300 transform group-hover/item:scale-105 whitespace-nowrap motion-reduce:transition-none motion-reduce:group-hover/item:scale-100 [transform:translateZ(0)]">
                                             {{ $text }}
                                         </span>
                                     @endif
 
                                     {{-- Separator Dot Bercahaya ═══ --}}
-                                    <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.9)] shrink-0 transition-transform duration-300 group-hover/item:scale-125 motion-reduce:transition-none motion-reduce:group-hover/item:scale-100 [transform:translateZ(0)]" aria-hidden="true"></span>
+                                    <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#acf7f0] shadow-[0_0_10px_rgba(16,185,129,0.9)] shrink-0 transition-transform duration-300 group-hover/item:scale-125 motion-reduce:transition-none motion-reduce:group-hover/item:scale-100 [transform:translateZ(0)]" aria-hidden="true"></span>
                                 </div>
                             @endforeach
                         </div>

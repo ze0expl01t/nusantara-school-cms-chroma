@@ -24,7 +24,7 @@
         <div class="text-center max-w-3xl mx-auto space-y-3">
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight px-2">
                 {{ $titleMain }}
-                <span class="text-emerald-600">{{ $titleHighlight }}</span>
+                <span class="text-slate-900">{{ $titleHighlight }}</span>
             </h2>
             @if($subtitle)
                 <p class="text-base md:text-lg text-slate-600 px-2">
@@ -45,11 +45,11 @@
                         $buttonText = $safeInput($item, 'button_text', 'Read More');
                     @endphp
 
-                    <div class="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl p-6 sm:p-6 md:p-8 shadow-sm hover:shadow-xl hover:border-emerald-500/50 hover:shadow-emerald-600/5 transition-[box-shadow,border-color] duration-300 group flex flex-col h-full relative overflow-hidden motion-reduce:transition-none [contain:layout_style] [transform:translateZ(0)]">
+                    <div class="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl p-6 sm:p-6 md:p-8 shadow-sm hover:shadow-xl hover:border-[#f0acf7]/50 hover:shadow-slate-950/5 transition-[box-shadow,border-color] duration-300 group flex flex-col h-full relative overflow-hidden motion-reduce:transition-none [contain:layout_style] [transform:translateZ(0)]">
 
                         {{-- Ikon — scale pakai transform, bukan width/height --}}
                         <div class="flex justify-center mb-5 sm:mb-6">
-                            <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-emerald-50 border border-emerald-100 flex items-center justify-center group-hover:scale-110 group-hover:bg-emerald-100 transition-[transform,background-color] duration-500 text-emerald-600 shadow-sm motion-reduce:transition-none motion-reduce:group-hover:scale-100 [transform:translateZ(0)]">
+                            <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#acf7f0]/30 border border-[#acf7f0] flex items-center justify-center group-hover:scale-110 group-hover:bg-[#acf7f0] transition-[transform,background-color] duration-500 text-slate-900 shadow-sm motion-reduce:transition-none motion-reduce:group-hover:scale-100 [transform:translateZ(0)]">
                                 @if($icon)
                                     <div class="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center [&>svg]:w-full [&>svg]:h-full">
                                         {!! safe_svg($icon) !!}
@@ -65,7 +65,7 @@
 
                         {{-- Konten Teks --}}
                         <div class="text-center flex-grow flex flex-col">
-                            <h3 class="text-base sm:text-lg md:text-xl font-bold text-slate-900 mb-3 group-hover:text-emerald-600 transition-colors duration-300 leading-snug line-clamp-2">
+                            <h3 class="text-base sm:text-lg md:text-xl font-bold text-slate-900 mb-3 group-hover:text-slate-950 transition-colors duration-300 leading-snug line-clamp-2">
                                 {{ $title }}
                             </h3>
 
@@ -84,7 +84,7 @@
                                     data-analytics="feature-click"
                                     data-feature-title="{{ $title }}"
                                     aria-label="Selengkapnya tentang {{ $title }}"
-                                    class="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-bold rounded-full transition-colors duration-300 shadow-md shadow-emerald-600/25 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 motion-reduce:transition-none"
+                                    class="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 bg-[#f0acf7] hover:bg-[#f0acf7] text-slate-950 text-xs sm:text-sm font-bold rounded-full transition-colors duration-300 shadow-md shadow-slate-950/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#acf7f0] focus-visible:ring-offset-2 motion-reduce:transition-none"
                                 >
                                     {{ $buttonText }}
                                     <svg class="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform duration-300 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">

@@ -26,7 +26,7 @@
     {{-- Subtitle / Badge --}}
     @if($subtitle)
         <div class="inline-block">
-            <span class="inline-block px-3 py-1 text-[11px] sm:text-xs font-bold tracking-widest text-emerald-700 uppercase bg-emerald-50 border border-emerald-200 rounded-full shadow-sm">
+            <span class="inline-block px-3 py-1 text-[11px] sm:text-xs font-bold tracking-widest text-slate-900 uppercase bg-[#acf7f0]/30 border border-[#f0acf7] rounded-full shadow-sm">
                 {{ $subtitle }}
             </span>
         </div>

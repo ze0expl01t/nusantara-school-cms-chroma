@@ -52,7 +52,7 @@
 <section class="py-8 sm:py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative overflow-hidden [content-visibility:auto] [contain-intrinsic-size:800px]" data-block-reveal>
 
     {{-- Ambient glow — blur dikurangi --}}
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] bg-emerald-500/10 blur-[80px] rounded-full pointer-events-none [transform:translate3d(-50%,-50%,0)]" aria-hidden="true"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] bg-[#acf7f0]/10 blur-[80px] rounded-full pointer-events-none [transform:translate3d(-50%,-50%,0)]" aria-hidden="true"></div>
 
     <div class="relative z-10 space-y-8 sm:space-y-10">
 
@@ -61,7 +61,7 @@
 
             @if($badgeText)
                 <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm text-xs font-medium text-slate-700">
-                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse motion-reduce:animate-none" aria-hidden="true"></span>
+                    <span class="w-2 h-2 rounded-full bg-[#acf7f0] animate-pulse motion-reduce:animate-none" aria-hidden="true"></span>
                     {{ $badgeText }}
                 </div>
             @endif
@@ -72,7 +72,7 @@
                 </h2>
             @endif
 
-            <div class="w-20 h-1 bg-gradient-to-r from-transparent via-emerald-500 to-transparent rounded-full" aria-hidden="true"></div>
+            <div class="w-20 h-1 bg-gradient-to-r from-transparent via-[#acf7f0] to-transparent rounded-full" aria-hidden="true"></div>
 
             @if($subtitle)
                 <p class="text-slate-500 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed px-2 pt-1">
@@ -126,17 +126,17 @@
                             type="button"
                             @click="open = true"
                             aria-label="Lihat profil {{ $name }}"
-                            class="w-full text-center cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-4 focus-visible:ring-offset-white rounded-2xl p-2 transition-colors duration-200 hover:bg-slate-50 motion-reduce:transition-none"
+                            class="w-full text-center cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#acf7f0] focus-visible:ring-offset-4 focus-visible:ring-offset-white rounded-2xl p-2 transition-colors duration-200 hover:bg-slate-50 motion-reduce:transition-none"
                         >
                             {{-- Photo --}}
                             <div class="relative mx-auto w-28 h-28 sm:w-32 sm:h-32 lg:w-36 lg:h-36 mb-4">
-                                <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true"></div>
+                                <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-[#f7f0ac] to-[#f0acf7] opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true"></div>
 
                                 <div class="relative w-full h-full rounded-full overflow-hidden bg-slate-100 border-4 border-white shadow-lg group-hover:scale-105 transition-transform duration-300 motion-reduce:transition-none motion-reduce:group-hover:scale-100 [transform:translateZ(0)]">
                                     @if($photo)
                                         {!! twill_proxy_img($member, 'photo', [160, 320, 480], '(max-width: 768px) 128px, 144px', $name, [], null, ['class' => 'w-full h-full object-cover', 'width' => '480', 'height' => '480', 'loading' => 'lazy', 'decoding' => 'async']) !!}
                                     @else
-                                        <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-emerald-100 to-teal-100 text-emerald-700 font-bold text-3xl sm:text-4xl select-none" aria-hidden="true">
+                                        <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#f7f0ac] to-[#f0acf7] text-slate-900 font-bold text-3xl sm:text-4xl select-none" aria-hidden="true">
                                             {{ $initial }}
                                         </div>
                                     @endif
@@ -160,12 +160,12 @@
                             </div>
 
                             {{-- Name --}}
-                            <h3 class="text-slate-900 font-bold text-sm sm:text-base leading-tight group-hover:text-emerald-600 transition-colors duration-300">
+                            <h3 class="text-slate-900 font-bold text-sm sm:text-base leading-tight group-hover:text-slate-950 transition-colors duration-300">
                                 {{ $name }}
                             </h3>
 
                             @if($jobTitle)
-                                <p class="text-emerald-600 text-xs sm:text-sm font-semibold mt-1 leading-snug">
+                                <p class="text-slate-900 text-xs sm:text-sm font-semibold mt-1 leading-snug">
                                     {{ $jobTitle }}
                                 </p>
                             @endif
@@ -174,7 +174,7 @@
                                 <p class="text-slate-400 text-xs mt-1">{{ $dept }}</p>
                             @endif
 
-                            <span class="inline-flex items-center gap-1 mt-2 text-[11px] font-semibold text-emerald-600 group-hover:text-emerald-700">
+                            <span class="inline-flex items-center gap-1 mt-2 text-[11px] font-semibold text-slate-900 group-hover:text-slate-950">
                                 Lihat Profil
                                 <svg class="w-3 h-3 transform group-hover:translate-x-0.5 transition-transform motion-reduce:transition-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
@@ -190,7 +190,7 @@
                                        target="_blank"
                                        rel="noopener noreferrer"
                                        aria-label="{{ $name }} di {{ ucfirst($platform) }}"
-                                       class="w-7 h-7 rounded-full bg-slate-100 hover:bg-emerald-500 text-slate-500 hover:text-white flex items-center justify-center transition-[background-color,color] duration-200 motion-reduce:transition-none">
+                                       class="w-7 h-7 rounded-full bg-slate-100 hover:bg-[#f0acf7] text-slate-500 hover:text-white flex items-center justify-center transition-[background-color,color] duration-200 motion-reduce:transition-none">
                                         <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                             @switch($platform)
                                                 @case('facebook')
@@ -252,7 +252,7 @@
                                 >
 
                                     {{-- Mobile Drag Handle --}}
-                                    <div class="sm:hidden pt-2.5 pb-1 flex justify-center bg-gradient-to-br from-emerald-500 via-teal-500 to-emerald-600">
+                                    <div class="sm:hidden pt-2.5 pb-1 flex justify-center bg-gradient-to-br from-[#f7f0ac] via-[#acf7f0] to-[#f0acf7]">
                                         <div class="w-10 h-1 rounded-full bg-white/40" aria-hidden="true"></div>
                                     </div>
 
@@ -275,7 +275,7 @@
                                     </button>
 
                                     {{-- Header Compact --}}
-                                    <div class="relative bg-gradient-to-br from-emerald-500 via-teal-500 to-emerald-600
+                                    <div class="relative bg-gradient-to-br from-[#f7f0ac] via-[#acf7f0] to-[#f0acf7]
                                                 px-5 pt-6 pb-5 sm:px-6 sm:pt-8 sm:pb-6
                                                 flex-shrink-0">
 
@@ -292,7 +292,7 @@
                                                     @if($photo)
                                                         {!! twill_proxy_img($member, 'photo', [160, 320, 480], '(max-width: 768px) 96px', $name, [], null, ['class' => 'w-full h-full object-cover', 'width' => '480', 'height' => '480', 'loading' => 'lazy', 'decoding' => 'async']) !!}
                                                     @else
-                                                        <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-emerald-100 to-teal-100 text-emerald-700 font-bold text-3xl select-none" aria-hidden="true">
+                                                        <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#f7f0ac] to-[#f0acf7] text-slate-900 font-bold text-3xl select-none" aria-hidden="true">
                                                             {{ $initial }}
                                                         </div>
                                                     @endif
@@ -313,7 +313,7 @@
                                             </h3>
 
                                             @if($jobTitle)
-                                                <p class="text-emerald-50 text-xs sm:text-sm font-semibold mt-1 px-2">
+                                                <p class="text-[#f7f0ac] text-xs sm:text-sm font-semibold mt-1 px-2">
                                                     {{ $jobTitle }}
                                                 </p>
                                             @endif
@@ -338,7 +338,7 @@
                                                             [&_p]:my-2
                                                             [&_strong]:text-slate-900 [&_strong]:font-bold
                                                             [&_em]:italic
-                                                            [&_a]:text-emerald-600 [&_a]:underline
+                                                            [&_a]:text-slate-900 [&_a]:underline
                                                             [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:my-2
                                                             [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:my-2">
                                                     {!! safe_html($bio) !!}
@@ -354,8 +354,8 @@
                                                 <div class="space-y-2 text-sm">
                                                     @if($member->email)
                                                         <a href="mailto:{{ $member->email }}"
-                                                           class="flex items-center gap-2.5 text-slate-600 hover:text-emerald-600 transition-colors duration-200 motion-reduce:transition-none group/contact">
-                                                            <div class="w-8 h-8 rounded-lg bg-emerald-50 group-hover/contact:bg-emerald-100 flex items-center justify-center text-emerald-600 shrink-0 transition-colors duration-200">
+                                                           class="flex items-center gap-2.5 text-slate-600 hover:text-slate-950 transition-colors duration-200 motion-reduce:transition-none group/contact">
+                                                            <div class="w-8 h-8 rounded-lg bg-[#acf7f0]/30 group-hover/contact:bg-[#acf7f0] flex items-center justify-center text-slate-900 shrink-0 transition-colors duration-200">
                                                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                                                                 </svg>
@@ -366,8 +366,8 @@
 
                                                     @if($member->phone)
                                                         <a href="tel:{{ $member->phone }}"
-                                                           class="flex items-center gap-2.5 text-slate-600 hover:text-emerald-600 transition-colors duration-200 motion-reduce:transition-none group/contact">
-                                                            <div class="w-8 h-8 rounded-lg bg-emerald-50 group-hover/contact:bg-emerald-100 flex items-center justify-center text-emerald-600 shrink-0 transition-colors duration-200">
+                                                           class="flex items-center gap-2.5 text-slate-600 hover:text-slate-950 transition-colors duration-200 motion-reduce:transition-none group/contact">
+                                                            <div class="w-8 h-8 rounded-lg bg-[#acf7f0]/30 group-hover/contact:bg-[#acf7f0] flex items-center justify-center text-slate-900 shrink-0 transition-colors duration-200">
                                                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                                                                 </svg>
@@ -390,7 +390,7 @@
                                                            target="_blank"
                                                            rel="noopener noreferrer"
                                                            aria-label="{{ ucfirst($platform) }}"
-                                                           class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-50 hover:bg-emerald-500 text-slate-600 hover:text-white text-xs font-semibold transition-[background-color,color,border-color] duration-200 border border-slate-200 hover:border-emerald-500 active:scale-95 motion-reduce:transition-none">
+                                                           class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-50 hover:bg-[#f0acf7] text-slate-600 hover:text-white text-xs font-semibold transition-[background-color,color,border-color] duration-200 border border-slate-200 hover:border-[#f0acf7] active:scale-95 motion-reduce:transition-none">
                                                             <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                                                 @switch($platform)
                                                                     @case('facebook')

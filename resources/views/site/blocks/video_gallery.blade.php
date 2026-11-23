@@ -235,7 +235,7 @@
         {{-- Ambient glow — kurangi blur radius untuk hemat GPU paint --}}
         <div class="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none">
             <div class="absolute top-1/2 left-0 -translate-y-1/2 w-64 h-64 sm:w-[500px] sm:h-[500px] bg-red-600/10 blur-[80px] rounded-full"></div>
-            <div class="absolute top-1/3 right-0 w-56 h-56 sm:w-[400px] sm:h-[400px] bg-emerald-600/10 blur-[70px] rounded-full"></div>
+            <div class="absolute top-1/3 right-0 w-56 h-56 sm:w-[400px] sm:h-[400px] bg-[#f0acf7]/10 blur-[70px] rounded-full"></div>
         </div>
 
         <div class="relative z-10">
@@ -254,7 +254,7 @@
                         {{ $titleMain }}
                         @if($titleHighlight)
                             <br>
-                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-amber-400 to-emerald-400">
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-amber-400 to-[#acf7f0]">
                                 {{ $titleHighlight }}
                             </span>
                         @endif
@@ -387,7 +387,7 @@
                                                     <div class="h-1 flex overflow-hidden">
                                                         <div class="w-1/3 h-full bg-red-600"></div>
                                                         <div class="w-1/3 h-full bg-amber-400"></div>
-                                                        <div class="w-1/3 h-full bg-emerald-500"></div>
+                                                        <div class="w-1/3 h-full bg-[#acf7f0]"></div>
                                                     </div>
                                                 </article>
                                             @endforeach

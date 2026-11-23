@@ -36,7 +36,7 @@
             </div>
             <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Terima Kasih</h1>
             <p class="text-slate-600">{{ $message }}</p>
-            <a href="{{ url('/') }}" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-lg transition-all">
+            <a href="{{ url('/') }}" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#f0acf7] hover:bg-[#f0acf7] text-slate-950 font-bold text-sm shadow-lg transition-all">
                 Kembali ke Beranda
             </a>
         @else
@@ -47,7 +47,7 @@
             </div>
             <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Link Tidak Valid</h1>
             <p class="text-slate-600">{{ $message }}</p>
-            <a href="{{ url('/') }}" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-lg transition-all">
+            <a href="{{ url('/') }}" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#f0acf7] hover:bg-[#f0acf7] text-slate-950 font-bold text-sm shadow-lg transition-all">
                 Kembali ke Beranda
             </a>
         @endif

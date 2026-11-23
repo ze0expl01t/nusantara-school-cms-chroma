@@ -52,7 +52,7 @@
 
             {{-- Badge --}}
             @if($badge)
-                <div class="inline-block px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-[11px] sm:text-xs font-bold tracking-widest uppercase shadow-sm">
+                <div class="inline-block px-3.5 py-1.5 rounded-full bg-[#acf7f0]/30 border border-[#f0acf7] text-slate-900 text-[11px] sm:text-xs font-bold tracking-widest uppercase shadow-sm">
                     {{ $badge }}
                 </div>
             @endif
@@ -76,7 +76,7 @@
 
                 {{-- Stat 1 --}}
                 <div class="flex items-start gap-3 sm:gap-4">
-                    <div class="w-1 h-12 bg-emerald-600 rounded-full flex-shrink-0" aria-hidden="true"></div>
+                    <div class="w-1 h-12 bg-[#f0acf7] rounded-full flex-shrink-0" aria-hidden="true"></div>
                     <div class="min-w-0">
                         <div class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-none">
                             {{ $stat1Value }}
@@ -89,7 +89,7 @@
 
                 {{-- Stat 2 --}}
                 <div class="flex items-start gap-3 sm:gap-4">
-                    <div class="w-1 h-12 bg-emerald-600 rounded-full flex-shrink-0" aria-hidden="true"></div>
+                    <div class="w-1 h-12 bg-[#f0acf7] rounded-full flex-shrink-0" aria-hidden="true"></div>
                     <div class="min-w-0">
                         <div class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-none">
                             {{ $stat2Value }}
@@ -130,7 +130,7 @@
             </div>
 
             {{-- Decorative glow — blur dikurangi untuk hemat GPU paint --}}
-            <div class="absolute bottom-0 right-0 translate-x-1/4 translate-y-1/4 w-48 h-48 sm:w-64 sm:h-64 bg-emerald-500/10 blur-[60px] rounded-full pointer-events-none [transform:translate3d(25%,25%,0)]" aria-hidden="true"></div>
+            <div class="absolute bottom-0 right-0 translate-x-1/4 translate-y-1/4 w-48 h-48 sm:w-64 sm:h-64 bg-[#acf7f0]/10 blur-[60px] rounded-full pointer-events-none [transform:translate3d(25%,25%,0)]" aria-hidden="true"></div>
         </div>
 
     </div>

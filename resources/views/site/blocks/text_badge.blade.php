@@ -26,7 +26,7 @@
     {{-- Badge --}}
     @if($badge)
         <div class="inline-block">
-            <span class="inline-block px-3 py-1 text-[11px] sm:text-xs font-bold tracking-widest text-emerald-700 uppercase bg-emerald-50 border border-emerald-200 rounded-full shadow-sm">
+            <span class="inline-block px-3 py-1 text-[11px] sm:text-xs font-bold tracking-widest text-slate-900 uppercase bg-[#acf7f0]/30 border border-[#f0acf7] rounded-full shadow-sm">
                 {{ $badge }}
             </span>
         </div>
@@ -41,7 +41,7 @@
 
     {{-- Description --}}
     @if($description)
-        <div class="text-sm sm:text-base text-slate-600 leading-relaxed max-w-3xl prose prose-sm sm:prose-base prose-p:my-2 prose-p:leading-relaxed prose-strong:text-slate-900 prose-ul:my-2 prose-ul:list-disc prose-ul:list-inside prose-ol:my-2 prose-ol:list-decimal prose-ol:list-inside prose-li:my-0.5 prose-a:text-emerald-600 prose-a:underline">
+        <div class="text-sm sm:text-base text-slate-600 leading-relaxed max-w-3xl prose prose-sm sm:prose-base prose-p:my-2 prose-p:leading-relaxed prose-strong:text-slate-900 prose-ul:my-2 prose-ul:list-disc prose-ul:list-inside prose-ol:my-2 prose-ol:list-decimal prose-ol:list-inside prose-li:my-0.5 prose-a:text-slate-900 prose-a:underline">
             {!! safe_html($description) !!}
         </div>
     @endif

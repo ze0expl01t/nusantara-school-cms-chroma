@@ -43,7 +43,7 @@
         . '[&_p]:my-3 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:my-3 [&_ul]:space-y-1 '
         . '[&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:my-3 [&_ol]:space-y-1 '
         . '[&_strong]:font-bold [&_strong]:text-slate-900 '
-        . '[&_a]:text-emerald-600 [&_a]:underline';
+        . '[&_a]:text-slate-900 [&_a]:underline';
 @endphp
 
 <main class="py-10 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto relative overflow-hidden">
@@ -100,7 +100,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             @if($jobVacancy->location)
                 <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm flex items-center gap-4">
-                    <div class="flex-shrink-0 w-14 h-14 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600">
+                    <div class="flex-shrink-0 w-14 h-14 rounded-xl bg-[#acf7f0]/30 border border-[#acf7f0] flex items-center justify-center text-slate-900">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
                     </div>
                     <div class="flex-1 min-w-0">
@@ -112,19 +112,19 @@
 
             @if($jobVacancy->salary_range)
                 <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm flex items-center gap-4">
-                    <div class="flex-shrink-0 w-14 h-14 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600">
+                    <div class="flex-shrink-0 w-14 h-14 rounded-xl bg-[#acf7f0]/30 border border-[#acf7f0] flex items-center justify-center text-slate-900">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/></svg>
                     </div>
                     <div class="flex-1 min-w-0">
                         <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Gaji</p>
-                        <p class="text-sm font-bold text-emerald-600">{{ $jobVacancy->salary_range }}</p>
+                        <p class="text-sm font-bold text-slate-900">{{ $jobVacancy->salary_range }}</p>
                     </div>
                 </div>
             @endif
 
             @if($jobVacancy->deadline)
                 <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm flex items-center gap-4">
-                    <div class="flex-shrink-0 w-14 h-14 rounded-xl {{ $isExpired ? 'bg-red-50 border-red-100 text-red-600' : 'bg-emerald-50 border-emerald-100 text-emerald-600' }} border flex items-center justify-center">
+                    <div class="flex-shrink-0 w-14 h-14 rounded-xl {{ $isExpired ? 'bg-red-50 border-red-100 text-red-600' : 'bg-[#acf7f0]/30 border-[#acf7f0] text-slate-900' }} border flex items-center justify-center">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                     </div>
                     <div class="flex-1 min-w-0">
@@ -150,12 +150,12 @@
         @endif
 
         @if($jobVacancy->apply_url || $jobVacancy->apply_email || $jobVacancy->contact_person)
-            <div class="bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-200 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-sm">
+            <div class="bg-gradient-to-br from-[#acf7f0]/30 to-[#f0acf7]/30 border border-[#f0acf7] rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-sm">
                 <h2 class="text-lg sm:text-xl font-extrabold text-slate-900 mb-4">Cara Melamar</h2>
                 <div class="space-y-4">
                     @if($jobVacancy->apply_url)
                         <a href="{{ $jobVacancy->apply_url }}" target="_blank" rel="noopener noreferrer"
-                           class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold shadow-lg shadow-emerald-600/25 transition-all transform hover:-translate-y-0.5">
+                           class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#f0acf7] hover:bg-[#f0acf7] text-slate-950 font-bold shadow-lg shadow-slate-950/15 transition-all transform hover:-translate-y-0.5">
                             Lamar Sekarang
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                         </a>
@@ -164,7 +164,7 @@
                         @if($jobVacancy->apply_email)
                             <div class="flex items-center gap-2">
                                 <span class="text-slate-600">Email:</span>
-                                <a href="mailto:{{ $jobVacancy->apply_email }}" class="font-semibold text-emerald-600 hover:underline">{{ $jobVacancy->apply_email }}</a>
+                                <a href="mailto:{{ $jobVacancy->apply_email }}" class="font-semibold text-slate-900 hover:underline">{{ $jobVacancy->apply_email }}</a>
                             </div>
                         @endif
                         @if($jobVacancy->contact_person)
@@ -176,7 +176,7 @@
                         @if($jobVacancy->contact_phone)
                             <div class="flex items-center gap-2">
                                 <span class="text-slate-600">Telp:</span>
-                                <a href="tel:{{ $jobVacancy->contact_phone }}" class="font-semibold text-emerald-600 hover:underline">{{ $jobVacancy->contact_phone }}</a>
+                                <a href="tel:{{ $jobVacancy->contact_phone }}" class="font-semibold text-slate-900 hover:underline">{{ $jobVacancy->contact_phone }}</a>
                             </div>
                         @endif
                     </div>
@@ -212,11 +212,11 @@
                                 ?? optional($related->slugs->first())->slug;
                         @endphp
                         <a href="{{ route('jobVacancy.show', $relatedSlug) }}"
-                           class="group block bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-lg hover:border-emerald-500/50 transition-all">
+                           class="group block bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-lg hover:border-[#f0acf7]/50 transition-all">
                             @if($related->company_name)
                                 <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">{{ $related->company_name }}</p>
                             @endif
-                            <h3 class="text-sm font-bold text-slate-900 group-hover:text-emerald-600 transition line-clamp-2">{{ $related->title }}</h3>
+                            <h3 class="text-sm font-bold text-slate-900 group-hover:text-slate-950 transition line-clamp-2">{{ $related->title }}</h3>
                             @if($related->location)
                                 <p class="text-xs text-slate-500 mt-2">{{ $related->location }}</p>
                             @endif

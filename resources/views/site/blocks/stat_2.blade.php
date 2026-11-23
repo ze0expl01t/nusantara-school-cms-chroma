@@ -38,8 +38,8 @@
         <div class="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-10 shadow-sm relative overflow-hidden [contain:layout_style]">
 
             {{-- Ambient glow — blur dikurangi untuk hemat GPU paint --}}
-            <div class="absolute top-0 right-0 w-64 h-64 sm:w-96 sm:h-96 bg-emerald-500/5 blur-[60px] rounded-full pointer-events-none" aria-hidden="true"></div>
-            <div class="absolute bottom-0 left-0 w-64 h-64 sm:w-80 sm:h-80 bg-teal-500/5 blur-[60px] rounded-full pointer-events-none" aria-hidden="true"></div>
+            <div class="absolute top-0 right-0 w-64 h-64 sm:w-96 sm:h-96 bg-[#acf7f0]/5 blur-[60px] rounded-full pointer-events-none" aria-hidden="true"></div>
+            <div class="absolute bottom-0 left-0 w-64 h-64 sm:w-80 sm:h-80 bg-[#f0acf7]/5 blur-[60px] rounded-full pointer-events-none" aria-hidden="true"></div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-center relative z-10">
 
@@ -48,7 +48,7 @@
 
                     @if($badgeText)
                         <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-[11px] sm:text-xs md:text-sm font-semibold tracking-wider text-slate-700 uppercase shadow-sm">
-                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse motion-reduce:animate-none" aria-hidden="true"></span>
+                            <span class="w-2 h-2 rounded-full bg-[#acf7f0] animate-pulse motion-reduce:animate-none" aria-hidden="true"></span>
                             {{ $badgeText }}
                         </div>
                     @endif
@@ -57,7 +57,7 @@
                         <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.15] [text-wrap:balance]">
                             {{ $titleMain }}
                             @if($titleHighlight)
-                                <span class="block text-emerald-600 mt-1 sm:mt-1.5">{{ $titleHighlight }}</span>
+                                <span class="block text-slate-900 mt-1 sm:mt-1.5">{{ $titleHighlight }}</span>
                             @endif
                         </h2>
                     @endif
@@ -99,15 +99,15 @@
                                     $label      = $safeInput($item, 'label', 'Jurusan');
                                 @endphp
 
-                                <div class="space-y-1.5 bg-slate-50/80 p-3.5 rounded-2xl border border-slate-200/80 hover:border-emerald-500/40 transition-colors duration-300 shadow-sm motion-reduce:transition-none">
+                                <div class="space-y-1.5 bg-slate-50/80 p-3.5 rounded-2xl border border-slate-200/80 hover:border-[#f0acf7]/40 transition-colors duration-300 shadow-sm motion-reduce:transition-none">
                                     <div class="flex justify-between text-xs md:text-sm font-bold text-slate-800">
                                         <span class="truncate pr-2">{{ $label }}</span>
-                                        <span class="text-emerald-600 font-extrabold shrink-0">{{ $percentage }}%</span>
+                                        <span class="text-slate-900 font-extrabold shrink-0">{{ $percentage }}%</span>
                                     </div>
 
                                     <div class="w-full h-2.5 bg-slate-200/80 rounded-full overflow-hidden p-0.5 border border-slate-200">
                                         <div
-                                            class="h-full bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-400 rounded-full shadow-[0_0_12px_rgba(16,185,129,0.3)] transition-[width,opacity] duration-1000 ease-out motion-reduce:transition-none [transform:translateZ(0)]"
+                                            class="h-full bg-gradient-to-r from-[#f7f0ac] via-[#acf7f0] to-[#f0acf7] rounded-full shadow-[0_0_12px_rgba(172,247,240,0.45)] transition-[width,opacity] duration-1000 ease-out motion-reduce:transition-none [transform:translateZ(0)]"
                                             :class="animated ? 'opacity-100' : 'opacity-0'"
                                             :style="animated ? 'width: {{ $percentage }}%' : 'width: 0%'"
                                         ></div>
@@ -128,7 +128,7 @@
                     @if($imageCount > 0)
 
                         @if($imageCount === 1)
-                            <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl shadow-emerald-950/10 hover:shadow-emerald-500/20 transition-[box-shadow] duration-500 group aspect-[4/3] motion-reduce:transition-none [contain:layout_style] [transform:translateZ(0)]">
+                            <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl shadow-slate-950/10 hover:shadow-slate-950/15 transition-[box-shadow] duration-500 group aspect-[4/3] motion-reduce:transition-none [contain:layout_style] [transform:translateZ(0)]">
                                 {!! twill_proxy_img(
                                     $imageItems->first(),
                                     'gallery_image',
@@ -146,13 +146,13 @@
                                         'decoding' => 'async',
                                     ]
                                 ) !!}
-                                <div class="absolute inset-0 bg-gradient-to-t from-emerald-950/20 via-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none motion-reduce:transition-none" aria-hidden="true"></div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/25 via-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none motion-reduce:transition-none" aria-hidden="true"></div>
                             </div>
 
                         @elseif($imageCount === 2)
                             <div class="space-y-3 sm:space-y-4 pr-4 sm:pr-6">
                                 @foreach($imageItems as $index => $imgItem)
-                                    <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg shadow-emerald-950/10 hover:shadow-emerald-500/20 transition-[box-shadow] duration-500 group aspect-[16/9] {{ $index === 1 ? 'translate-x-4 sm:translate-x-6' : '' }} motion-reduce:transition-none motion-reduce:translate-x-0 [contain:layout_style] [transform:translateZ(0)]">
+                                    <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg shadow-slate-950/10 hover:shadow-slate-950/15 transition-[box-shadow] duration-500 group aspect-[16/9] {{ $index === 1 ? 'translate-x-4 sm:translate-x-6' : '' }} motion-reduce:transition-none motion-reduce:translate-x-0 [contain:layout_style] [transform:translateZ(0)]">
                                         {!! twill_proxy_img(
                                             $imgItem,
                                             'gallery_image',
@@ -170,7 +170,7 @@
                                                 'decoding' => 'async',
                                             ]
                                         ) !!}
-                                        <div class="absolute inset-0 bg-gradient-to-t from-emerald-950/20 via-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none motion-reduce:transition-none" aria-hidden="true"></div>
+                                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/25 via-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none motion-reduce:transition-none" aria-hidden="true"></div>
                                     </div>
                                 @endforeach
                             </div>
@@ -180,7 +180,7 @@
                                 @foreach($imageItems as $index => $imgItem)
                                     @php $isLarge = ($index === 0); @endphp
 
-                                    <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg shadow-emerald-950/10 hover:shadow-emerald-500/20 transition-[box-shadow] duration-500 group w-full h-full {{ $isLarge ? 'col-span-2 aspect-[16/9]' : 'col-span-1 aspect-[4/3]' }} motion-reduce:transition-none [contain:layout_style] [transform:translateZ(0)]">
+                                    <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg shadow-slate-950/10 hover:shadow-slate-950/15 transition-[box-shadow] duration-500 group w-full h-full {{ $isLarge ? 'col-span-2 aspect-[16/9]' : 'col-span-1 aspect-[4/3]' }} motion-reduce:transition-none [contain:layout_style] [transform:translateZ(0)]">
                                         {!! twill_proxy_img(
                                             $imgItem,
                                             'gallery_image',
@@ -198,7 +198,7 @@
                                                 'decoding' => 'async',
                                             ]
                                         ) !!}
-                                        <div class="absolute inset-0 bg-gradient-to-t from-emerald-950/20 via-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none motion-reduce:transition-none" aria-hidden="true"></div>
+                                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/25 via-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none motion-reduce:transition-none" aria-hidden="true"></div>
                                     </div>
                                 @endforeach
                             </div>

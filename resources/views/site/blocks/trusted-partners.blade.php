@@ -173,7 +173,7 @@
     >
         {{-- Ambient Glow — blur dikurangi untuk hemat GPU paint --}}
         <div class="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none" aria-hidden="true">
-            <div class="absolute top-1/2 left-0 -translate-y-1/2 w-64 h-64 sm:w-[500px] sm:h-[500px] bg-emerald-600/10 blur-[80px] rounded-full [transform:translate3d(0,-50%,0)]"></div>
+            <div class="absolute top-1/2 left-0 -translate-y-1/2 w-64 h-64 sm:w-[500px] sm:h-[500px] bg-[#f0acf7]/10 blur-[80px] rounded-full [transform:translate3d(0,-50%,0)]"></div>
         </div>
 
         <div class="relative z-10">
@@ -183,8 +183,8 @@
                 <div class="lg:col-span-4 space-y-5 sm:space-y-6 text-center lg:text-left">
                     @if($label)
                         <div class="inline-flex items-center gap-3">
-                            <span class="w-8 h-0.5 bg-emerald-400" aria-hidden="true"></span>
-                            <span class="text-[11px] sm:text-xs font-bold tracking-widest text-emerald-400 uppercase">{{ $label }}</span>
+                            <span class="w-8 h-0.5 bg-[#acf7f0]" aria-hidden="true"></span>
+                            <span class="text-[11px] sm:text-xs font-bold tracking-widest text-[#acf7f0] uppercase">{{ $label }}</span>
                         </div>
                     @endif
 
@@ -192,7 +192,7 @@
                         {{ $titleMain }}
                         @if($titleHighlight)
                             <br>
-                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-amber-400">
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#f7f0ac] via-[#acf7f0] to-amber-400">
                                 {{ $titleHighlight }}
                             </span>
                         @endif
@@ -214,7 +214,7 @@
                                 @click="prev(); startAutoplay()"
                                 type="button"
                                 aria-label="Partner sebelumnya"
-                                class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:bg-emerald-600 hover:text-white hover:border-emerald-600 transition-[background-color,border-color,color] duration-300 shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 motion-reduce:transition-none"
+                                class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:bg-[#f7f0ac] hover:text-white hover:border-[#f0acf7] transition-[background-color,border-color,color] duration-300 shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#acf7f0] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 motion-reduce:transition-none"
                             >
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
@@ -224,7 +224,7 @@
                                 @click="next(); startAutoplay()"
                                 type="button"
                                 aria-label="Partner selanjutnya"
-                                class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:bg-emerald-600 hover:text-white hover:border-emerald-600 transition-[background-color,border-color,color] duration-300 shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 motion-reduce:transition-none"
+                                class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:bg-[#f7f0ac] hover:text-white hover:border-[#f0acf7] transition-[background-color,border-color,color] duration-300 shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#acf7f0] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 motion-reduce:transition-none"
                             >
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
@@ -271,7 +271,7 @@
                                                        class="group/card flex flex-col items-center justify-center gap-4 py-6 transition-[transform] duration-300 motion-reduce:transition-none"
                                                     >
                                                         {{-- Logo dalam Lingkaran ═══ --}}
-                                                        <div class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-slate-800 border-2 border-slate-700 flex items-center justify-center overflow-hidden transition-[border-color,box-shadow,transform] duration-300 group-hover/card:border-emerald-500 group-hover/card:scale-105 group-hover/card:shadow-lg group-hover/card:shadow-emerald-500/20 motion-reduce:transition-none motion-reduce:group-hover/card:scale-100 [transform:translateZ(0)]">
+                                                        <div class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-slate-800 border-2 border-slate-700 flex items-center justify-center overflow-hidden transition-[border-color,box-shadow,transform] duration-300 group-hover/card:border-[#acf7f0] group-hover/card:scale-105 group-hover/card:shadow-lg group-hover/card:shadow-slate-950/20 motion-reduce:transition-none motion-reduce:group-hover/card:scale-100 [transform:translateZ(0)]">
                                                             @if($hasLogo)
                                                                 {!! twill_proxy_img(
                                                                     $item,
@@ -297,7 +297,7 @@
                                                         </div>
 
                                                         {{-- Nama Partner --}}
-                                                        <h4 class="text-white font-bold text-sm sm:text-base leading-snug text-center group-hover/card:text-emerald-400 transition-colors duration-300 motion-reduce:transition-none">
+                                                        <h4 class="text-white font-bold text-sm sm:text-base leading-snug text-center group-hover/card:text-[#acf7f0] transition-colors duration-300 motion-reduce:transition-none">
                                                             {{ $name }}
                                                         </h4>
                                                     </a>
@@ -356,8 +356,8 @@
                                     <button
                                         @click="goTo({{ $index }})"
                                         type="button"
-                                        :class="activeSlide === {{ $index + 1 }} ? 'w-8 bg-emerald-500' : 'w-2 bg-slate-700 hover:bg-slate-600'"
-                                        class="h-2 rounded-full transition-[width,background-color] duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 motion-reduce:transition-none"
+                                        :class="activeSlide === {{ $index + 1 }} ? 'w-8 bg-[#acf7f0]' : 'w-2 bg-slate-700 hover:bg-slate-600'"
+                                        class="h-2 rounded-full transition-[width,background-color] duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#acf7f0] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 motion-reduce:transition-none"
                                         :aria-selected="activeSlide === {{ $index + 1 }} ? 'true' : 'false'"
                                         aria-label="Buka halaman {{ $index + 1 }}"
                                         role="tab"

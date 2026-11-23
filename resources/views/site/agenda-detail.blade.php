@@ -153,7 +153,7 @@
 @section('content')
 <main class="py-8 sm:py-10 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto relative overflow-hidden">
 
-    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-emerald-500/10 blur-[140px] rounded-full pointer-events-none"></div>
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#acf7f0]/10 blur-[140px] rounded-full pointer-events-none"></div>
 
     <div class="relative z-10 space-y-6">
 
@@ -165,7 +165,7 @@
         <div class="space-y-3">
             <div class="flex flex-wrap items-center gap-2">
                 @if($dateObj)
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-emerald-600 text-xs font-semibold shadow-sm">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-slate-900 text-xs font-semibold shadow-sm">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                         </svg>
@@ -173,7 +173,7 @@
                     </div>
                 @endif
 
-                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold border {{ $isPast ? 'bg-slate-100 border-slate-200 text-slate-600' : 'bg-emerald-50 border-emerald-200 text-emerald-700' }}">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold border {{ $isPast ? 'bg-slate-100 border-slate-200 text-slate-600' : 'bg-[#acf7f0]/30 border-[#f0acf7] text-slate-900' }}">
                     {{ $statusLabel }}
                 </span>
             </div>
@@ -210,7 +210,7 @@
                 @if($icsDownloadUrl)
                     <a
                         href="{{ $icsDownloadUrl }}"
-                        class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow-sm transition-colors"
+                        class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#f0acf7] hover:bg-[#f0acf7] text-slate-950 text-xs font-bold shadow-sm transition-colors"
                     >
                         <span>Unduh Kalender (.ics)</span>
                     </a>
@@ -233,7 +233,7 @@
                     href="{{ $whatsappShareUrl }}"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 text-xs font-semibold transition-colors"
+                    class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#acf7f0]/30 hover:bg-[#acf7f0] text-slate-900 border border-[#f0acf7] text-xs font-semibold transition-colors"
                 >
                     <span>WhatsApp</span>
                 </a>
@@ -251,7 +251,7 @@
                     class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 text-xs font-semibold transition-colors"
                 >
                     <span x-show="!copied">Salin Tautan</span>
-                    <span x-show="copied" x-cloak class="text-emerald-600 font-bold">Tersalin!</span>
+                    <span x-show="copied" x-cloak class="text-slate-900 font-bold">Tersalin!</span>
                 </button>
             </div>
         </div>
@@ -296,7 +296,7 @@
                                     href="{{ $safeExternalUrl }}"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    class="inline-flex items-center gap-1.5 font-semibold text-emerald-600 hover:text-emerald-700 underline underline-offset-4 break-all"
+                                    class="inline-flex items-center gap-1.5 font-semibold text-slate-900 hover:text-slate-950 underline underline-offset-4 break-all"
                                 >
                                     <span>{{ $safeExternalUrl }}</span>
                                     <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -340,7 +340,7 @@
         @endphp
 
         <div class="pt-4 border-t border-slate-200 flex flex-wrap items-center justify-between gap-4">
-            <a href="{{ url('/') }}" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white border border-slate-200 hover:border-emerald-500 text-xs font-bold text-slate-700 hover:text-emerald-700 transition-colors shadow-sm">
+            <a href="{{ url('/') }}" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white border border-slate-200 hover:border-[#f0acf7] text-xs font-bold text-slate-700 hover:text-slate-950 transition-colors shadow-sm">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                 </svg>
@@ -348,12 +348,12 @@
             </a>
 
             @if(isset($nextAgenda) && $nextSlug)
-                <a href="{{ route('agenda.show', $nextSlug) }}" class="group inline-flex items-center gap-3 px-5 py-3 rounded-2xl bg-white border border-slate-200 hover:border-emerald-500 hover:bg-slate-50 text-slate-700 transition-all duration-300 shadow-sm">
+                <a href="{{ route('agenda.show', $nextSlug) }}" class="group inline-flex items-center gap-3 px-5 py-3 rounded-2xl bg-white border border-slate-200 hover:border-[#f0acf7] hover:bg-slate-50 text-slate-700 transition-all duration-300 shadow-sm">
                     <div class="text-right">
                         <span class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider">Agenda Selanjutnya</span>
-                        <span class="block text-sm font-bold text-slate-900 group-hover:text-emerald-600 transition-colors max-w-xs truncate">{{ $nextAgenda->title }}</span>
+                        <span class="block text-sm font-bold text-slate-900 group-hover:text-slate-950 transition-colors max-w-xs truncate">{{ $nextAgenda->title }}</span>
                     </div>
-                    <div class="w-9 h-9 rounded-xl bg-emerald-50 border border-emerald-200 group-hover:border-emerald-500 group-hover:bg-emerald-100 flex items-center justify-center text-emerald-600 shrink-0 transition-all duration-300 shadow-sm">
+                    <div class="w-9 h-9 rounded-xl bg-[#acf7f0]/30 border border-[#f0acf7] group-hover:border-[#f0acf7] group-hover:bg-[#acf7f0] flex items-center justify-center text-slate-900 shrink-0 transition-all duration-300 shadow-sm">
                         <svg class="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                         </svg>

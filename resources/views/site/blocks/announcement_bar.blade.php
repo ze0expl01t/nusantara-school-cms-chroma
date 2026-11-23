@@ -10,10 +10,10 @@
     
     $style = $block->input('style') ?? 'emerald';
     $styles = [
-        'emerald' => 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white',
-        'blue'    => 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white',
-        'amber'   => 'bg-gradient-to-r from-amber-500 to-orange-500 text-white',
-        'dark'    => 'bg-slate-900 text-white',
+        'emerald' => 'bg-gradient-to-r from-[#f7f0ac] via-[#acf7f0] to-[#f0acf7] text-slate-950',
+        'blue'    => 'bg-gradient-to-r from-[#acf7f0] via-[#f0acf7] to-[#f7f0ac] text-slate-950',
+        'amber'   => 'bg-gradient-to-r from-[#f7f0ac] to-[#f0acf7] text-slate-950',
+        'dark'    => 'bg-gradient-to-r from-[#f0acf7] via-[#acf7f0] to-[#f7f0ac] text-slate-950',
     ];
     $bgClass = $styles[$style] ?? $styles['emerald'];
 @endphp
@@ -55,13 +55,13 @@
             <div class="marquee-content">
                 <span class="text-sm font-medium pr-8">{{ $text }}</span>
                 @if($highlightText)
-                    <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-white/20 text-[10px] sm:text-xs font-bold uppercase tracking-wider mr-8">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-white/75 text-[10px] sm:text-xs font-bold uppercase tracking-wider mr-8">
                         {{ $highlightText }}
                     </span>
                 @endif
                 <span class="text-sm font-medium pr-8">{{ $text }}</span>
                 @if($highlightText)
-                    <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-white/20 text-[10px] sm:text-xs font-bold uppercase tracking-wider mr-8">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-white/75 text-[10px] sm:text-xs font-bold uppercase tracking-wider mr-8">
                         {{ $highlightText }}
                     </span>
                 @endif
@@ -74,11 +74,11 @@
                 <a href="{{ $buttonUrl }}" 
                    class="inline-flex items-center justify-center px-4 py-1.5 text-xs font-bold rounded-full transition-all duration-200
                    @if($buttonStyle === 'solid')
-                       bg-white text-emerald-700 hover:bg-slate-100 shadow-sm
+                       bg-slate-950 text-[#f7f0ac] hover:bg-slate-900 shadow-sm
                    @elseif($buttonStyle === 'outline')
-                       border-2 border-white text-white hover:bg-white/10
+                       border-2 border-slate-950 text-slate-950 hover:bg-white/80
                    @else
-                       text-white underline hover:text-emerald-200
+                       text-slate-950 underline hover:underline
                    @endif
                    ">
                     {{ $buttonText }}

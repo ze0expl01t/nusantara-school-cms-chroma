@@ -146,7 +146,7 @@
     >
         {{-- Ambient Glow — blur dikurangi untuk hemat GPU paint --}}
         <div class="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none" aria-hidden="true">
-            <div class="absolute top-1/2 left-0 -translate-y-1/2 w-64 h-64 sm:w-[500px] sm:h-[500px] bg-emerald-600/10 blur-[80px] rounded-full [transform:translate3d(0,-50%,0)]"></div>
+            <div class="absolute top-1/2 left-0 -translate-y-1/2 w-64 h-64 sm:w-[500px] sm:h-[500px] bg-[#f0acf7]/10 blur-[80px] rounded-full [transform:translate3d(0,-50%,0)]"></div>
         </div>
 
         <div class="relative z-10">
@@ -155,15 +155,15 @@
                 {{-- Kolom Kiri --}}
                 <div class="lg:col-span-4 space-y-5 sm:space-y-6 text-center lg:text-left">
                     <div class="inline-flex items-center gap-3">
-                        <span class="w-8 h-0.5 bg-emerald-400" aria-hidden="true"></span>
-                        <span class="text-[11px] sm:text-xs font-bold tracking-widest text-emerald-400 uppercase">Testimonials</span>
+                        <span class="w-8 h-0.5 bg-[#acf7f0]" aria-hidden="true"></span>
+                        <span class="text-[11px] sm:text-xs font-bold tracking-widest text-[#acf7f0] uppercase">Testimonials</span>
                     </div>
 
                     <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-[1.1]">
                         {{ $titleMain }}
                         @if($titleHighlight)
                             <br>
-                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-amber-400">
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#f7f0ac] via-[#acf7f0] to-amber-400">
                                 {{ $titleHighlight }}
                             </span>
                         @endif
@@ -181,7 +181,7 @@
                                 @click="prev(); startAutoplay()"
                                 type="button"
                                 aria-label="Testimoni sebelumnya"
-                                class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:bg-emerald-600 hover:text-white hover:border-emerald-600 transition-[background-color,border-color,color] duration-300 shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 motion-reduce:transition-none"
+                                class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:bg-[#f7f0ac] hover:text-white hover:border-[#f0acf7] transition-[background-color,border-color,color] duration-300 shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#acf7f0] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 motion-reduce:transition-none"
                             >
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
@@ -191,7 +191,7 @@
                                 @click="next(); startAutoplay()"
                                 type="button"
                                 aria-label="Testimoni selanjutnya"
-                                class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:bg-emerald-600 hover:text-white hover:border-emerald-600 transition-[background-color,border-color,color] duration-300 shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 motion-reduce:transition-none"
+                                class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:bg-[#f7f0ac] hover:text-white hover:border-[#f0acf7] transition-[background-color,border-color,color] duration-300 shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#acf7f0] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 motion-reduce:transition-none"
                             >
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
@@ -239,8 +239,8 @@
                                                 <div class="relative bg-slate-800/95 border border-slate-700/80 rounded-2xl px-5 pb-5 pt-20 sm:px-6 sm:pb-6 sm:pt-24 shadow-xl flex flex-col h-full [contain:layout_style] [transform:translateZ(0)]">
 
                                                     <div class="absolute bottom-0 left-0 right-0 h-1 flex overflow-hidden rounded-b-2xl opacity-90" aria-hidden="true">
-                                                        <div class="w-1/3 h-full bg-emerald-600"></div>
-                                                        <div class="w-1/3 h-full bg-teal-400"></div>
+                                                        <div class="w-1/3 h-full bg-[#f0acf7]"></div>
+                                                        <div class="w-1/3 h-full bg-[#acf7f0]"></div>
                                                         <div class="w-1/3 h-full bg-amber-400"></div>
                                                     </div>
 
@@ -289,7 +289,7 @@
                                                                 {{ $name }}
                                                             </h4>
                                                             @if($role)
-                                                                <p class="text-xs sm:text-sm text-emerald-400 font-medium">
+                                                                <p class="text-xs sm:text-sm text-[#acf7f0] font-medium">
                                                                     {{ $role }}
                                                                 </p>
                                                             @endif
@@ -319,8 +319,8 @@
                                     <button
                                         @click="goTo({{ $index }})"
                                         type="button"
-                                        :class="activeSlide === {{ $index + 1 }} ? 'w-8 bg-emerald-500' : 'w-2 bg-slate-700 hover:bg-slate-600'"
-                                        class="h-2 rounded-full transition-[width,background-color] duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 motion-reduce:transition-none"
+                                        :class="activeSlide === {{ $index + 1 }} ? 'w-8 bg-[#acf7f0]' : 'w-2 bg-slate-700 hover:bg-slate-600'"
+                                        class="h-2 rounded-full transition-[width,background-color] duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#acf7f0] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 motion-reduce:transition-none"
                                         :aria-selected="activeSlide === {{ $index + 1 }} ? 'true' : 'false'"
                                         aria-label="Buka halaman {{ $index + 1 }}"
                                         role="tab"

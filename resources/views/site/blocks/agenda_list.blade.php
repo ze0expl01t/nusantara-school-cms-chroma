@@ -57,20 +57,20 @@
     data-block-reveal
 >
 
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] bg-emerald-500/10 blur-[80px] rounded-full pointer-events-none [transform:translate3d(-50%,-50%,0)]"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] bg-[#acf7f0]/10 blur-[80px] rounded-full pointer-events-none [transform:translate3d(-50%,-50%,0)]"></div>
 
     <div class="relative z-10 space-y-8 sm:space-y-10">
 
         @if($sectionTitle)
             <div class="flex flex-col items-center text-center space-y-3">
                 <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm text-xs font-semibold text-slate-600">
-                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse motion-reduce:animate-none" aria-hidden="true"></span>
+                    <span class="w-2 h-2 rounded-full bg-[#acf7f0] animate-pulse motion-reduce:animate-none" aria-hidden="true"></span>
                     Jadwal & Kegiatan
                 </div>
                 <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight px-2">
                     {{ $sectionTitle }}
                 </h2>
-                <div class="w-20 h-1 bg-gradient-to-r from-transparent via-emerald-500 to-transparent rounded-full" aria-hidden="true"></div>
+                <div class="w-20 h-1 bg-gradient-to-r from-transparent via-[#acf7f0] to-transparent rounded-full" aria-hidden="true"></div>
             </div>
         @endif
 
@@ -80,7 +80,7 @@
                 <button
                     type="button"
                     @click="agendaFilter = 'all'"
-                    :class="agendaFilter === 'all' ? 'bg-emerald-600 text-white border-emerald-600 shadow-sm' : 'bg-white text-slate-600 border-slate-200 hover:border-emerald-400 hover:text-emerald-700'"
+                    :class="agendaFilter === 'all' ? 'bg-[#f0acf7] text-slate-950 border-[#f0acf7] shadow-sm' : 'bg-white text-slate-600 border-slate-200 hover:border-[#f0acf7] hover:text-slate-950'"
                     class="px-4 py-1.5 rounded-full text-xs font-bold border transition-colors"
                 >
                     Semua ({{ $agendas->count() }})
@@ -88,7 +88,7 @@
                 <button
                     type="button"
                     @click="agendaFilter = 'upcoming'"
-                    :class="agendaFilter === 'upcoming' ? 'bg-emerald-600 text-white border-emerald-600 shadow-sm' : 'bg-white text-slate-600 border-slate-200 hover:border-emerald-400 hover:text-emerald-700'"
+                    :class="agendaFilter === 'upcoming' ? 'bg-[#f0acf7] text-slate-950 border-[#f0acf7] shadow-sm' : 'bg-white text-slate-600 border-slate-200 hover:border-[#f0acf7] hover:text-slate-950'"
                     class="px-4 py-1.5 rounded-full text-xs font-bold border transition-colors"
                 >
                     Mendatang
@@ -96,7 +96,7 @@
                 <button
                     type="button"
                     @click="agendaFilter = 'past'"
-                    :class="agendaFilter === 'past' ? 'bg-emerald-600 text-white border-emerald-600 shadow-sm' : 'bg-white text-slate-600 border-slate-200 hover:border-emerald-400 hover:text-emerald-700'"
+                    :class="agendaFilter === 'past' ? 'bg-[#f0acf7] text-slate-950 border-[#f0acf7] shadow-sm' : 'bg-white text-slate-600 border-slate-200 hover:border-[#f0acf7] hover:text-slate-950'"
                     class="px-4 py-1.5 rounded-full text-xs font-bold border transition-colors"
                 >
                     Selesai
@@ -154,7 +154,7 @@
                         data-analytics="agenda-click"
                         data-agenda-id="{{ $agenda->id }}"
                         data-agenda-title="{{ $agenda->title }}"
-                        class="bg-white border border-slate-200 hover:border-emerald-500 hover:shadow-xl hover:shadow-emerald-600/10 rounded-2xl sm:rounded-3xl p-5 sm:p-6 transition-all duration-300 group flex flex-col justify-between space-y-5 sm:space-y-6 hover:-translate-y-1.5 motion-reduce:transition-none motion-reduce:hover:translate-y-0 [contain:layout_style] [transform:translateZ(0)]"
+                        class="bg-white border border-slate-200 hover:border-[#f0acf7] hover:shadow-xl hover:shadow-slate-950/10 rounded-2xl sm:rounded-3xl p-5 sm:p-6 transition-all duration-300 group flex flex-col justify-between space-y-5 sm:space-y-6 hover:-translate-y-1.5 motion-reduce:transition-none motion-reduce:hover:translate-y-0 [contain:layout_style] [transform:translateZ(0)]"
                     >
 
                         <div class="space-y-4">
@@ -162,7 +162,7 @@
                                 @if($dateObj || $jamLabel)
                                     <div class="flex items-center gap-3">
                                         @if($dateObj)
-                                            <div class="w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-100 group-hover:border-emerald-300 group-hover:bg-emerald-100 flex flex-col items-center justify-center text-emerald-600 shrink-0 transition-all duration-300 shadow-sm">
+                                            <div class="w-12 h-12 rounded-2xl bg-[#acf7f0]/30 border border-[#acf7f0] group-hover:border-[#acf7f0] group-hover:bg-[#acf7f0] flex flex-col items-center justify-center text-slate-900 shrink-0 transition-all duration-300 shadow-sm">
                                                 <span class="text-[10px] font-bold leading-none uppercase tracking-wider">
                                                     {{ $dateObj->translatedFormat('M') }}
                                                 </span>
@@ -178,7 +178,7 @@
                                                 </span>
                                             @endif
                                             @if($jamLabel)
-                                                <span class="text-xs font-bold text-emerald-600 block">
+                                                <span class="text-xs font-bold text-slate-900 block">
                                                     {{ $jamLabel }}
                                                 </span>
                                             @endif
@@ -186,12 +186,12 @@
                                     </div>
                                 @endif
 
-                                <span class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider shrink-0 border {{ $isPast ? 'bg-slate-100 border-slate-200 text-slate-600' : 'bg-emerald-50 border-emerald-200 text-emerald-700' }}">
+                                <span class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider shrink-0 border {{ $isPast ? 'bg-slate-100 border-slate-200 text-slate-600' : 'bg-[#acf7f0]/30 border-[#f0acf7] text-slate-900' }}">
                                     {{ $statusLabel }}
                                 </span>
                             </div>
 
-                            <h3 class="text-base sm:text-lg md:text-xl font-bold text-slate-900 group-hover:text-emerald-600 transition-colors duration-300 leading-snug line-clamp-2">
+                            <h3 class="text-base sm:text-lg md:text-xl font-bold text-slate-900 group-hover:text-slate-950 transition-colors duration-300 leading-snug line-clamp-2">
                                 <a href="{{ $agendaUrl }}" class="focus:outline-none focus-visible:underline">
                                     {{ $agenda->title }}
                                 </a>
@@ -233,7 +233,7 @@
                                     href="{{ $safeExternalUrl }}"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    class="text-emerald-600 hover:text-emerald-700 underline underline-offset-4 truncate"
+                                    class="text-slate-900 hover:text-slate-950 underline underline-offset-4 truncate"
                                 >
                                     Tautan / URL
                                 </a>
@@ -244,7 +244,7 @@
                             <a
                                 href="{{ $agendaUrl }}"
                                 aria-label="Lihat detail agenda: {{ $agenda->title }}"
-                                class="inline-flex items-center gap-1.5 text-slate-600 group-hover:text-emerald-600 transition-colors shrink-0"
+                                class="inline-flex items-center gap-1.5 text-slate-600 group-hover:text-slate-950 transition-colors shrink-0"
                             >
                                 <span>Detail Kegiatan</span>
                                 <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">

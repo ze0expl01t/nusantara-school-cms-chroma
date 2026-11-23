@@ -100,7 +100,7 @@
 <section class="py-8 sm:py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative overflow-hidden [content-visibility:auto] [contain-intrinsic-size:700px]" data-block-reveal>
 
     {{-- Ambient Glow — blur dikurangi untuk hemat GPU paint --}}
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] bg-emerald-500/10 blur-[80px] rounded-full pointer-events-none [transform:translate3d(-50%,-50%,0)]"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] bg-[#acf7f0]/10 blur-[80px] rounded-full pointer-events-none [transform:translate3d(-50%,-50%,0)]"></div>
 
     <div class="relative z-10 max-w-3xl mx-auto space-y-8 sm:space-y-10">
 
@@ -108,7 +108,7 @@
         <div class="flex flex-col items-center text-center space-y-3 pb-4 sm:pb-6">
             @if($badgeText)
                 <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm text-xs font-medium text-slate-700">
-                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse motion-reduce:animate-none" aria-hidden="true"></span>
+                    <span class="w-2 h-2 rounded-full bg-[#acf7f0] animate-pulse motion-reduce:animate-none" aria-hidden="true"></span>
                     {{ $badgeText }}
                 </div>
             @endif
@@ -116,11 +116,11 @@
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight px-2">
                 {{ $titleMain }}
                 @if($titleHighlight)
-                    <span class="text-emerald-600">{{ $titleHighlight }}</span>
+                    <span class="text-slate-900">{{ $titleHighlight }}</span>
                 @endif
             </h2>
 
-            <div class="w-20 h-1 bg-gradient-to-r from-transparent via-emerald-500 to-transparent rounded-full" aria-hidden="true"></div>
+            <div class="w-20 h-1 bg-gradient-to-r from-transparent via-[#acf7f0] to-transparent rounded-full" aria-hidden="true"></div>
 
             @if($subtitle)
                 <p class="text-base md:text-lg text-slate-600 max-w-2xl px-2 pt-2">
@@ -133,7 +133,7 @@
         <div class="space-y-3">
             @foreach($faqData as $index => $faq)
                 <div x-data="{ open: {{ $faq['is_open'] ? 'true' : 'false' }} }"
-                     class="group bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md hover:border-emerald-500/30 transition-[box-shadow,border-color] duration-300 motion-reduce:transition-none [contain:layout_style]">
+                     class="group bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md hover:border-[#f0acf7]/30 transition-[box-shadow,border-color] duration-300 motion-reduce:transition-none [contain:layout_style]">
 
                     <button type="button"
                             @click="open = !open"
@@ -142,7 +142,7 @@
                             class="w-full flex items-center justify-between gap-4 px-5 sm:px-6 py-4 sm:py-5 text-left transition-colors duration-200 hover:bg-slate-50/50 motion-reduce:transition-none focus:outline-none focus-visible:bg-slate-50/70">
 
                         <div class="flex items-start gap-3 flex-1 min-w-0">
-                            <span class="flex-shrink-0 w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 text-xs font-extrabold group-hover:bg-emerald-100 transition-colors duration-300 motion-reduce:transition-none" aria-hidden="true">
+                            <span class="flex-shrink-0 w-8 h-8 rounded-lg bg-[#acf7f0]/30 border border-[#acf7f0] flex items-center justify-center text-slate-900 text-xs font-extrabold group-hover:bg-[#acf7f0] transition-colors duration-300 motion-reduce:transition-none" aria-hidden="true">
                                 {{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}
                             </span>
 
@@ -151,7 +151,7 @@
                             </span>
                         </div>
 
-                        <div class="flex-shrink-0 w-8 h-8 rounded-full bg-slate-100 group-hover:bg-emerald-100 flex items-center justify-center text-slate-500 group-hover:text-emerald-600 transition-colors duration-300 motion-reduce:transition-none [transform:translateZ(0)]">
+                        <div class="flex-shrink-0 w-8 h-8 rounded-full bg-slate-100 group-hover:bg-[#acf7f0] flex items-center justify-center text-slate-500 group-hover:text-slate-950 transition-colors duration-300 motion-reduce:transition-none [transform:translateZ(0)]">
                             <svg class="w-4 h-4 transform transition-transform duration-300 motion-reduce:transition-none"
                                  :class="open ? 'rotate-180' : ''"
                                  fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -185,7 +185,7 @@
                 @if($contactButtonText && $contactButtonUrl && $contactButtonUrl !== '#')
                     <a href="{{ $contactButtonUrl }}"
                        @if(str_starts_with($contactButtonUrl, 'http')) target="_blank" rel="noopener noreferrer" @endif
-                       class="inline-flex items-center gap-2 px-6 sm:px-8 py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold shadow-lg shadow-emerald-600/25 transition-[transform,background-color,box-shadow] duration-300 transform hover:-translate-y-1 text-sm sm:text-base motion-reduce:transition-none motion-reduce:hover:translate-y-0">
+                       class="inline-flex items-center gap-2 px-6 sm:px-8 py-3.5 rounded-full bg-[#f0acf7] hover:bg-[#f0acf7] text-slate-950 font-bold shadow-lg shadow-slate-950/15 transition-[transform,background-color,box-shadow] duration-300 transform hover:-translate-y-1 text-sm sm:text-base motion-reduce:transition-none motion-reduce:hover:translate-y-0">
                         {{ $contactButtonText }}
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>

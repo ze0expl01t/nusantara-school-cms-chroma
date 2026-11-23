@@ -399,7 +399,7 @@
 @endif
 </head>
 <body
-    class="bg-slate-50 text-slate-800 antialiased selection:bg-emerald-600 selection:text-white flex flex-col min-h-screen [text-rendering:optimizeLegibility]"
+    class="bg-slate-50 text-slate-800 antialiased selection:bg-[#f0acf7] selection:text-white flex flex-col min-h-screen [text-rendering:optimizeLegibility]"
     x-data="{ pageLoading: true }"
     @beforeunload.window="pageLoading = true"
     @pageshow.window="pageLoading = false"
@@ -436,7 +436,7 @@
 
     {{-- PAGE LOADING --}}
     <div class="fixed top-0 left-0 right-0 z-[100] h-1 bg-transparent overflow-hidden" x-show="pageLoading" x-cloak>
-        <div class="h-full bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-600 shadow-[0_0_10px_rgba(16,185,129,0.8)] loading-bar-animation"></div>
+        <div class="h-full bg-gradient-to-r from-[#f7f0ac] via-[#acf7f0] to-[#f0acf7] shadow-[0_0_10px_rgba(240,172,247,0.75)] loading-bar-animation"></div>
     </div>
 
     <!-- ================== HEADER ================== -->
@@ -445,8 +445,8 @@
             @keydown.escape.window="mobileMenu = false; searchOpen = false">
 
         <div class="absolute bottom-0 left-0 right-0 h-1.5 flex z-20" aria-hidden="true">
-            <div class="w-1/3 h-full bg-emerald-600"></div>
-            <div class="w-1/3 h-full bg-teal-400"></div>
+            <div class="w-1/3 h-full bg-[#f0acf7]"></div>
+            <div class="w-1/3 h-full bg-[#acf7f0]"></div>
             <div class="w-1/3 h-full bg-amber-400"></div>
         </div>
 
@@ -476,7 +476,7 @@
                         @endif
                     </div>
                 @else
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-500 flex items-center justify-center text-white shadow-lg shadow-emerald-600/20 group-hover:scale-105 transition-transform motion-reduce:transition-none motion-reduce:group-hover:scale-100 flex-shrink-0">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#f7f0ac] to-[#f0acf7] flex items-center justify-center text-white shadow-lg shadow-slate-950/15 group-hover:scale-105 transition-transform motion-reduce:transition-none motion-reduce:group-hover:scale-100 flex-shrink-0">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                     </div>
                     <div class="flex flex-col leading-tight min-w-0">
@@ -560,50 +560,79 @@
         transition: color 0.15s ease, background 0.15s ease;
     }
     .dmenu-submenu .dmenu-item > a:hover {
-        background: rgba(52, 211, 153, 0.06); color: #6ee7b7;
+        background: rgba(172, 247, 240, 0.14); color: #f7f0ac;
+    }
+
+        .dmenu-root > .dmenu-item > a {
+        position: relative;
+        border-radius: 10px;
+        transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+    }
+    .dmenu-root > .dmenu-item > a:hover {
+        background: linear-gradient(135deg, rgba(172, 247, 240, 0.22), rgba(240, 172, 247, 0.22));
+        color: #f7f0ac;
+    }
+    .dmenu-root > .dmenu-item > a::before {
+        content: '';
+        position: absolute;
+        bottom: 2px;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        transform: translateX(-50%);
+        background: linear-gradient(90deg, #f7f0ac, #acf7f0, #f0acf7);
+        border-radius: 999px;
+        transition: width 0.22s ease;
+    }
+    .dmenu-root > .dmenu-item > a:hover::before {
+        width: 65%;
+    }
+    .dmenu-root > .dmenu-item > a:hover .dmenu-icon {
+        color: #acf7f0;
+        opacity: 1;
     }
 
     /* Active states — ROOT */
     .dmenu-root > .dmenu-active > a,
     .dmenu-root > .dmenu-parent-active > a {
-        background: rgba(16, 185, 129, 0.08) !important;
-        color: #6ee7b7 !important;
+        background: rgba(172, 247, 240, 0.14) !important;
+        color: #f7f0ac !important;
         position: relative;
     }
-    .dmenu-root > .dmenu-active > a { color: #fff !important; background: rgba(16, 185, 129, 0.12) !important; }
+    .dmenu-root > .dmenu-active > a { color: #acf7f0 !important; background: rgba(240, 172, 247, 0.16) !important; }
     .dmenu-root > .dmenu-active > a::after,
     .dmenu-root > .dmenu-parent-active > a::after {
         content: ''; position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%);
         width: 60%; height: 2px;
-        background: linear-gradient(90deg, transparent, #34d399, transparent);
+        background: linear-gradient(90deg, #f7f0ac, #acf7f0, #f0acf7);
         border-radius: 2px;
     }
     .dmenu-root > .dmenu-active > a .dmenu-icon,
-    .dmenu-root > .dmenu-parent-active > a .dmenu-icon { color: #34d399; opacity: 1; }
+    .dmenu-root > .dmenu-parent-active > a .dmenu-icon { color: #acf7f0; opacity: 1; }
     .dmenu-root > .dmenu-active > a:hover,
     .dmenu-root > .dmenu-parent-active > a:hover {
-        background: rgba(16, 185, 129, 0.15) !important; color: #fff !important;
+        background: rgba(172, 247, 240, 0.22) !important; color: #f7f0ac !important;
     }
 
     /* Active states — SUBMENU */
     .dmenu-submenu .dmenu-active > a {
-        background: rgba(16, 185, 129, 0.15) !important;
-        color: #6ee7b7 !important; font-weight: 600;
+        background: rgba(240, 172, 247, 0.18) !important;
+        color: #f7f0ac !important; font-weight: 600;
         padding-left: 22px !important; position: relative;
     }
     .dmenu-submenu .dmenu-active > a::after,
     .dmenu-submenu .dmenu-parent-active > a::after {
         content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
         width: 80%; height: 2px;
-        background: linear-gradient(90deg, transparent, #34d399, transparent);
+        background: linear-gradient(90deg, #f7f0ac, #acf7f0, #f0acf7);
         border-radius: 2px;
     }
     .dmenu-submenu .dmenu-active > a::before {
         content: ''; position: absolute; left: 8px; top: 50%; transform: translateY(-50%);
         width: 4px; height: 4px; border-radius: 50%;
-        background: #34d399; box-shadow: 0 0 8px rgba(52, 211, 153, 0.8);
+        background: #acf7f0; box-shadow: 0 0 8px rgba(172, 247, 240, 0.85);
     }
-    .dmenu-submenu .dmenu-parent-active > a { color: #6ee7b7 !important; font-weight: 500; }
+    .dmenu-submenu .dmenu-parent-active > a { color: #f7f0ac !important; font-weight: 500; }
 </style>
 <nav class="hidden md:flex items-center gap-1 bg-slate-800/80 p-1.5 rounded-xl border border-slate-700">
     @php
@@ -686,7 +715,7 @@
                 <button type="button"
                         @click="searchOpen = !searchOpen; $nextTick(() => { if(searchOpen) $refs.desktopSearchInput.focus(); })"
                         aria-label="Buka pencarian"
-                        class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-white hover:bg-emerald-600 hover:border-emerald-600 transition-[background-color,border-color,color] duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 motion-reduce:transition-none">
+                        class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-white hover:bg-[#f7f0ac] hover:border-[#f0acf7] transition-[background-color,border-color,color] duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#acf7f0] motion-reduce:transition-none">
                     <svg x-show="!searchOpen" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                     </svg>
@@ -695,7 +724,7 @@
                     </svg>
                 </button>
 
-                <a href="{{ $ctaUrl }}" class="px-5 py-2.5 rounded-full text-sm font-bold bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-600/25 transition-[transform,background-color] duration-300 transform hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:translate-y-0 [transform:translateZ(0)]">
+                <a href="{{ $ctaUrl }}" class="px-5 py-2.5 rounded-full text-sm font-bold bg-[#f0acf7] hover:bg-[#f0acf7] text-slate-950 shadow-lg shadow-slate-950/15 transition-[transform,background-color] duration-300 transform hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:translate-y-0 [transform:translateZ(0)]">
                     {{ $ctaText }}
                 </a>
             </div>
@@ -725,7 +754,7 @@
              class="hidden md:block absolute top-full left-0 right-0 bg-slate-900/95 backdrop-blur-xl border-b border-slate-800 shadow-2xl">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
                 <form action="{{ route('search') }}" method="GET" class="max-w-2xl mx-auto">
-                    <div class="relative bg-slate-800 border border-slate-700 rounded-2xl focus-within:border-emerald-500 transition">
+                    <div class="relative bg-slate-800 border border-slate-700 rounded-2xl focus-within:border-[#acf7f0] transition">
                         <div class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" aria-hidden="true">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
@@ -740,7 +769,7 @@
                             class="w-full bg-transparent pl-12 pr-24 py-3.5 text-sm text-white placeholder-slate-500 focus:outline-none rounded-2xl"
                         >
                         <button type="submit"
-                                class="absolute right-2 top-1/2 -translate-y-1/2 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition motion-reduce:transition-none">
+                                class="absolute right-2 top-1/2 -translate-y-1/2 px-4 py-2 rounded-xl bg-[#f0acf7] hover:bg-[#f0acf7] text-slate-950 text-xs font-bold transition motion-reduce:transition-none">
                             Cari
                         </button>
                     </div>
@@ -780,23 +809,23 @@
                     @if($hasChildren)
                         <div x-data="{ expanded: {{ $isActive ? 'true' : 'false' }} }"
                              class="rounded-xl overflow-hidden transition-[background-color] duration-200 motion-reduce:transition-none
-                                    {{ $isActive ? 'bg-emerald-600/10' : 'bg-transparent' }}">
+                                    {{ $isActive ? 'bg-[#f0acf7]/10' : 'bg-transparent' }}">
 
                             <button type="button"
                                     @click="expanded = !expanded"
                                     :aria-expanded="expanded ? 'true' : 'false'"
                                     class="w-full flex items-center justify-between gap-3 px-4 py-3 rounded-xl font-semibold transition-[background-color,color] duration-200 motion-reduce:transition-none
                                            {{ $isActive
-                                               ? 'text-emerald-300'
+                                               ? 'text-[#f7f0ac]'
                                                : 'text-slate-300 hover:text-white hover:bg-slate-800' }}">
                                 <span class="text-left flex items-center gap-2">
                                     <span class="w-1 h-1 rounded-full transition-[background-color] duration-200 motion-reduce:transition-none
-                                                 {{ $isActive ? 'bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.9)]' : 'bg-slate-600' }}"
+                                                 {{ $isActive ? 'bg-[#acf7f0] shadow-[0_0_8px_rgba(52,211,153,0.9)]' : 'bg-slate-600' }}"
                                           aria-hidden="true"></span>
                                     {{ $link->title }}
                                 </span>
                                 <svg class="w-4 h-4 transform transition-transform duration-300 flex-shrink-0 motion-reduce:transition-none
-                                            {{ $isActive ? 'text-emerald-400' : 'text-slate-500' }}"
+                                            {{ $isActive ? 'text-[#acf7f0]' : 'text-slate-500' }}"
                                      :class="expanded ? 'rotate-180' : ''"
                                      fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
@@ -806,7 +835,7 @@
                             <div x-show="expanded"
                                  x-collapse
                                  x-cloak
-                                 class="mt-1 mb-2 ml-4 pl-4 border-l-2 border-emerald-500/20 space-y-1.5">
+                                 class="mt-1 mb-2 ml-4 pl-4 border-l-2 border-[#acf7f0]/20 space-y-1.5">
 
                                 @foreach($link->children as $child)
                                     @php
@@ -817,13 +846,13 @@
                                     <a href="{{ $childUrl }}"
                                        class="group/sub relative flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-sm font-medium transition-[background-color,color] duration-200 motion-reduce:transition-none
                                               {{ $childActive
-                                                  ? 'bg-emerald-600/15 text-emerald-300'
+                                                  ? 'bg-[#f0acf7]/15 text-[#f7f0ac]'
                                                   : 'text-slate-400 hover:text-white hover:bg-slate-800/60' }}">
 
                                         <span class="w-1 h-1 rounded-full transition-[background-color] duration-200 flex-shrink-0 motion-reduce:transition-none
                                                      {{ $childActive
-                                                         ? 'bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.9)]'
-                                                         : 'bg-slate-600 group-hover/sub:bg-emerald-400' }}"
+                                                         ? 'bg-[#acf7f0] shadow-[0_0_8px_rgba(52,211,153,0.9)]'
+                                                         : 'bg-slate-600 group-hover/sub:bg-[#acf7f0]' }}"
                                               aria-hidden="true"></span>
 
                                         <span class="flex-1">{{ $child->title }}</span>
@@ -834,7 +863,7 @@
                     @else
                         <a href="{{ $url }}"
                            class="block w-full text-left px-4 py-3 rounded-xl font-semibold transition motion-reduce:transition-none
-                                  {{ $isActive ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/20' : 'text-slate-300 hover:text-white hover:bg-slate-800' }}">
+                                  {{ $isActive ? 'bg-[#f0acf7] text-slate-950 shadow-md shadow-slate-950/15' : 'text-slate-300 hover:text-white hover:bg-slate-800' }}">
                             {{ $link->title }}
                         </a>
                     @endif
@@ -854,7 +883,7 @@
                     Cari
                 </a>
 
-                <a href="{{ $ctaUrl }}" class="block w-full text-center px-4 py-3 rounded-xl font-bold bg-emerald-600 hover:bg-emerald-500 text-white transition shadow-md shadow-emerald-600/20 motion-reduce:transition-none">
+                <a href="{{ $ctaUrl }}" class="block w-full text-center px-4 py-3 rounded-xl font-bold bg-[#f0acf7] hover:bg-[#f0acf7] text-slate-950 transition shadow-md shadow-slate-950/15 motion-reduce:transition-none">
                     {{ $ctaText }}
                 </a>
             </div>
@@ -869,12 +898,12 @@
     <!-- FOOTER -->
     <footer class="relative bg-slate-900 text-slate-300 mt-auto overflow-hidden">
         <div class="absolute top-0 left-0 right-0 h-1.5 flex z-20" aria-hidden="true">
-            <div class="w-1/3 h-full bg-emerald-600"></div>
-            <div class="w-1/3 h-full bg-teal-400"></div>
+            <div class="w-1/3 h-full bg-[#f0acf7]"></div>
+            <div class="w-1/3 h-full bg-[#acf7f0]"></div>
             <div class="w-1/3 h-full bg-amber-400"></div>
         </div>
 
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-emerald-600/10 blur-[80px] rounded-full pointer-events-none [transform:translate3d(-50%,0,0)]" aria-hidden="true"></div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#f0acf7]/10 blur-[80px] rounded-full pointer-events-none [transform:translate3d(-50%,0,0)]" aria-hidden="true"></div>
 
         <div class="relative z-10 max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
@@ -894,7 +923,7 @@
                         </div>
                     @else
                         <div class="flex items-center gap-3">
-                            <span class="w-10 h-10 rounded-lg bg-emerald-600 flex items-center justify-center text-white shadow-md shadow-emerald-600/20 flex-shrink-0" aria-hidden="true">
+                            <span class="w-10 h-10 rounded-lg bg-[#f0acf7] flex items-center justify-center text-white shadow-md shadow-slate-950/15 flex-shrink-0" aria-hidden="true">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                             </span>
                             <div class="flex flex-col leading-tight">
@@ -908,7 +937,7 @@
 
                     <p class="text-sm text-slate-400 leading-relaxed pr-2">
                         {{ $siteTagline }} <br>{{ $footerIntro }}<br>
-                        <span class="inline-grid align-bottom text-emerald-400 font-semibold"
+                        <span class="inline-grid align-bottom text-[#acf7f0] font-semibold"
                             x-data="{ words: @js($footerWordsArray), index: 0 }"
                             x-init="setInterval(() => index = (index + 1) % words.length, 2500)">
                             <template x-for="(word, i) in words" :key="i">
@@ -928,7 +957,7 @@
 
                     <div class="flex flex-wrap items-center gap-3">
                         @if(!empty($socials['twitter']))
-                            <a href="{{ $socials['twitter'] }}" target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 hover:bg-emerald-600 hover:text-white hover:border-transparent transition-[background-color,border-color,color] duration-300 motion-reduce:transition-none">
+                            <a href="{{ $socials['twitter'] }}" target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 hover:bg-[#f7f0ac] hover:text-white hover:border-transparent transition-[background-color,border-color,color] duration-300 motion-reduce:transition-none">
                                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
                             </a>
                         @endif
@@ -963,7 +992,7 @@
                                 : ($waNumber ? 'https://wa.me/' . $waNumber : null);
                         @endphp
                         @if($waUrl)
-                            <a href="{{ $waUrl }}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 hover:bg-emerald-600 hover:text-white hover:border-transparent transition-[background-color,border-color,color] duration-300 motion-reduce:transition-none">
+                            <a href="{{ $waUrl }}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 hover:bg-[#f7f0ac] hover:text-white hover:border-transparent transition-[background-color,border-color,color] duration-300 motion-reduce:transition-none">
                                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
                             </a>
                         @endif
@@ -975,14 +1004,14 @@
                 {{-- ═══════════════════════════════════════════════════════════ --}}
                 <div class="lg:col-span-2 space-y-4">
                     <h4 class="text-white font-semibold text-base flex items-center gap-2">
-                        <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full" aria-hidden="true"></span> {{ $quickLinksLabel }}
+                        <span class="w-1.5 h-1.5 bg-[#acf7f0] rounded-full" aria-hidden="true"></span> {{ $quickLinksLabel }}
                     </h4>
                     <ul class="space-y-3 text-sm">
                         @if($quickLinks->count() > 0)
                             @foreach($quickLinks as $link)
                                 @php $url = $resolveMenuUrl($link); @endphp
                                 <li>
-                                    <a href="{{ $url }}" class="hover:text-emerald-400 transition-colors duration-200 motion-reduce:transition-none">{{ $link->title }}</a>
+                                    <a href="{{ $url }}" class="hover:text-[#acf7f0] transition-colors duration-200 motion-reduce:transition-none">{{ $link->title }}</a>
                                 </li>
                             @endforeach
                         @endif
@@ -992,12 +1021,12 @@
                 {{-- Kolom 3: Contact --}}
                 <div class="lg:col-span-3 space-y-4">
                     <h4 class="text-white font-semibold text-base flex items-center gap-2">
-                        <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full" aria-hidden="true"></span> {{ $contactUsLabel }}
+                        <span class="w-1.5 h-1.5 bg-[#acf7f0] rounded-full" aria-hidden="true"></span> {{ $contactUsLabel }}
                     </h4>
                     <ul class="space-y-4 text-sm">
                         @if($contactAddress)
                             <li class="flex items-start gap-3 group">
-                                <div class="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 flex-shrink-0 mt-0.5 group-hover:border-emerald-500 group-hover:text-emerald-400 transition-[border-color,color] duration-300 motion-reduce:transition-none">
+                                <div class="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 flex-shrink-0 mt-0.5 group-hover:border-[#f0acf7] group-hover:text-[#acf7f0] transition-[border-color,color] duration-300 motion-reduce:transition-none">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                                 </div>
                                 <span class="text-slate-400 group-hover:text-slate-200 transition-colors duration-300 motion-reduce:transition-none leading-snug">{!! nl2br(e($contactAddress)) !!}</span>
@@ -1005,7 +1034,7 @@
                         @endif
                         @if($contactPhone)
                             <li class="flex items-center gap-3 group">
-                                <div class="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 flex-shrink-0 group-hover:border-emerald-500 group-hover:text-emerald-400 transition-[border-color,color] duration-300 motion-reduce:transition-none">
+                                <div class="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 flex-shrink-0 group-hover:border-[#f0acf7] group-hover:text-[#acf7f0] transition-[border-color,color] duration-300 motion-reduce:transition-none">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
                                 </div>
                                 <a href="tel:{{ $contactPhone }}" class="text-slate-400 group-hover:text-slate-200 transition-colors duration-300 motion-reduce:transition-none">{{ $contactPhone }}</a>
@@ -1013,7 +1042,7 @@
                         @endif
                         @if($contactEmail)
                             <li class="flex items-center gap-3 group">
-                                <div class="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 flex-shrink-0 group-hover:border-emerald-500 group-hover:text-emerald-400 transition-[border-color,color] duration-300 motion-reduce:transition-none">
+                                <div class="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 flex-shrink-0 group-hover:border-[#f0acf7] group-hover:text-[#acf7f0] transition-[border-color,color] duration-300 motion-reduce:transition-none">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                                 </div>
                                 <a href="mailto:{{ $contactEmail }}" class="text-slate-400 group-hover:text-slate-200 transition-colors duration-300 motion-reduce:transition-none">{{ $contactEmail }}</a>
@@ -1070,13 +1099,13 @@
                      }">
 
                     <h4 class="text-white font-semibold text-base flex items-center gap-2">
-                        <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full" aria-hidden="true"></span> {{ $stayUpdatedLabel }}
+                        <span class="w-1.5 h-1.5 bg-[#acf7f0] rounded-full" aria-hidden="true"></span> {{ $stayUpdatedLabel }}
                     </h4>
                     <p class="text-sm text-slate-400 leading-relaxed">{{ $newsletterText }}</p>
 
                     <form @submit.prevent="submit($event)" class="space-y-3">
                         @csrf
-                        <div class="relative bg-slate-800 border border-slate-700 rounded-xl p-1.5 flex items-center focus-within:border-emerald-500 transition">
+                        <div class="relative bg-slate-800 border border-slate-700 rounded-xl p-1.5 flex items-center focus-within:border-[#acf7f0] transition">
                             <input type="email"
                                    name="email"
                                    required
@@ -1087,7 +1116,7 @@
 
                             <button type="submit"
                                     :disabled="status === 'loading'"
-                                    class="bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-2.5 rounded-lg text-sm font-semibold transition flex-shrink-0 disabled:opacity-50 shadow-md motion-reduce:transition-none">
+                                    class="bg-[#f0acf7] hover:bg-[#f0acf7] text-slate-950 px-5 py-2.5 rounded-lg text-sm font-semibold transition flex-shrink-0 disabled:opacity-50 shadow-md motion-reduce:transition-none">
                                 <span x-show="status === 'idle'">{{ $newsletterButton }}</span>
                                 <span x-show="status === 'loading'" x-cloak>...</span>
                                 <span x-show="status === 'success'" x-cloak>OK</span>
@@ -1095,7 +1124,7 @@
                         </div>
                     </form>
 
-                    <p x-show="status === 'success'" x-cloak x-text="message" class="text-emerald-400 text-xs leading-relaxed"></p>
+                    <p x-show="status === 'success'" x-cloak x-text="message" class="text-[#acf7f0] text-xs leading-relaxed"></p>
                     <p x-show="status === 'error'" x-cloak x-text="errorMessage" class="text-red-400 text-xs leading-relaxed"></p>
                 </div>
 
@@ -1107,9 +1136,9 @@
                 <div class="flex items-center gap-2">
                     <span>{{ $vendorLabel }}</span>
                     @if($vendorUrl && $vendorUrl !== '#')
-                        <a href="{{ $vendorUrl }}" target="_blank" rel="noopener noreferrer" class="font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">{{ $vendorName }}</a>
+                        <a href="{{ $vendorUrl }}" target="_blank" rel="noopener noreferrer" class="font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#f7f0ac] to-[#f0acf7]">{{ $vendorName }}</a>
                     @else
-                        <span class="font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">{{ $vendorName }}</span>
+                        <span class="font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#f7f0ac] to-[#f0acf7]">{{ $vendorName }}</span>
                     @endif
                 </div>
             </div>
@@ -1120,7 +1149,7 @@
                 @scroll.window="show = window.pageYOffset > 400"
                 @click="window.scrollTo({top: 0, behavior: 'smooth'})"
                 :class="show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'"
-                class="fixed bottom-6 right-6 z-50 p-3.5 rounded-full bg-emerald-600 text-white shadow-xl hover:bg-emerald-500 transition-[transform,opacity,background-color] duration-300 motion-reduce:transition-none [transform:translateZ(0)]"
+                class="fixed bottom-6 right-6 z-50 p-3.5 rounded-full bg-[#f0acf7] text-slate-950 shadow-xl hover:bg-[#f0acf7] transition-[transform,opacity,background-color] duration-300 motion-reduce:transition-none [transform:translateZ(0)]"
                 aria-label="Kembali ke atas">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
         </button>

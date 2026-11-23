@@ -56,11 +56,11 @@
         . '[&_p]:my-3 [&_p]:leading-relaxed '
         . '[&_strong]:font-bold [&_strong]:text-slate-900 '
         . '[&_em]:italic '
-        . '[&_a]:text-emerald-600 [&_a]:underline [&_a]:underline-offset-2 hover:[&_a]:text-emerald-700 '
+        . '[&_a]:text-slate-900 [&_a]:underline [&_a]:underline-offset-2 hover:[&_a]:text-slate-900 '
         . '[&_ul]:list-disc [&_ul]:pl-5 [&_ul]:my-3 [&_ul]:space-y-1 '
         . '[&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:my-3 [&_ol]:space-y-1 '
         . '[&_li]:leading-relaxed '
-        . '[&_blockquote]:border-l-4 [&_blockquote]:border-emerald-300 [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:text-slate-500 [&_blockquote]:my-4 '
+        . '[&_blockquote]:border-l-4 [&_blockquote]:border-[#f7f0ac] [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:text-slate-500 [&_blockquote]:my-4 '
         . '[&_h2]:font-bold [&_h2]:text-slate-900 [&_h2]:text-xl sm:[&_h2]:text-2xl [&_h2]:mt-6 [&_h2]:mb-3 '
         . '[&_img]:rounded-xl [&_img]:my-4 [&_img]:shadow-sm';
 
@@ -91,7 +91,7 @@
                 @endif
 
                 @if($levelLabel)
-                    <span class="px-3 sm:px-3.5 py-1.5 rounded-full bg-white border border-slate-200 text-[10px] sm:text-xs font-bold text-emerald-600 uppercase tracking-wider shadow-sm">
+                    <span class="px-3 sm:px-3.5 py-1.5 rounded-full bg-white border border-slate-200 text-[10px] sm:text-xs font-bold text-slate-900 uppercase tracking-wider shadow-sm">
                         {{ $levelLabel }}
                     </span>
                 @endif
@@ -103,7 +103,7 @@
 
             @if($achievement->student_name)
                 <div class="flex items-center gap-2 text-base sm:text-lg text-slate-700">
-                    <svg class="w-5 h-5 text-emerald-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-5 h-5 text-slate-900 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                     </svg>
                     <span class="font-semibold">{{ $achievement->student_name }}</span>
@@ -130,7 +130,7 @@
 
                 @if($achievement->achievement_date)
                     <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm flex items-center gap-4">
-                        <div class="flex-shrink-0 w-14 h-14 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600">
+                        <div class="flex-shrink-0 w-14 h-14 rounded-xl bg-[#acf7f0]/30 border border-[#acf7f0] flex items-center justify-center text-slate-900">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                             </svg>
@@ -144,7 +144,7 @@
 
                 @if($achievement->organizer)
                     <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm flex items-center gap-4">
-                        <div class="flex-shrink-0 w-14 h-14 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600">
+                        <div class="flex-shrink-0 w-14 h-14 rounded-xl bg-[#acf7f0]/30 border border-[#acf7f0] flex items-center justify-center text-slate-900">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                             </svg>
@@ -212,14 +212,14 @@
         @if(isset($nextAchievement) && $nextSlug)
             <div class="pt-4 sm:pt-6 border-t border-slate-200 flex items-center justify-end">
                 <a href="{{ route('achievement.show', $nextSlug) }}"
-                    class="group inline-flex items-center gap-3 px-4 sm:px-6 py-3 sm:py-3.5 rounded-2xl bg-white border border-slate-200 hover:border-emerald-500 hover:bg-slate-50 text-slate-700 transition-all duration-300 shadow-sm">
+                    class="group inline-flex items-center gap-3 px-4 sm:px-6 py-3 sm:py-3.5 rounded-2xl bg-white border border-slate-200 hover:border-[#f0acf7] hover:bg-slate-50 text-slate-700 transition-all duration-300 shadow-sm">
                     <div class="text-right min-w-0">
                         <span class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider">Pencapaian Selanjutnya</span>
-                        <span class="block text-xs sm:text-sm font-bold text-slate-900 group-hover:text-emerald-600 transition-colors max-w-[180px] sm:max-w-xs truncate">
+                        <span class="block text-xs sm:text-sm font-bold text-slate-900 group-hover:text-slate-950 transition-colors max-w-[180px] sm:max-w-xs truncate">
                             {{ $nextAchievement->title }}
                         </span>
                     </div>
-                    <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emerald-50 border border-emerald-200 group-hover:border-emerald-500 group-hover:bg-emerald-100 flex items-center justify-center text-emerald-600 shrink-0 transition-all duration-300">
+                    <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#acf7f0]/30 border border-[#f0acf7] group-hover:border-[#f0acf7] group-hover:bg-[#acf7f0] flex items-center justify-center text-slate-900 shrink-0 transition-all duration-300">
                         <svg class="w-4 h-4 sm:w-5 sm:h-5 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                         </svg>

@@ -38,7 +38,7 @@
 <section class="py-8 sm:py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative overflow-hidden" data-block-reveal>
 
     <!-- Efek Ambient Glow -->
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[600px] sm:h-[600px] bg-emerald-500/10 blur-[80px] rounded-full pointer-events-none"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[600px] sm:h-[600px] bg-[#acf7f0]/10 blur-[80px] rounded-full pointer-events-none"></div>
 
     <div
         x-data="{
@@ -246,13 +246,13 @@
         <!-- Header Section -->
         <div class="relative flex flex-col items-center text-center space-y-3 pb-4 sm:pb-6">
             <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm text-xs font-semibold text-slate-600">
-                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse motion-reduce:animate-none" aria-hidden="true"></span>
+                <span class="w-2 h-2 rounded-full bg-[#acf7f0] animate-pulse motion-reduce:animate-none" aria-hidden="true"></span>
                 Informasi & Brosur
             </div>
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight px-2">
                 {{ $sectionTitle }}
             </h2>
-            <div class="w-20 h-1 bg-gradient-to-r from-transparent via-emerald-500 to-transparent rounded-full" aria-hidden="true"></div>
+            <div class="w-20 h-1 bg-gradient-to-r from-[#f7f0ac] via-[#acf7f0] to-[#f0acf7] rounded-full" aria-hidden="true"></div>
         </div>
 
         @if($brosurs->count() > 0)
@@ -265,7 +265,7 @@
                         aria-label="Carousel brosur"
                         @keydown.arrow-left.prevent="prev()"
                         @keydown.arrow-right.prevent="next()"
-                        class="flex gap-4 sm:gap-6 overflow-x-auto pb-4 pt-2 snap-x snap-mandatory focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-4 focus-visible:rounded-2xl"
+                        class="flex gap-4 sm:gap-6 overflow-x-auto pb-4 pt-2 snap-x snap-mandatory focus:outline-none focus-visible:ring-2 focus-visible:ring-[#acf7f0] focus-visible:ring-offset-4 focus-visible:rounded-2xl"
                         style="scrollbar-width: none; -ms-overflow-style: none; overscroll-behavior-x: contain;"
                     >
                         @foreach($brosurs as $brosur)
@@ -282,7 +282,7 @@
 
                             <div class="w-[80vw] max-w-[320px] sm:w-auto sm:max-w-none sm:min-w-[calc(50%-12px)] md:min-w-[calc(33.333%-16px)] lg:min-w-[calc(25%-18px)] snap-start shrink-0">
 
-                                <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl group/card flex flex-col justify-between h-[380px] sm:h-[420px] p-5 sm:p-6 border border-slate-200 hover:border-emerald-500 transition-all duration-500 hover:-translate-y-2 bg-slate-900 motion-reduce:transition-none motion-reduce:hover:translate-y-0">
+                                <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl group/card flex flex-col justify-between h-[380px] sm:h-[420px] p-5 sm:p-6 border border-slate-200 hover:border-[#f0acf7] transition-all duration-500 hover:-translate-y-2 bg-slate-900 motion-reduce:transition-none motion-reduce:hover:translate-y-0">
 
                                     {{-- Layer 1: Cover Image --}}
                                     <div class="absolute inset-0 z-0 bg-slate-950">
@@ -314,7 +314,7 @@
 
                                     {{-- Badge tanggal --}}
                                     <div class="relative z-10 flex items-center justify-between">
-                                        <span class="px-3 py-1 rounded-full bg-slate-900/60 border border-white/20 text-[10px] font-bold text-white uppercase tracking-wider backdrop-blur-md">
+                                        <span class="px-3 py-1 rounded-full bg-[#f7f0ac] border border-[#f7f0ac] text-[10px] font-extrabold text-slate-950 uppercase tracking-wider shadow-sm">
                                             {{ $dateObj ? $dateObj->translatedFormat('M d, Y') : 'DOWNLOAD' }}
                                         </span>
                                     </div>
@@ -322,10 +322,10 @@
                                     {{-- Layer 2: Konten Teks & Tombol --}}
                                     <div class="relative z-10 space-y-3 sm:space-y-4 text-center mt-auto">
                                         <div class="space-y-1">
-                                            <h4 class="text-[10px] sm:text-xs font-semibold text-emerald-400 uppercase tracking-widest">
+                                            <h4 class="text-[10px] sm:text-xs font-semibold text-[#f7f0ac] uppercase tracking-widest">
                                                 Katalog Brosur
                                             </h4>
-                                            <h3 class="text-base sm:text-xl font-extrabold text-white group-hover/card:text-emerald-300 transition-colors leading-snug line-clamp-2">
+                                            <h3 class="text-base sm:text-xl font-extrabold text-white group-hover/card:text-[#acf7f0] transition-colors leading-snug line-clamp-2">
                                                 <a href="{{ $brosurUrl }}" class="focus:outline-none">
                                                     {{ $brosur->title }}
                                                 </a>
@@ -342,7 +342,7 @@
                                                     data-analytics="brosur-download"
                                                     data-brosur-id="{{ $brosur->id }}"
                                                     data-brosur-title="{{ $brosur->title }}"
-                                                    class="w-full py-3 px-5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-[11px] sm:text-xs uppercase tracking-wider transition-all shadow-lg hover:shadow-emerald-600/25 flex items-center justify-center gap-2"
+                                                    class="w-full py-3 px-5 rounded-full bg-[#acf7f0] hover:bg-[#f7f0ac] text-slate-950 font-extrabold text-[11px] sm:text-xs uppercase tracking-wider transition-[background-color,transform,box-shadow] duration-200 shadow-lg hover:shadow-slate-950/20 flex items-center justify-center gap-2"
                                                 >
                                                     <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
@@ -357,7 +357,7 @@
                                                 data-brosur-id="{{ $brosur->id }}"
                                                 data-brosur-title="{{ $brosur->title }}"
                                                 aria-label="Lihat detail brosur: {{ $brosur->title }}"
-                                                class="w-full py-2.5 px-5 rounded-full {{ $downloadUrl ? 'bg-white/10 hover:bg-white/20 border border-white/20' : 'bg-emerald-600 hover:bg-emerald-500' }} text-white font-bold text-[11px] sm:text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2"
+                                                class="w-full py-2.5 px-5 rounded-full {{ $downloadUrl ? 'bg-white/10 hover:bg-white/20 border border-white/20' : 'bg-[#f0acf7] hover:bg-[#f7f0ac]' }} text-slate-950 font-extrabold text-[11px] sm:text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2"
                                             >
                                                 <span>Lihat Detail</span>
                                                 <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 transform group-hover/card:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -377,7 +377,7 @@
                         <button
                             @click="prev()"
                             type="button"
-                            class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white border border-slate-200 hover:border-emerald-500 hover:bg-slate-50 flex items-center justify-center text-slate-700 hover:text-emerald-600 transition-all duration-300 shadow-md cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
+                            class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white border border-slate-200 hover:border-[#f0acf7] hover:bg-slate-50 flex items-center justify-center text-slate-700 hover:text-slate-950 transition-all duration-300 shadow-md cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#acf7f0] focus-visible:ring-offset-2"
                             aria-label="Brosur sebelumnya"
                         >
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -387,7 +387,7 @@
                         <button
                             @click="next()"
                             type="button"
-                            class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white border border-slate-200 hover:border-emerald-500 hover:bg-slate-50 flex items-center justify-center text-slate-700 hover:text-emerald-600 transition-all duration-300 shadow-md cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
+                            class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white border border-slate-200 hover:border-[#f0acf7] hover:bg-slate-50 flex items-center justify-center text-slate-700 hover:text-slate-950 transition-all duration-300 shadow-md cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#acf7f0] focus-visible:ring-offset-2"
                             aria-label="Brosur selanjutnya"
                         >
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">

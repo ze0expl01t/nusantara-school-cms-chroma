@@ -8,7 +8,7 @@
 <main class="py-10 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto relative overflow-hidden">
 
     {{-- Ambient Glow --}}
-    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-64 h-64 sm:w-96 sm:h-96 bg-emerald-500/10 blur-[140px] rounded-full pointer-events-none"></div>
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-64 h-64 sm:w-96 sm:h-96 bg-[#acf7f0]/10 blur-[140px] rounded-full pointer-events-none"></div>
 
     <div class="relative z-10 space-y-6 sm:space-y-8">
 
@@ -21,30 +21,30 @@
         <div class="space-y-4">
             <div class="flex flex-col items-center text-center space-y-3">
                 <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm text-xs font-medium text-slate-700">
-                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse motion-reduce:animate-none"></span>
+                    <span class="w-2 h-2 rounded-full bg-[#acf7f0] animate-pulse motion-reduce:animate-none"></span>
                     Pencarian
                 </div>
 
                 <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
                     @if($keyword)
-                        Hasil untuk: <span class="text-emerald-600">"{{ $keyword }}"</span>
+                        Hasil untuk: <span class="text-slate-900">"{{ $keyword }}"</span>
                     @else
-                        Cari di <span class="text-emerald-600">Website</span>
+                        Cari di <span class="text-slate-900">Website</span>
                     @endif
                 </h1>
 
-                <div class="w-20 h-1 bg-gradient-to-r from-transparent via-emerald-500 to-transparent rounded-full"></div>
+                <div class="w-20 h-1 bg-gradient-to-r from-transparent via-[#acf7f0] to-transparent rounded-full"></div>
 
                 @if($keyword && $total > 0)
                     <p class="text-sm sm:text-base text-slate-500">
-                        Ditemukan <strong class="text-emerald-600">{{ $total }}</strong> hasil
+                        Ditemukan <strong class="text-slate-900">{{ $total }}</strong> hasil
                     </p>
                 @endif
             </div>
 
             {{-- Search Form --}}
             <form action="{{ route('search') }}" method="GET" class="max-w-2xl mx-auto">
-                <div class="relative bg-white border border-slate-200 rounded-2xl shadow-sm focus-within:border-emerald-500 focus-within:shadow-md transition-all">
+                <div class="relative bg-white border border-slate-200 rounded-2xl shadow-sm focus-within:border-[#acf7f0] focus-within:shadow-md transition-all">
                     <div class="absolute left-4 sm:left-5 top-1/2 -translate-y-1/2 text-slate-400">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
@@ -60,7 +60,7 @@
                     >
                     <button
                         type="submit"
-                        class="absolute right-2 top-1/2 -translate-y-1/2 inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-bold transition-all shadow-md shadow-emerald-600/20">
+                        class="absolute right-2 top-1/2 -translate-y-1/2 inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-[#f0acf7] hover:bg-[#f0acf7] text-slate-950 text-xs sm:text-sm font-bold transition-all shadow-md shadow-slate-950/15">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                         </svg>
@@ -88,12 +88,12 @@
             <div class="space-y-3 sm:space-y-4">
                 @foreach($results as $item)
                     <a href="{{ $item['url'] }}"
-                       class="group block bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-sm hover:shadow-xl hover:border-emerald-500/50 hover:-translate-y-1 transition-all duration-300">
+                       class="group block bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-sm hover:shadow-xl hover:border-[#f0acf7]/50 hover:-translate-y-1 transition-all duration-300">
 
                         <div class="flex items-start gap-4">
 
                             {{-- Icon --}}
-                            <div class="flex-shrink-0 w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 group-hover:bg-emerald-100 group-hover:scale-110 transition-all duration-300">
+                            <div class="flex-shrink-0 w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-[#acf7f0]/30 border border-[#acf7f0] flex items-center justify-center text-slate-900 group-hover:bg-[#acf7f0] group-hover:scale-110 transition-all duration-300">
                                 @switch($item['icon'])
                                     @case('news')
                                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -130,7 +130,7 @@
                             {{-- Content --}}
                             <div class="flex-1 min-w-0">
                                 <div class="flex flex-wrap items-center gap-2 mb-2">
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-bold uppercase tracking-wider border border-emerald-100">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-[#acf7f0]/30 text-slate-900 text-[10px] font-bold uppercase tracking-wider border border-[#acf7f0]">
                                         {{ $item['type'] }}
                                     </span>
                                     @if($item['category'])
@@ -140,10 +140,10 @@
                                     @endif
                                 </div>
 
-                                <h3 class="text-base sm:text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors mb-2 line-clamp-2">
+                                <h3 class="text-base sm:text-lg font-bold text-slate-900 group-hover:text-slate-950 transition-colors mb-2 line-clamp-2">
                                     {!! preg_replace(
                                         '/' . preg_quote($keyword, '/') . '/i',
-                                        '<mark class="bg-emerald-100 text-emerald-700 px-0.5 rounded">$0</mark>',
+                                        '<mark class="bg-[#acf7f0] text-slate-900 px-0.5 rounded">$0</mark>',
                                         e($item['title'])
                                     ) !!}
                                 </h3>
@@ -152,7 +152,7 @@
                                     <p class="text-sm text-slate-600 leading-relaxed line-clamp-2 mb-3">
                                         {!! preg_replace(
                                             '/' . preg_quote($keyword, '/') . '/i',
-                                            '<mark class="bg-emerald-100 text-emerald-700 px-0.5 rounded">$0</mark>',
+                                            '<mark class="bg-[#acf7f0] text-slate-900 px-0.5 rounded">$0</mark>',
                                             e($item['excerpt'])
                                         ) !!}
                                     </p>
@@ -167,7 +167,7 @@
                                             {{ \Carbon\Carbon::parse($item['date'])->translatedFormat('d M Y') }}
                                         </span>
                                     @endif
-                                    <span class="ml-auto inline-flex items-center gap-1 text-emerald-600 font-semibold">
+                                    <span class="ml-auto inline-flex items-center gap-1 text-slate-900 font-semibold">
                                         Lihat
                                         <svg class="w-3.5 h-3.5 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
@@ -199,7 +199,7 @@
         @else
             {{-- Belum ada keyword --}}
             <div class="text-center py-12 bg-white rounded-3xl border border-slate-200 shadow-sm">
-                <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600">
+                <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-[#acf7f0]/30 border border-[#acf7f0] flex items-center justify-center text-slate-900">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                     </svg>

@@ -43,7 +43,7 @@
 <section class="py-8 sm:py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative overflow-hidden [content-visibility:auto] [contain-intrinsic-size:800px]" data-block-reveal>
 
     {{-- Ambient glow — blur dikurangi --}}
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] bg-emerald-500/10 blur-[80px] rounded-full pointer-events-none [transform:translate3d(-50%,-50%,0)]" aria-hidden="true"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] bg-[#acf7f0]/10 blur-[80px] rounded-full pointer-events-none [transform:translate3d(-50%,-50%,0)]" aria-hidden="true"></div>
 
     <div class="relative z-10 space-y-8 sm:space-y-10">
 
@@ -51,13 +51,13 @@
         @if($sectionTitle)
             <div class="flex flex-col items-center text-center space-y-3 pb-4 sm:pb-6">
                 <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm text-xs font-medium text-slate-700">
-                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse motion-reduce:animate-none" aria-hidden="true"></span>
+                    <span class="w-2 h-2 rounded-full bg-[#acf7f0] animate-pulse motion-reduce:animate-none" aria-hidden="true"></span>
                     Artikel & Berita
                 </div>
                 <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight px-2 [text-wrap:balance]">
                     {{ $sectionTitle }}
                 </h2>
-                <div class="w-20 h-1 bg-gradient-to-r from-transparent via-emerald-500 to-transparent rounded-full" aria-hidden="true"></div>
+                <div class="w-20 h-1 bg-gradient-to-r from-transparent via-[#acf7f0] to-transparent rounded-full" aria-hidden="true"></div>
             </div>
         @endif
 
@@ -111,7 +111,7 @@
                                 data-post-id="{{ $subPost->id }}"
                                 data-post-title="{{ $subPost->title }}"
                                 aria-label="Baca artikel: {{ $subPost->title }}"
-                                class="bg-white border border-slate-200 hover:border-emerald-500/60 hover:bg-slate-50/80 rounded-xl sm:rounded-2xl p-2.5 sm:p-3 transition-[background-color,border-color,box-shadow] duration-300 shadow-sm hover:shadow-md group flex items-center gap-3 sm:gap-3.5 flex-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 motion-reduce:transition-none [contain:layout_style]"
+                                class="bg-white border border-slate-200 hover:border-[#f0acf7]/60 hover:bg-slate-50/80 rounded-xl sm:rounded-2xl p-2.5 sm:p-3 transition-[background-color,border-color,box-shadow] duration-300 shadow-sm hover:shadow-md group flex items-center gap-3 sm:gap-3.5 flex-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#acf7f0] focus-visible:ring-offset-2 motion-reduce:transition-none [contain:layout_style]"
                             >
                                 {{-- Thumbnail --}}
                                 <div class="w-20 h-20 sm:w-24 sm:h-20 md:w-28 rounded-lg sm:rounded-xl overflow-hidden bg-slate-100 shrink-0 relative">
@@ -148,11 +148,11 @@
                                             <span class="shrink-0">{{ $subDate->translatedFormat('M d, Y') }}</span>
                                         @endif
                                         @if($subCategory)
-                                            <span class="text-emerald-600 font-semibold uppercase tracking-wider truncate">{{ $subCategory }}</span>
+                                            <span class="text-slate-900 font-semibold uppercase tracking-wider truncate">{{ $subCategory }}</span>
                                         @endif
                                     </div>
 
-                                    <h3 class="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-emerald-600 transition-colors duration-300 line-clamp-2 leading-snug">
+                                    <h3 class="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-slate-950 transition-colors duration-300 line-clamp-2 leading-snug">
                                         {{ $subPost->title }}
                                     </h3>
                                 </div>
@@ -169,7 +169,7 @@
                         data-post-id="{{ $leadPost->id }}"
                         data-post-title="{{ $leadPost->title }}"
                         aria-label="Baca artikel utama: {{ $leadPost->title }}"
-                        class="bg-white border border-slate-200 hover:border-emerald-500/60 hover:bg-slate-50/50 rounded-2xl sm:rounded-3xl overflow-hidden transition-[background-color,border-color,box-shadow] duration-300 shadow-sm hover:shadow-xl hover:shadow-emerald-600/5 group flex flex-col justify-between w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 motion-reduce:transition-none [contain:layout_style]"
+                        class="bg-white border border-slate-200 hover:border-[#f0acf7]/60 hover:bg-slate-50/50 rounded-2xl sm:rounded-3xl overflow-hidden transition-[background-color,border-color,box-shadow] duration-300 shadow-sm hover:shadow-xl hover:shadow-slate-950/5 group flex flex-col justify-between w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[#acf7f0] focus-visible:ring-offset-2 motion-reduce:transition-none [contain:layout_style]"
                     >
                         <div>
                             {{-- Cover Image — LCP candidate --}}
@@ -204,7 +204,7 @@
 
                                 @if($leadPost->category)
                                     <div class="absolute top-3 left-3 sm:top-4 sm:left-4">
-                                        <span class="px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-emerald-600/90 border border-emerald-400/30 text-[10px] font-bold text-white uppercase tracking-wider backdrop-blur-md shadow-sm">
+                                        <span class="px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-[#f0acf7]/90 border border-[#acf7f0]/50 text-[10px] font-bold text-white uppercase tracking-wider backdrop-blur-md shadow-sm">
                                             {{ $leadPost->category }}
                                         </span>
                                     </div>
@@ -214,7 +214,7 @@
                             {{-- Content --}}
                             <div class="p-5 sm:p-7 md:p-8 space-y-3 sm:space-y-4">
                                 @if($leadDate)
-                                    <div class="text-xs font-semibold text-emerald-600 flex items-center gap-2">
+                                    <div class="text-xs font-semibold text-slate-900 flex items-center gap-2">
                                         <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                                         </svg>
@@ -222,7 +222,7 @@
                                     </div>
                                 @endif
 
-                                <h3 class="text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-900 group-hover:text-emerald-600 transition-colors duration-300 leading-snug line-clamp-3">
+                                <h3 class="text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-900 group-hover:text-slate-950 transition-colors duration-300 leading-snug line-clamp-3">
                                     {{ $leadPost->title }}
                                 </h3>
 
@@ -236,9 +236,9 @@
 
                         {{-- Footer --}}
                         <div class="p-5 sm:p-7 md:p-8 pt-0">
-                            <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-slate-700 group-hover:text-emerald-600 transition-colors duration-300">
+                            <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-slate-700 group-hover:text-slate-950 transition-colors duration-300">
                                 <span>BACA SELENGKAPNYA</span>
-                                <div class="w-8 h-8 rounded-xl bg-emerald-50 border border-emerald-200 group-hover:border-emerald-500 group-hover:bg-emerald-100 flex items-center justify-center text-emerald-600 transition-[background-color,border-color] duration-300 shadow-sm motion-reduce:transition-none">
+                                <div class="w-8 h-8 rounded-xl bg-[#acf7f0]/30 border border-[#f0acf7] group-hover:border-[#f0acf7] group-hover:bg-[#acf7f0] flex items-center justify-center text-slate-900 transition-[background-color,border-color] duration-300 shadow-sm motion-reduce:transition-none">
                                     <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform motion-reduce:transition-none motion-reduce:group-hover:translate-x-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
                                     </svg>
