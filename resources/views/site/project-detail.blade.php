@@ -46,9 +46,9 @@
     $projectImageAlt = trim(strip_tags($projectTitle)) ?: 'Cover proyek';
 
     // Cover image
-    $coverImage = $project->hasImage('cover')
+    $coverImage = ($project->hasImage('cover')
         ? $project->image('cover', 'default')
-        : null;
+        : null) ?: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80';
 
     // ===== Prose class untuk WYSIWYG =====
     $proseClass = 'text-slate-600 text-sm sm:text-base leading-relaxed '
@@ -124,7 +124,7 @@
                     fetchpriority="high"
                     decoding="async"
                     class="w-full h-full object-cover"
-                >
+                 onerror="this.removeAttribute('srcset');if(!this.dataset.fbStep){this.dataset.fbStep='1';this.src='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80';}else if(this.dataset.fbStep==='1'){this.dataset.fbStep='2';this.src='https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80';}else{this.onerror=null;this.style.display='none';}">
             </div>
         @endif
 

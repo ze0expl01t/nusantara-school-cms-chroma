@@ -13,9 +13,9 @@
     $titleHighlight = $safeInput($block, 'title_highlight', 'Perusahaan');
     $description    = $safeInput($block, 'description');
 
-    $imageUrl = $block->hasImage('image', 'desktop')
+    $imageUrl = ($block->hasImage('image', 'desktop')
         ? $block->image('image', 'desktop')
-        : ($block->hasImage('image') ? $block->image('image') : null);
+        : ($block->hasImage('image') ? $block->image('image') : null)) ?: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80';
 
     // CTA
     $ctaPrimaryText   = $safeInput($block, 'cta_primary_text', '#Kontak Kami');
@@ -49,7 +49,7 @@
             <div class="lg:col-span-5 lg:sticky lg:top-24">
                 @if($imageUrl)
                     <div class="rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200 shadow-sm bg-slate-100 aspect-[4/3]">
-                        {!! twill_proxy_img($block, 'image', [400, 800, 1200], '(max-width: 1024px) 100vw, 40vw', trim(strip_tags($titleMain . ' ' . $titleHighlight)), [], null, ['class' => 'w-full h-full object-cover']) !!}
+                        {!! twill_proxy_img($block, 'image', [400, 800, 1200], '(max-width: 1024px) 100vw, 40vw', trim(strip_tags($titleMain . ' ' . $titleHighlight)), [], 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80', ['class' => 'w-full h-full object-cover']) !!}
                     </div>
                 @else
                     <div class="rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200 shadow-sm bg-gradient-to-br from-[#f7f0ac] to-[#f0acf7] aspect-[4/3] flex items-center justify-center">

@@ -27,7 +27,7 @@
     $title = $achievement->title ?: 'Detail Pencapaian';
     $imageAlt = trim(strip_tags($title)) ?: 'Cover pencapaian';
 
-    $coverImage = $achievement->hasImage('cover') ? $achievement->image('cover', 'default') : null;
+    $coverImage = ($achievement->hasImage('cover') ? $achievement->image('cover', 'default') : null) ?: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80';
     $photoImage = $achievement->hasImage('photo') ? $achievement->image('photo', 'default') : null;
     $certificateImage = $achievement->hasImage('certificate') ? $achievement->image('certificate', 'default') : null;
 
@@ -121,7 +121,7 @@
             <div class="rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200 shadow-sm bg-slate-100 aspect-[16/9]">
                 <img src="{{ $coverImage }}" alt="{{ $imageAlt }}"
                     loading="eager" fetchpriority="high" decoding="async"
-                    class="w-full h-full object-cover">
+                    class="w-full h-full object-cover" onerror="this.removeAttribute('srcset');if(!this.dataset.fbStep){this.dataset.fbStep='1';this.src='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80';}else if(this.dataset.fbStep==='1'){this.dataset.fbStep='2';this.src='https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80';}else{this.onerror=null;this.style.display='none';}">
             </div>
         @endif
 
@@ -165,7 +165,7 @@
                     <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
                         <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-3">Foto Karyawan / Tim</p>
                         <div class="rounded-xl overflow-hidden bg-slate-100 aspect-[4/3]">
-                            <img src="{{ $photoImage }}" alt="{{ $title }}" loading="lazy" decoding="async" class="w-full h-full object-cover">
+                            <img src="{{ $photoImage }}" alt="{{ $title }}" loading="lazy" decoding="async" class="w-full h-full object-cover" onerror="this.removeAttribute('srcset');if(!this.dataset.fbStep){this.dataset.fbStep='1';this.src='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80';}else if(this.dataset.fbStep==='1'){this.dataset.fbStep='2';this.src='https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80';}else{this.onerror=null;this.style.display='none';}">
                         </div>
                     </div>
                 @endif
@@ -174,7 +174,7 @@
                     <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
                         <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-3">Sertifikat / Piala</p>
                         <div class="rounded-xl overflow-hidden bg-slate-100 aspect-[3/4]">
-                            <img src="{{ $certificateImage }}" alt="Sertifikat {{ $title }}" loading="lazy" decoding="async" class="w-full h-full object-contain">
+                            <img src="{{ $certificateImage }}" alt="Sertifikat {{ $title }}" loading="lazy" decoding="async" class="w-full h-full object-contain" onerror="this.removeAttribute('srcset');if(!this.dataset.fbStep){this.dataset.fbStep='1';this.src='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80';}else if(this.dataset.fbStep==='1'){this.dataset.fbStep='2';this.src='https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80';}else{this.onerror=null;this.style.display='none';}">
                         </div>
                     </div>
                 @endif
@@ -202,7 +202,7 @@
                     @foreach($achievement->images('gallery', 'default') as $image)
                         <div class="aspect-video rounded-xl overflow-hidden bg-slate-100">
                             <img src="{{ $image }}" alt="Galeri {{ $title }}" loading="lazy" decoding="async"
-                                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" onerror="this.removeAttribute('srcset');if(!this.dataset.fbStep){this.dataset.fbStep='1';this.src='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80';}else if(this.dataset.fbStep==='1'){this.dataset.fbStep='2';this.src='https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80';}else{this.onerror=null;this.style.display='none';}">
                         </div>
                     @endforeach
                 </div>

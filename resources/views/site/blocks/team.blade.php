@@ -134,7 +134,7 @@
 
                                 <div class="relative w-full h-full rounded-full overflow-hidden bg-slate-100 border-4 border-white shadow-lg group-hover:scale-105 transition-transform duration-300 motion-reduce:transition-none motion-reduce:group-hover:scale-100 [transform:translateZ(0)]">
                                     @if($photo)
-                                        {!! twill_proxy_img($member, 'photo', [160, 320, 480], '(max-width: 768px) 128px, 144px', $name, [], null, ['class' => 'w-full h-full object-cover', 'width' => '480', 'height' => '480', 'loading' => 'lazy', 'decoding' => 'async']) !!}
+                                        {!! twill_proxy_img($member, 'photo', [160, 320, 480], '(max-width: 768px) 128px, 144px', $name, [], 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80', ['class' => 'w-full h-full object-cover', 'width' => '480', 'height' => '480', 'loading' => 'lazy', 'decoding' => 'async']) !!}
                                     @else
                                         <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#f7f0ac] to-[#f0acf7] text-slate-900 font-bold text-3xl sm:text-4xl select-none" aria-hidden="true">
                                             {{ $initial }}
@@ -190,7 +190,7 @@
                                        target="_blank"
                                        rel="noopener noreferrer"
                                        aria-label="{{ $name }} di {{ ucfirst($platform) }}"
-                                       class="w-7 h-7 rounded-full bg-slate-100 hover:bg-[#f0acf7] text-slate-500 hover:text-white flex items-center justify-center transition-[background-color,color] duration-200 motion-reduce:transition-none">
+                                       class="w-7 h-7 rounded-full bg-slate-100 hover:bg-[#f0acf7] text-slate-600 hover:text-slate-950 flex items-center justify-center transition-[background-color,color] duration-200 motion-reduce:transition-none">
                                         <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                             @switch($platform)
                                                 @case('facebook')
@@ -290,7 +290,7 @@
                                             <div class="relative">
                                                 <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border-4 border-white shadow-xl bg-slate-100">
                                                     @if($photo)
-                                                        {!! twill_proxy_img($member, 'photo', [160, 320, 480], '(max-width: 768px) 96px', $name, [], null, ['class' => 'w-full h-full object-cover', 'width' => '480', 'height' => '480', 'loading' => 'lazy', 'decoding' => 'async']) !!}
+                                                        {!! twill_proxy_img($member, 'photo', [160, 320, 480], '(max-width: 768px) 96px', $name, [], 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80', ['class' => 'w-full h-full object-cover', 'width' => '480', 'height' => '480', 'loading' => 'lazy', 'decoding' => 'async']) !!}
                                                     @else
                                                         <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#f7f0ac] to-[#f0acf7] text-slate-900 font-bold text-3xl select-none" aria-hidden="true">
                                                             {{ $initial }}
@@ -390,7 +390,7 @@
                                                            target="_blank"
                                                            rel="noopener noreferrer"
                                                            aria-label="{{ ucfirst($platform) }}"
-                                                           class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-50 hover:bg-[#f0acf7] text-slate-600 hover:text-white text-xs font-semibold transition-[background-color,color,border-color] duration-200 border border-slate-200 hover:border-[#f0acf7] active:scale-95 motion-reduce:transition-none">
+                                                           class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-50 hover:bg-[#f0acf7] text-slate-700 hover:text-slate-950 text-xs font-semibold transition-[background-color,color,border-color] duration-200 border border-slate-200 hover:border-[#f0acf7] active:scale-95 motion-reduce:transition-none">
                                                             <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                                                 @switch($platform)
                                                                     @case('facebook')

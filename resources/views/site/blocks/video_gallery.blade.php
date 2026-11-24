@@ -1,15 +1,18 @@
 @php
     $safeInput = function ($block, $field, $default = null) {
+        if (!$block || !method_exists($block, 'input')) {
+            return $default;
+        }
         $value = $block->input($field);
         if (is_array($value)) {
-            return $value[app()->getLocale()]
+            $picked = $value[app()->getLocale()]
                 ?? $value[config('app.fallback_locale')]
-                ?? $default;
+                ?? (count($value) ? reset($value) : null);
+            return filled($picked) ? $picked : $default;
         }
         return filled($value) ? $value : $default;
     };
 
-    // ===== Helper: extract YouTube video ID dari berbagai format URL =====
     $extractYouTubeId = function ($url) {
         if (empty($url) || !is_string($url)) return null;
         $url = trim($url);
@@ -24,12 +27,11 @@
         return null;
     };
 
-    $eyebrow        = $safeInput($block, 'eyebrow', 'Video Gallery');
-    $titleMain      = $safeInput($block, 'title_main', "Watch our");
-    $titleHighlight = $safeInput($block, 'title_highlight', 'latest videos');
-    $subtitle       = $safeInput($block, 'subtitle', 'Kumpulan video dokumentasi kegiatan, pelatihan, dan informasi K3.');
+    $eyebrow        = $safeInput($block, 'eyebrow');
+    $titleMain      = $safeInput($block, 'title_main');
+    $titleHighlight = $safeInput($block, 'title_highlight');
+    $subtitle       = $safeInput($block, 'subtitle');
 
-    // ===== Ambil children dengan beberapa fallback =====
     $children = $block->children ?? null;
 
     if (!$children || $children->isEmpty()) {
@@ -44,7 +46,6 @@
         $children = collect($children ?? []);
     }
 
-    // ===== Filter hanya block bertipe 'video_item' =====
     $videoBlocks = $children->filter(function ($child) {
         return ($child->type ?? null) === 'video_item';
     });
@@ -53,7 +54,6 @@
         $videoBlocks = $children;
     }
 
-    // ===== Bangun array video =====
     $videos = collect();
     foreach ($videoBlocks as $item) {
         $ytUrl = $safeInput($item, 'youtube_url');
@@ -73,12 +73,12 @@
 
         $videos->push([
             'id'          => $ytId,
-            'title'       => $safeInput($item, 'title', 'Video'),
-            'description' => $safeInput($item, 'description', ''),
-            'duration'    => $safeInput($item, 'duration', ''),
-            'thumb'       => $customThumb ?: "https://i.ytimg.com/vi/{$ytId}/mqdefault.jpg",      // 320x180 (16:9)
-            'thumb_md'    => $customThumb ?: "https://i.ytimg.com/vi/{$ytId}/hqdefault.jpg",      // 480x360 (4:3)
-            'thumb_hd'    => $customThumb ?: "https://i.ytimg.com/vi/{$ytId}/maxresdefault.jpg",  // 1280x720 (16:9)
+            'title'       => $safeInput($item, 'title'),
+            'description' => $safeInput($item, 'description'),
+            'duration'    => $safeInput($item, 'duration'),
+            'thumb'       => $customThumb ?: "https://i.ytimg.com/vi/{$ytId}/mqdefault.jpg",
+            'thumb_md'    => $customThumb ?: "https://i.ytimg.com/vi/{$ytId}/hqdefault.jpg",
+            'thumb_hd'    => $customThumb ?: "https://i.ytimg.com/vi/{$ytId}/maxresdefault.jpg",
         ]);
     }
 
@@ -87,26 +87,21 @@
     $pages       = $totalVideos > 0 ? $videos->chunk($perPage) : collect();
     $totalPages  = $pages->count();
 
-    // ═══ LCP: ambil thumbnail pertama untuk preload ═══
-    $firstVideo = $videos->first();
+    $firstVideo    = $videos->first();
     $firstThumbUrl = $firstVideo ? $firstVideo['thumb_hd'] : null;
 @endphp
 
-{{-- ═══ Resource Hints — HIGH IMPACT untuk LCP ═══ --}}
 @push('head')
     <link rel="preconnect" href="https://i.ytimg.com" crossorigin>
     <link rel="preconnect" href="https://www.youtube-nocookie.com" crossorigin>
     <link rel="dns-prefetch" href="https://www.youtube.com">
     @if($firstThumbUrl)
-        {{-- Preload LCP image untuk video pertama --}}
         <link rel="preload" as="image" href="{{ $firstThumbUrl }}" fetchpriority="high">
     @endif
 @endpush
 
-{{-- Outer section --}}
-<section class="py-8 sm:py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 [content-visibility:auto] [contain-intrinsic-size:800px]" data-block-reveal>
+<section class="py-10 sm:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 [content-visibility:auto] [contain-intrinsic-size:800px]" data-block-reveal>
 
-    {{-- Wrapper card gelap --}}
     <div
         x-data="{
             activeSlide: 1,
@@ -228,63 +223,87 @@
         @focusin="stopAutoplay()"
         @focusout="startAutoplay()"
         role="region"
-        aria-label="Galeri Video"
+        aria-label="{{ $eyebrow ?? 'Video Gallery' }}"
         aria-roledescription="carousel"
-        class="relative bg-slate-900 text-slate-100 rounded-3xl px-5 sm:px-8 lg:px-10 py-8 sm:py-10 lg:py-16"
+        class="relative bg-gradient-to-br from-[#090d1a] via-[#0c1324] to-[#120d22] text-slate-100 border border-slate-800/90 rounded-3xl px-5 sm:px-8 lg:px-10 py-8 sm:py-10 lg:py-14 shadow-2xl"
     >
-        {{-- Ambient glow — kurangi blur radius untuk hemat GPU paint --}}
-        <div class="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none">
-            <div class="absolute top-1/2 left-0 -translate-y-1/2 w-64 h-64 sm:w-[500px] sm:h-[500px] bg-red-600/10 blur-[80px] rounded-full"></div>
-            <div class="absolute top-1/3 right-0 w-56 h-56 sm:w-[400px] sm:h-[400px] bg-[#f0acf7]/10 blur-[70px] rounded-full"></div>
+        {{-- Top 3-color global accent line --}}
+        <div class="pointer-events-none absolute top-0 inset-x-8 h-1 rounded-b-full bg-gradient-to-r from-[#f7f0ac] via-[#acf7f0] to-[#f0acf7]" aria-hidden="true"></div>
+
+        {{-- Gradient washes & subtle geometric dot ornaments using #f7f0ac, #acf7f0, #f0acf7 --}}
+        <div class="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none" aria-hidden="true">
+            <div class="absolute -top-24 -left-20 w-72 h-72 sm:w-[420px] sm:h-[420px] bg-gradient-to-br from-[#f7f0ac]/14 via-[#acf7f0]/10 to-transparent blur-[85px] rounded-full"></div>
+            <div class="absolute top-1/2 left-1/3 -translate-y-1/2 w-64 h-64 sm:w-[360px] sm:h-[360px] bg-[#acf7f0]/10 blur-[90px] rounded-full"></div>
+            <div class="absolute -bottom-24 -right-16 w-72 h-72 sm:w-[440px] sm:h-[440px] bg-gradient-to-tl from-[#f0acf7]/16 via-[#acf7f0]/10 to-transparent blur-[85px] rounded-full"></div>
+
+            <div
+                class="absolute inset-0 opacity-30"
+                style="background-image: radial-gradient(rgba(172, 247, 240, 0.22) 1px, transparent 1px); background-size: 24px 24px; -webkit-mask-image: radial-gradient(ellipse at 70% 50%, #000 10%, transparent 72%); mask-image: radial-gradient(ellipse at 70% 50%, #000 10%, transparent 72%);"
+            ></div>
+
+            <svg class="hidden sm:block absolute top-7 right-9 w-24 h-24 text-[#acf7f0]/20" viewBox="0 0 96 96" fill="none">
+                <circle cx="48" cy="48" r="44" stroke="currentColor" stroke-width="1" stroke-dasharray="4 6"/>
+                <circle cx="48" cy="48" r="28" stroke="url(#vgRingGrad)" stroke-width="1" stroke-opacity="0.45"/>
+                <defs>
+                    <linearGradient id="vgRingGrad" x1="0" y1="0" x2="96" y2="96" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#f7f0ac"/>
+                        <stop offset="50%" stop-color="#acf7f0"/>
+                        <stop offset="100%" stop-color="#f0acf7"/>
+                    </linearGradient>
+                </defs>
+            </svg>
         </div>
 
         <div class="relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-8 items-center">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-8 items-center">
 
-                {{-- Kolom Kiri --}}
+                {{-- Left Column --}}
                 <div class="lg:col-span-4 space-y-5 sm:space-y-6 text-center lg:text-left">
-                    <div class="inline-flex items-center gap-3">
-                        <span class="w-8 h-0.5 bg-red-500"></span>
-                        <span class="text-[11px] sm:text-xs font-bold tracking-widest text-red-400 uppercase">
-                            {{ $eyebrow }}
-                        </span>
-                    </div>
-
-                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-[1.1]">
-                        {{ $titleMain }}
-                        @if($titleHighlight)
-                            <br>
-                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-amber-400 to-[#acf7f0]">
-                                {{ $titleHighlight }}
+                    @if(filled($eyebrow))
+                        <div class="inline-flex items-center gap-3">
+                            <span class="w-8 h-0.5 bg-gradient-to-r from-[#f7f0ac] to-[#acf7f0]" aria-hidden="true"></span>
+                            <span class="text-xs font-bold tracking-widest text-[#acf7f0] uppercase">
+                                {{ $eyebrow }}
                             </span>
-                        @endif
-                    </h2>
+                        </div>
+                    @endif
 
-                    @if($subtitle)
-                        <p class="text-slate-400 text-sm sm:text-base leading-relaxed max-w-md mx-auto lg:mx-0">
+                    @if(filled($titleMain) || filled($titleHighlight))
+                        <h2 class="text-3xl sm:text-4xl lg:text-[2.85rem] font-extrabold text-white tracking-tight leading-[1.08] [text-wrap:balance]">
+                            @if(filled($titleMain))<span>{{ $titleMain }}</span>@endif
+                            @if(filled($titleHighlight))
+                                <span class="block mt-1 bg-gradient-to-r from-[#f7f0ac] via-[#acf7f0] to-[#f0acf7] bg-clip-text text-transparent">
+                                    {{ $titleHighlight }}
+                                </span>
+                            @endif
+                        </h2>
+                    @endif
+
+                    @if(filled($subtitle))
+                        <p class="text-slate-300/90 text-sm sm:text-base leading-relaxed max-w-md mx-auto lg:mx-0">
                             {{ $subtitle }}
                         </p>
                     @endif
 
                     @if($totalPages > 1)
-                        <div class="flex items-center gap-3 sm:gap-4 pt-2 sm:pt-4 justify-center lg:justify-start">
-                            <button @click="prev(); startAutoplay()" type="button" aria-label="Video sebelumnya"
-                                class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:bg-red-600 hover:text-white hover:border-red-600 transition-all duration-300 shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 motion-reduce:transition-none">
+                        <div class="flex items-center gap-3 pt-2 justify-center lg:justify-start">
+                            <button @click="prev(); startAutoplay()" type="button" aria-label="Previous"
+                                class="w-11 h-11 rounded-full bg-slate-900/90 border border-slate-700/90 flex items-center justify-center text-slate-200 hover:bg-gradient-to-r hover:from-[#f7f0ac] hover:via-[#acf7f0] hover:to-[#f0acf7] hover:text-slate-950 hover:border-transparent transition-all duration-300 shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#acf7f0] motion-reduce:transition-none">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M15 19l-7-7 7-7"/>
                                 </svg>
                             </button>
-                            <button @click="next(); startAutoplay()" type="button" aria-label="Video selanjutnya"
-                                class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:bg-red-600 hover:text-white hover:border-red-600 transition-all duration-300 shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 motion-reduce:transition-none">
+                            <button @click="next(); startAutoplay()" type="button" aria-label="Next"
+                                class="w-11 h-11 rounded-full bg-slate-900/90 border border-slate-700/90 flex items-center justify-center text-slate-200 hover:bg-gradient-to-r hover:from-[#f7f0ac] hover:via-[#acf7f0] hover:to-[#f0acf7] hover:text-slate-950 hover:border-transparent transition-all duration-300 shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#acf7f0] motion-reduce:transition-none">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 5l7 7-7 7"/>
                                 </svg>
                             </button>
                         </div>
                     @endif
                 </div>
 
-                {{-- Kolom Kanan: Slider --}}
+                {{-- Right Column: Video Slider --}}
                 <div class="lg:col-span-8 w-full">
 
                     @if($totalVideos > 0)
@@ -298,12 +317,12 @@
                             >
                                 @foreach($pages as $pageIndex => $pageVideos)
                                     <div class="w-full flex-shrink-0" role="group" aria-roledescription="slide"
-                                         aria-label="Halaman {{ $pageIndex + 1 }} dari {{ $totalPages }}">
+                                         aria-label="{{ $pageIndex + 1 }} / {{ $totalPages }}">
                                         <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 items-stretch">
                                             @foreach($pageVideos as $videoIndex => $video)
                                                 @php
-                                                    // Video pertama di halaman pertama = LCP → eager + high
                                                     $isFirst = ($pageIndex === 0 && $videoIndex === 0);
+                                                    $vTitle  = $video['title'] ?? '';
                                                 @endphp
                                                 <article
                                                     x-data="{
@@ -313,23 +332,21 @@
                                                             this.$nextTick(() => this.$refs.iframe?.focus());
                                                         }
                                                     }"
-                                                    class="group relative bg-slate-800/95 border border-slate-700/80 rounded-2xl overflow-hidden shadow-xl flex flex-col h-full"
+                                                    class="group relative bg-gradient-to-b from-slate-900/95 via-[#0d1426]/95 to-slate-950/95 border border-slate-800/90 hover:border-[#acf7f0]/55 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full motion-reduce:transition-none motion-reduce:hover:translate-y-0"
                                                 >
-                                                    {{-- ═══ Thumbnail: 16:9 aspect-ratio untuk cegah CLS ═══ --}}
-                                                    <div class="relative aspect-video bg-slate-950 overflow-hidden">
+                                                    <div class="relative aspect-video bg-slate-900 overflow-hidden">
                                                         <template x-if="!playing">
                                                             <button type="button" @click="play()"
-                                                                class="absolute inset-0 w-full h-full group/play focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-inset"
-                                                                aria-label="Putar video: {{ $video['title'] }}">
-                                                                {{-- width/height explicit = no CLS. srcset = responsif. --}}
+                                                                class="absolute inset-0 w-full h-full group/play focus:outline-none focus-visible:ring-2 focus-visible:ring-[#acf7f0] focus-visible:ring-inset"
+                                                                aria-label="{{ $vTitle }}">
                                                                 <img
                                                                     src="{{ $video['thumb_hd'] }}"
                                                                     srcset="{{ $video['thumb'] }} 320w, {{ $video['thumb_md'] }} 480w, {{ $video['thumb_hd'] }} 1280w"
                                                                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 40vw"
                                                                     width="1280"
                                                                     height="720"
-                                                                    alt="Thumbnail: {{ $video['title'] }}"
-                                                                    class="w-full h-full object-cover transition-transform duration-500 group-hover/play:scale-105"
+                                                                    alt="{{ $vTitle }}"
+                                                                    class="w-full h-full object-cover transition-transform duration-500 group-hover/play:scale-105 motion-reduce:transition-none motion-reduce:group-hover/play:scale-100"
                                                                     @if($isFirst)
                                                                         loading="eager"
                                                                         fetchpriority="high"
@@ -338,18 +355,18 @@
                                                                         loading="lazy"
                                                                         decoding="async"
                                                                     @endif
-                                                                    onerror="this.onerror=null;this.srcset='';this.src='{{ $video['thumb_md'] }}';"
+                                                                    onerror="if (!this.dataset.fbStep) { this.dataset.fbStep='1'; this.srcset=''; this.src='{{ $video['thumb_md'] }}'; } else if (this.dataset.fbStep==='1') { this.dataset.fbStep='2'; this.src='{{ $video['thumb'] }}'; } else { this.style.display='none'; }"
                                                                 >
-                                                                <span class="absolute inset-0 bg-slate-950/40 group-hover/play:bg-slate-950/20 transition-colors duration-300"></span>
+                                                                <span class="absolute inset-0 bg-slate-950/35 group-hover/play:bg-slate-950/20 transition-colors duration-300"></span>
                                                                 <span class="absolute inset-0 flex items-center justify-center">
-                                                                    <span class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-red-600/95 group-hover/play:bg-red-500 flex items-center justify-center text-white shadow-2xl shadow-red-600/40 transition-all duration-300 group-hover/play:scale-110">
-                                                                        <svg class="w-7 h-7 sm:w-8 sm:h-8 ml-1" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                                                    <span class="w-15 h-15 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-[#f7f0ac] via-[#acf7f0] to-[#f0acf7] flex items-center justify-center text-slate-950 shadow-xl transition-transform duration-300 group-hover/play:scale-110 motion-reduce:transition-none motion-reduce:group-hover/play:scale-100">
+                                                                        <svg class="w-6 h-6 sm:w-7 sm:h-7 ml-0.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                                                             <path d="M8 5v14l11-7z"/>
                                                                         </svg>
                                                                     </span>
                                                                 </span>
-                                                                @if($video['duration'])
-                                                                    <span class="absolute bottom-2 right-2 px-2 py-1 rounded-md bg-slate-950/90 text-white text-xs font-semibold tracking-wide">
+                                                                @if(filled($video['duration']))
+                                                                    <span class="absolute bottom-2.5 right-2.5 px-2.5 py-0.5 rounded-full bg-slate-950/85 border border-white/15 text-[#acf7f0] text-xs font-bold tracking-wide">
                                                                         {{ $video['duration'] }}
                                                                     </span>
                                                                 @endif
@@ -357,11 +374,10 @@
                                                         </template>
 
                                                         <template x-if="playing">
-                                                            {{-- width/height + loading lazy untuk iframe — cegah CLS saat load --}}
                                                             <iframe
                                                                 x-ref="iframe"
                                                                 src="https://www.youtube-nocookie.com/embed/{{ $video['id'] }}?autoplay=1&rel=0&modestbranding=1"
-                                                                title="{{ $video['title'] }}"
+                                                                title="{{ $vTitle }}"
                                                                 width="1280"
                                                                 height="720"
                                                                 loading="lazy"
@@ -374,21 +390,19 @@
                                                     </div>
 
                                                     <div class="p-5 sm:p-6 flex-grow flex flex-col">
-                                                        <h3 class="text-white font-bold text-base sm:text-lg leading-snug mb-2 line-clamp-2">
-                                                            {{ $video['title'] }}
-                                                        </h3>
-                                                        @if($video['description'])
-                                                            <p class="text-slate-400 text-sm leading-relaxed line-clamp-3 flex-grow">
+                                                        @if(filled($vTitle))
+                                                            <h3 class="text-white font-extrabold text-base sm:text-lg leading-snug mb-2 line-clamp-2">
+                                                                {{ $vTitle }}
+                                                            </h3>
+                                                        @endif
+                                                        @if(filled($video['description']))
+                                                            <p class="text-slate-300/90 text-sm leading-relaxed line-clamp-3 flex-grow">
                                                                 {{ $video['description'] }}
                                                             </p>
                                                         @endif
                                                     </div>
 
-                                                    <div class="h-1 flex overflow-hidden">
-                                                        <div class="w-1/3 h-full bg-red-600"></div>
-                                                        <div class="w-1/3 h-full bg-amber-400"></div>
-                                                        <div class="w-1/3 h-full bg-[#acf7f0]"></div>
-                                                    </div>
+                                                    <div class="h-1 w-full bg-gradient-to-r from-[#f7f0ac] via-[#acf7f0] to-[#f0acf7]" aria-hidden="true"></div>
                                                 </article>
                                             @endforeach
 
@@ -404,36 +418,21 @@
                         </div>
 
                         @if($totalPages > 1)
-                            <div class="flex justify-center gap-2 mt-6" role="tablist" aria-label="Pilih halaman video">
+                            <div class="flex justify-center gap-2 mt-6" role="tablist" aria-label="Pagination">
                                 @foreach($pages as $index => $page)
                                     <button
                                         @click="goTo({{ $index }})"
                                         type="button"
-                                        :class="activeSlide === {{ $index + 1 }} ? 'w-8 bg-red-500' : 'w-2 bg-slate-700 hover:bg-slate-600'"
-                                        class="h-2 rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 motion-reduce:transition-none"
+                                        :class="activeSlide === {{ $index + 1 }} ? 'w-8 bg-gradient-to-r from-[#f7f0ac] via-[#acf7f0] to-[#f0acf7]' : 'w-2.5 bg-slate-700 hover:bg-slate-600'"
+                                        class="h-2 rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#acf7f0] motion-reduce:transition-none"
                                         :aria-selected="activeSlide === {{ $index + 1 }} ? 'true' : 'false'"
-                                        aria-label="Buka halaman {{ $index + 1 }}"
+                                        aria-label="{{ $index + 1 }}"
                                         role="tab"
                                     ></button>
                                 @endforeach
                             </div>
                         @endif
 
-                    @else
-                        {{-- Empty state --}}
-                        <div class="w-full text-center py-12 sm:py-16 px-6 rounded-2xl bg-slate-800/80 border-2 border-dashed border-slate-600">
-                            <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-slate-700/60 flex items-center justify-center">
-                                <svg class="w-7 h-7 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
-                                </svg>
-                            </div>
-                            <p class="text-slate-200 text-sm sm:text-base font-semibold mb-1">
-                                Belum ada video yang ditambahkan.
-                            </p>
-                            <p class="text-slate-400 text-xs sm:text-sm">
-                                Tambahkan item di repeater <span class="font-mono text-amber-300">video_item</span> melalui editor.
-                            </p>
-                        </div>
                     @endif
                 </div>
             </div>

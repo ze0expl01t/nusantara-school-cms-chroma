@@ -24,6 +24,8 @@
     // Ambil gambar hero (crop 'desktop' dengan fallback)
     $hasHeroImage = $block->hasImage('hero_5_image', 'desktop') || $block->hasImage('hero_5_image');
     $heroImageAlt = $titleMain ?: 'Ilustrasi profil';
+    $fallbackHeroImage = 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1536&q=80';
+    $fallbackHeroImageAlt = 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1536&q=80';
 
     // ═══ LCP media path untuk preload ═══
     $heroMedia = $hasHeroImage ? twill_media($block, 'hero_5_image') : null;
@@ -71,6 +73,7 @@
                     <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight [text-wrap:balance]">
                         {{ $titleMain }}
                     </h2>
+                    <div class="w-20 h-1 rounded-full bg-gradient-to-r from-[#f7f0ac] via-[#acf7f0] to-[#f0acf7]" aria-hidden="true"></div>
                 @endif
 
                 {{-- Sub Heading --}}
@@ -120,31 +123,43 @@
             <div class="lg:col-span-5">
                 <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden aspect-[4/3] bg-slate-100 border border-slate-200 shadow-xl shadow-slate-950/10 hover:shadow-slate-950/20 transition-[box-shadow] duration-500 group motion-reduce:transition-none [contain:layout_style] [transform:translateZ(0)]">
 
-                    @if($hasHeroImage)
-                        {!! twill_proxy_img(
-                            $block,
-                            'hero_5_image',
-                            [640, 1024, 1536],
-                            '(max-width: 1024px) 100vw, 50vw',
-                            $heroImageAlt,
-                            [],
-                            null,
-                            [
-                                'class' => 'w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100',
-                                'width' => '1536',
-                                'height' => '1152',
-                                'loading' => 'lazy',
-                                'decoding' => 'async',
-                            ]
-                        ) !!}
-                    @else
-                        {{-- Empty state kalau belum upload --}}
-                        <div class="w-full h-full flex items-center justify-center text-slate-400 bg-slate-100">
-                            <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                            </svg>
-                        </div>
-                    @endif
+                    @php
+                            $heroImgHtml = $hasHeroImage
+                                ? twill_proxy_img(
+                                    $block,
+                                    'hero_5_image',
+                                    [640, 1024, 1536],
+                                    '(max-width: 1024px) 100vw, 50vw',
+                                    $heroImageAlt,
+                                    [],
+                                    $fallbackHeroImage,
+                                    [
+                                        'class' => 'w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100',
+                                        'width' => '1536',
+                                        'height' => '1152',
+                                        'loading' => 'eager',
+                                        'fetchpriority' => 'high',
+                                        'decoding' => 'async',
+                                        'onerror' => "this.onerror=null;this.removeAttribute('srcset');this.src='" . $fallbackHeroImage . "';",
+                                    ]
+                                )
+                                : '';
+                        @endphp
+                        @if(filled(trim($heroImgHtml)))
+                            {!! $heroImgHtml !!}
+                        @else
+                            <img
+                                src="{{ $fallbackHeroImage }}"
+                                alt="{{ $heroImageAlt }}"
+                                class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+                                width="1536"
+                                height="1152"
+                                loading="eager"
+                                fetchpriority="high"
+                                decoding="async"
+                                onerror="this.removeAttribute('srcset');if(!this.dataset.fbStep){this.dataset.fbStep='1';this.src='https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1536&q=80';}else if(this.dataset.fbStep==='1'){this.dataset.fbStep='2';this.src='https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1536&q=80';}else{this.onerror=null;this.style.display='none';}"
+                            >
+                        @endif
 
                     {{-- Overlay gradient saat hover --}}
                     <div class="absolute inset-0 bg-gradient-to-tr from-slate-950/25 via-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none motion-reduce:transition-none" aria-hidden="true"></div>

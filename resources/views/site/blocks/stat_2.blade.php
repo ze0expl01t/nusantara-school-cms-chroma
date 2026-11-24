@@ -10,65 +10,61 @@
     };
 
     $badgeText      = $safeInput($block, 'badge_text');
-    $titleMain      = $safeInput($block, 'title_main', 'Kompetensi Pedagogik dan');
-    $titleHighlight = $safeInput($block, 'title_highlight', 'Profesional Staf');
+    $titleMain      = $safeInput($block, 'title_main');
+    $titleHighlight = $safeInput($block, 'title_highlight');
     $description    = $safeInput($block, 'description');
 
-    $children    = $block->children;
-    $statItems   = $children ? $children->where('type', 'stat_2_item')       : collect();
-    $imageItems  = $children ? $children->where('type', 'stat_2_image_item') : collect();
+    $children   = $block->children;
+    $statItems  = $children ? $children->where('type', 'stat_2_item')       : collect();
+    $imageItems = $children ? $children->where('type', 'stat_2_image_item') : collect();
 
-    $images = $imageItems->map(function ($imgItem) {
-        if ($imgItem->hasImage('gallery_image', 'desktop')) {
-            return $imgItem->image('gallery_image', 'desktop');
-        }
-        if ($imgItem->hasImage('gallery_image')) {
-            return $imgItem->image('gallery_image');
-        }
-        return null;
-    })->filter()->values();
+    $imageCount = $imageItems->count();
+    $pageTitle  = trim(strip_tags(($titleMain ?? '') . ' ' . ($titleHighlight ?? ''))) ?: ($badgeText ?? '');
 
-    $imageCount = $images->count();
-    $pageTitle = trim(strip_tags($titleMain . ' ' . $titleHighlight)) ?: 'Galeri';
+    $fallbackCards = [
+        'from-[#acf7f0]/55 via-[#f7f0ac]/45 to-[#f0acf7]/55',
+        'from-[#f0acf7]/55 via-[#acf7f0]/45 to-[#f7f0ac]/55',
+        'from-[#f7f0ac]/60 via-[#f0acf7]/45 to-[#acf7f0]/55',
+    ];
 @endphp
 
-<section class="py-8 sm:py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden [content-visibility:auto] [contain-intrinsic-size:800px]" data-block-reveal>
-    <div class="space-y-6">
+<section class="py-10 sm:py-14 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden [content-visibility:auto] [contain-intrinsic-size:800px]" data-block-reveal>
+    <div class="bg-white border border-slate-200/90 rounded-3xl overflow-hidden shadow-xs hover:shadow-md transition-shadow duration-300 relative [contain:layout_style]">
 
-        <div class="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-10 shadow-sm relative overflow-hidden [contain:layout_style]">
+        {{-- Top 3-color global accent strip --}}
+        <div class="h-1.5 w-full bg-gradient-to-r from-[#f7f0ac] via-[#acf7f0] to-[#f0acf7]" aria-hidden="true"></div>
 
-            {{-- Ambient glow — blur dikurangi untuk hemat GPU paint --}}
-            <div class="absolute top-0 right-0 w-64 h-64 sm:w-96 sm:h-96 bg-[#acf7f0]/5 blur-[60px] rounded-full pointer-events-none" aria-hidden="true"></div>
-            <div class="absolute bottom-0 left-0 w-64 h-64 sm:w-80 sm:h-80 bg-[#f0acf7]/5 blur-[60px] rounded-full pointer-events-none" aria-hidden="true"></div>
+        <div class="relative z-10 p-6 sm:p-8 md:p-10 lg:p-12">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-center relative z-10">
-
-                {{-- ═══ KOLOM KIRI: Teks & Progress Bar ═══ --}}
-                <div class="lg:col-span-7 space-y-4">
-
-                    @if($badgeText)
-                        <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-[11px] sm:text-xs md:text-sm font-semibold tracking-wider text-slate-700 uppercase shadow-sm">
-                            <span class="w-2 h-2 rounded-full bg-[#acf7f0] animate-pulse motion-reduce:animate-none" aria-hidden="true"></span>
-                            {{ $badgeText }}
+                {{-- Left Column: Header & Progress Metrics --}}
+                <div class="lg:col-span-7 space-y-5">
+                    @if(filled($badgeText))
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200/90 shadow-2xs text-xs font-extrabold tracking-wider text-slate-950 uppercase">
+                            <span class="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-[#f7f0ac] via-[#acf7f0] to-[#f0acf7]" aria-hidden="true"></span>
+                            <span>{{ $badgeText }}</span>
                         </div>
                     @endif
 
-                    @if($titleMain || $titleHighlight)
-                        <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.15] [text-wrap:balance]">
-                            {{ $titleMain }}
-                            @if($titleHighlight)
-                                <span class="block text-slate-900 mt-1 sm:mt-1.5">{{ $titleHighlight }}</span>
+                    @if(filled($titleMain) || filled($titleHighlight))
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-[2.65rem] font-black text-slate-950 tracking-tight leading-[1.14] [text-wrap:balance]">
+                            @if(filled($titleMain))<span>{{ $titleMain }}</span>@endif
+                            @if(filled($titleHighlight))
+                                <span class="block mt-1.5">
+                                    <span class="inline-block px-3 py-0.5 rounded-xl bg-gradient-to-r from-[#f7f0ac]/65 via-[#acf7f0]/65 to-[#f0acf7]/65 text-slate-950">
+                                        {{ $titleHighlight }}
+                                    </span>
+                                </span>
                             @endif
                         </h2>
                     @endif
 
-                    @if($description)
-                        <p class="text-sm md:text-base text-slate-600 leading-relaxed">
+                    @if(filled($description))
+                        <p class="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl">
                             {{ $description }}
                         </p>
                     @endif
 
-                    {{-- Progress Bar Statistik --}}
                     @if($statItems->count() > 0)
                         <div
                             x-data="{
@@ -95,19 +91,25 @@
                         >
                             @foreach($statItems as $item)
                                 @php
-                                    $percentage = min(max((int) $safeInput($item, 'percentage', 90), 0), 100);
-                                    $label      = $safeInput($item, 'label', 'Jurusan');
+                                    $percentage = min(max((int) $safeInput($item, 'percentage', 0), 0), 100);
+                                    $label      = $safeInput($item, 'label');
                                 @endphp
 
-                                <div class="space-y-1.5 bg-slate-50/80 p-3.5 rounded-2xl border border-slate-200/80 hover:border-[#f0acf7]/40 transition-colors duration-300 shadow-sm motion-reduce:transition-none">
-                                    <div class="flex justify-between text-xs md:text-sm font-bold text-slate-800">
-                                        <span class="truncate pr-2">{{ $label }}</span>
-                                        <span class="text-slate-900 font-extrabold shrink-0">{{ $percentage }}%</span>
+                                <div class="group rounded-2xl bg-slate-50/80 hover:bg-white p-4 border border-slate-200/85 hover:border-slate-950/20 shadow-2xs hover:shadow-md transition-all duration-300 motion-reduce:transition-none">
+                                    <div class="flex items-center justify-between gap-3 mb-2.5">
+                                        @if(filled($label))
+                                            <span class="text-xs sm:text-sm font-bold text-slate-950 truncate">
+                                                {{ $label }}
+                                            </span>
+                                        @endif
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-[#acf7f0]/55 border border-[#acf7f0] text-xs sm:text-sm font-black text-slate-950 tabular-nums shrink-0">
+                                            {{ $percentage }}%
+                                        </span>
                                     </div>
 
-                                    <div class="w-full h-2.5 bg-slate-200/80 rounded-full overflow-hidden p-0.5 border border-slate-200">
+                                    <div class="w-full h-2.5 bg-slate-200/80 rounded-full overflow-hidden p-0.5 border border-slate-200/80">
                                         <div
-                                            class="h-full bg-gradient-to-r from-[#f7f0ac] via-[#acf7f0] to-[#f0acf7] rounded-full shadow-[0_0_12px_rgba(172,247,240,0.45)] transition-[width,opacity] duration-1000 ease-out motion-reduce:transition-none [transform:translateZ(0)]"
+                                            class="h-full bg-gradient-to-r from-[#f7f0ac] via-[#acf7f0] to-[#f0acf7] rounded-full transition-[width,opacity] duration-1000 ease-out motion-reduce:transition-none [transform:translateZ(0)]"
                                             :class="animated ? 'opacity-100' : 'opacity-0'"
                                             :style="animated ? 'width: {{ $percentage }}%' : 'width: 0%'"
                                         ></div>
@@ -115,104 +117,142 @@
                                 </div>
                             @endforeach
                         </div>
-                    @else
-                        <div class="text-xs text-slate-400 italic p-4 rounded-xl border border-dashed border-slate-200 bg-slate-50">
-                            Belum ada item statistik yang ditambahkan.
-                        </div>
                     @endif
-
                 </div>
 
-                {{-- ═══ KOLOM KANAN: Kolase Gambar ═══ --}}
+                {{-- Right Column: Gallery Collage with Free Public Image Fallback --}}
                 <div class="lg:col-span-5">
                     @if($imageCount > 0)
-
                         @if($imageCount === 1)
-                            <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl shadow-slate-950/10 hover:shadow-slate-950/15 transition-[box-shadow] duration-500 group aspect-[4/3] motion-reduce:transition-none [contain:layout_style] [transform:translateZ(0)]">
-                                {!! twill_proxy_img(
-                                    $imageItems->first(),
-                                    'gallery_image',
-                                    [640, 1024, 1536],
-                                    '(max-width: 1024px) 100vw, 50vw',
-                                    $pageTitle,
-                                    [],
-                                    null,
-                                    [
-                                        'class' => 'w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100',
-                                        'width' => '1536',
-                                        'height' => '1152',
-                                        'loading' => 'eager',
-                                        'fetchpriority' => 'high',
-                                        'decoding' => 'async',
-                                    ]
-                                ) !!}
-                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/25 via-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none motion-reduce:transition-none" aria-hidden="true"></div>
+                            @php
+                                $firstImg = $imageItems->first();
+                                $hasFirst = $firstImg->hasImage('gallery_image', 'desktop') || $firstImg->hasImage('gallery_image');
+                                $cardGrad = $fallbackCards[0];
+                                $imgKey   = $firstImg->id ?? 1;
+                                $fbUrl    = 'https://picsum.photos/seed/smkmuh1-stat2-' . $imgKey . '/1200/900.webp';
+                            @endphp
+                            <div class="relative rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 group aspect-[4/3] bg-gradient-to-br {{ $cardGrad }} motion-reduce:transition-none">
+                                <img
+                                    src="{{ $fbUrl }}"
+                                    alt="{{ $pageTitle }}"
+                                    width="1200"
+                                    height="900"
+                                    loading="eager"
+                                    decoding="async"
+                                    onerror="this.style.display='none'"
+                                    class="absolute inset-0 z-0 w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+                                >
+                                @if($hasFirst)
+                                    {!! twill_proxy_img(
+                                        $firstImg,
+                                        'gallery_image',
+                                        [640, 1024, 1536],
+                                        '(max-width: 1024px) 100vw, 50vw',
+                                        $pageTitle,
+                                        [], 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80',
+                                        [
+                                            'class' => 'relative z-10 w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100',
+                                            'width' => '1536',
+                                            'height' => '1152',
+                                            'loading' => 'eager',
+                                            'fetchpriority' => 'high',
+                                            'decoding' => 'async',
+                                            'onerror' => "this.style.display='none'",
+                                        ]
+                                    ) !!}
+                                @endif
                             </div>
 
                         @elseif($imageCount === 2)
-                            <div class="space-y-3 sm:space-y-4 pr-4 sm:pr-6">
+                            <div class="space-y-3.5 sm:space-y-4">
                                 @foreach($imageItems as $index => $imgItem)
-                                    <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg shadow-slate-950/10 hover:shadow-slate-950/15 transition-[box-shadow] duration-500 group aspect-[16/9] {{ $index === 1 ? 'translate-x-4 sm:translate-x-6' : '' }} motion-reduce:transition-none motion-reduce:translate-x-0 [contain:layout_style] [transform:translateZ(0)]">
-                                        {!! twill_proxy_img(
-                                            $imgItem,
-                                            'gallery_image',
-                                            [400, 800, 1200],
-                                            '(max-width: 768px) 100vw, 50vw',
-                                            $pageTitle . ' — Gambar ' . ($index + 1),
-                                            [],
-                                            null,
-                                            [
-                                                'class' => 'w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100',
-                                                'width' => '1200',
-                                                'height' => '675',
-                                                'loading' => $index === 0 ? 'eager' : 'lazy',
-                                                'fetchpriority' => $index === 0 ? 'high' : 'auto',
-                                                'decoding' => 'async',
-                                            ]
-                                        ) !!}
-                                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/25 via-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none motion-reduce:transition-none" aria-hidden="true"></div>
+                                    @php
+                                        $hasImg   = $imgItem->hasImage('gallery_image', 'desktop') || $imgItem->hasImage('gallery_image');
+                                        $cardGrad = $fallbackCards[$index % count($fallbackCards)];
+                                        $imgKey   = $imgItem->id ?? ($index + 1);
+                                        $fbUrl    = 'https://picsum.photos/seed/smkmuh1-stat2-' . $imgKey . '/1200/675.webp';
+                                    @endphp
+                                    <div class="relative rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 group aspect-[16/9] bg-gradient-to-br {{ $cardGrad }} motion-reduce:transition-none">
+                                        <img
+                                            src="{{ $fbUrl }}"
+                                            alt="{{ trim($pageTitle . ' ' . ($index + 1)) }}"
+                                            width="1200"
+                                            height="675"
+                                            loading="{{ $index === 0 ? 'eager' : 'lazy' }}"
+                                            decoding="async"
+                                            onerror="this.style.display='none'"
+                                            class="absolute inset-0 z-0 w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+                                        >
+                                        @if($hasImg)
+                                            {!! twill_proxy_img(
+                                                $imgItem,
+                                                'gallery_image',
+                                                [400, 800, 1200],
+                                                '(max-width: 768px) 100vw, 50vw',
+                                                trim($pageTitle . ' ' . ($index + 1)),
+                                                [], 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80',
+                                                [
+                                                    'class' => 'relative z-10 w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100',
+                                                    'width' => '1200',
+                                                    'height' => '675',
+                                                    'loading' => $index === 0 ? 'eager' : 'lazy',
+                                                    'fetchpriority' => $index === 0 ? 'high' : 'auto',
+                                                    'decoding' => 'async',
+                                                    'onerror' => "this.style.display='none'",
+                                                ]
+                                            ) !!}
+                                        @endif
                                     </div>
                                 @endforeach
                             </div>
 
                         @else
-                            <div class="grid grid-cols-2 gap-3 sm:gap-4">
+                            <div class="grid grid-cols-2 gap-3.5 sm:gap-4">
                                 @foreach($imageItems as $index => $imgItem)
-                                    @php $isLarge = ($index === 0); @endphp
+                                    @php
+                                        $hasImg   = $imgItem->hasImage('gallery_image', 'desktop') || $imgItem->hasImage('gallery_image');
+                                        $isLarge  = ($index === 0);
+                                        $cardGrad = $fallbackCards[$index % count($fallbackCards)];
+                                        $imgKey   = $imgItem->id ?? ($index + 1);
+                                        $wPx      = 1200;
+                                        $hPx      = $isLarge ? 675 : 900;
+                                        $fbUrl    = 'https://picsum.photos/seed/smkmuh1-stat2-' . $imgKey . '/' . $wPx . '/' . $hPx . '.webp';
+                                    @endphp
 
-                                    <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg shadow-slate-950/10 hover:shadow-slate-950/15 transition-[box-shadow] duration-500 group w-full h-full {{ $isLarge ? 'col-span-2 aspect-[16/9]' : 'col-span-1 aspect-[4/3]' }} motion-reduce:transition-none [contain:layout_style] [transform:translateZ(0)]">
-                                        {!! twill_proxy_img(
-                                            $imgItem,
-                                            'gallery_image',
-                                            [400, 800, 1200],
-                                            '(max-width: 640px) 100vw, 50vw',
-                                            $pageTitle . ' — Gambar ' . ($index + 1),
-                                            [],
-                                            null,
-                                            [
-                                                'class' => 'w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100',
-                                                'width' => '1200',
-                                                'height' => $isLarge ? '675' : '900',
-                                                'loading' => $index === 0 ? 'eager' : 'lazy',
-                                                'fetchpriority' => $index === 0 ? 'high' : 'auto',
-                                                'decoding' => 'async',
-                                            ]
-                                        ) !!}
-                                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/25 via-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none motion-reduce:transition-none" aria-hidden="true"></div>
+                                    <div class="relative rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 group w-full h-full {{ $isLarge ? 'col-span-2 aspect-[16/9]' : 'col-span-1 aspect-[4/3]' }} bg-gradient-to-br {{ $cardGrad }} motion-reduce:transition-none">
+                                        <img
+                                            src="{{ $fbUrl }}"
+                                            alt="{{ trim($pageTitle . ' ' . ($index + 1)) }}"
+                                            width="{{ $wPx }}"
+                                            height="{{ $hPx }}"
+                                            loading="{{ $index === 0 ? 'eager' : 'lazy' }}"
+                                            decoding="async"
+                                            onerror="this.style.display='none'"
+                                            class="absolute inset-0 z-0 w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+                                        >
+                                        @if($hasImg)
+                                            {!! twill_proxy_img(
+                                                $imgItem,
+                                                'gallery_image',
+                                                [400, 800, 1200],
+                                                '(max-width: 640px) 100vw, 50vw',
+                                                trim($pageTitle . ' ' . ($index + 1)),
+                                                [], 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80',
+                                                [
+                                                    'class' => 'relative z-10 w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100',
+                                                    'width' => (string) $wPx,
+                                                    'height' => (string) $hPx,
+                                                    'loading' => $index === 0 ? 'eager' : 'lazy',
+                                                    'fetchpriority' => $index === 0 ? 'high' : 'auto',
+                                                    'decoding' => 'async',
+                                                    'onerror' => "this.style.display='none'",
+                                                ]
+                                            ) !!}
+                                        @endif
                                     </div>
                                 @endforeach
                             </div>
                         @endif
-
-                    @else
-                        <div class="grid grid-cols-1 gap-4">
-                            <div class="w-full aspect-[4/3] rounded-2xl sm:rounded-3xl bg-slate-50 border border-dashed border-slate-300 flex flex-col items-center justify-center text-slate-400 text-xs p-6 text-center space-y-2 shadow-sm">
-                                <svg class="w-8 h-8 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                                </svg>
-                                <span>Tambahkan foto melalui galeri repeater admin</span>
-                            </div>
-                        </div>
                     @endif
                 </div>
 

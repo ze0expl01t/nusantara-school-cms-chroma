@@ -113,8 +113,7 @@
                                     [400, 800, 1200],
                                     '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw',
                                     $item->title,
-                                    [],
-                                    null,
+                                    [], 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80',
                                     [
                                         'class' => 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 motion-reduce:transition-none motion-reduce:group-hover:scale-100',
                                         'width' => '1200',
@@ -122,6 +121,7 @@
                                         'loading' => $isFirst ? 'eager' : 'lazy',
                                         'fetchpriority' => $isFirst ? 'high' : 'auto',
                                         'decoding' => 'async',
+                                          'onerror' => "this.removeAttribute('srcset');if(!this.dataset.fbStep){this.dataset.fbStep='1';this.src='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80';}else if(this.dataset.fbStep==='1'){this.dataset.fbStep='2';this.src='https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80';}else{this.onerror=null;this.style.display='none';}",
                                     ]
                                 ) !!}
                             </div>
@@ -142,14 +142,14 @@
                                         [96, 192],
                                         '48px',
                                         $item->company_name ?: 'Logo perusahaan',
-                                        [],
-                                        null,
+                                        [], 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80',
                                         [
                                             'class' => 'w-12 h-12 rounded-xl object-contain bg-slate-50 border border-slate-200 p-1 flex-shrink-0',
                                             'width' => '96',
                                             'height' => '96',
                                             'loading' => 'lazy',
                                             'decoding' => 'async',
+                                          'onerror' => "this.removeAttribute('srcset');if(!this.dataset.fbStep){this.dataset.fbStep='1';this.src='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80';}else if(this.dataset.fbStep==='1'){this.dataset.fbStep='2';this.src='https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80';}else{this.onerror=null;this.style.display='none';}",
                                         ]
                                     ) !!}
                                 @endif

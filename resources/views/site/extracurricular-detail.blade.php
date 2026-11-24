@@ -42,9 +42,9 @@
     $title = $extracurricular->title ?: 'Detail Ekstrakurikuler';
     $imageAlt = trim(strip_tags($title)) ?: 'Cover ekstrakurikuler';
 
-    $coverImage = $extracurricular->hasImage('cover')
+    $coverImage = ($extracurricular->hasImage('cover')
         ? $extracurricular->image('cover', 'default')
-        : null;
+        : null) ?: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80';
 
     $advisorPhoto = $extracurricular->hasImage('advisor_photo')
         ? $extracurricular->image('advisor_photo', 'default')
@@ -123,7 +123,7 @@
             <div class="rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200 shadow-sm bg-slate-100 aspect-[16/9]">
                 <img src="{{ $coverImage }}" alt="{{ $imageAlt }}"
                     loading="eager" fetchpriority="high" decoding="async"
-                    class="w-full h-full object-cover">
+                    class="w-full h-full object-cover" onerror="this.removeAttribute('srcset');if(!this.dataset.fbStep){this.dataset.fbStep='1';this.src='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80';}else if(this.dataset.fbStep==='1'){this.dataset.fbStep='2';this.src='https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80';}else{this.onerror=null;this.style.display='none';}">
             </div>
         @endif
 
@@ -135,7 +135,7 @@
                     <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm flex items-center gap-4">
                         <div class="flex-shrink-0 w-14 h-14 rounded-xl overflow-hidden bg-[#acf7f0]/30 border border-[#acf7f0] flex items-center justify-center text-slate-900">
                             @if($advisorPhoto)
-                                <img src="{{ $advisorPhoto }}" alt="{{ $advisorName }}" class="w-full h-full object-cover">
+                                <img src="{{ $advisorPhoto }}" alt="{{ $advisorName }}" class="w-full h-full object-cover" onerror="this.removeAttribute('srcset');if(!this.dataset.fbStep){this.dataset.fbStep='1';this.src='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80';}else if(this.dataset.fbStep==='1'){this.dataset.fbStep='2';this.src='https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80';}else{this.onerror=null;this.style.display='none';}">
                             @else
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>

@@ -1,4 +1,4 @@
-@twillBlockTitle('Card 1')
+@twillBlockTitle('Fasilitas')
 @twillBlockIcon('image-text')
 @twillBlockGroup('app')
 

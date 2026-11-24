@@ -42,9 +42,9 @@
     $title = $facility->title ?: 'Detail Fasilitas';
     $imageAlt = trim(strip_tags($title)) ?: 'Cover fasilitas';
 
-    $coverImage = $facility->hasImage('cover')
+    $coverImage = ($facility->hasImage('cover')
         ? $facility->image('cover', 'default')
-        : null;
+        : null) ?: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80';
 
     $badge = $facility->badge;
     $statLabel = $facility->stat_label;
@@ -106,7 +106,7 @@
             <div class="rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200 shadow-sm bg-slate-100 aspect-[16/9]">
                 <img src="{{ $coverImage }}" alt="{{ $imageAlt }}"
                     loading="eager" fetchpriority="high" decoding="async"
-                    class="w-full h-full object-cover">
+                    class="w-full h-full object-cover" onerror="this.removeAttribute('srcset');if(!this.dataset.fbStep){this.dataset.fbStep='1';this.src='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80';}else if(this.dataset.fbStep==='1'){this.dataset.fbStep='2';this.src='https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80';}else{this.onerror=null;this.style.display='none';}">
             </div>
         @endif
 

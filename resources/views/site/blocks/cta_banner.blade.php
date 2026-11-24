@@ -1,5 +1,4 @@
 @php
-    // ===== Helper: Safe URL (cegah javascript:, data:, vbscript:) =====
     $safeUrl = function ($url, $fallback = '#') {
         if (empty($url) || !is_string($url)) {
             return $fallback;
@@ -7,7 +6,6 @@
 
         $url = trim($url);
 
-        // Tolak scheme berbahaya
         $dangerous = ['javascript:', 'data:', 'vbscript:', 'file:'];
         foreach ($dangerous as $scheme) {
             if (stripos($url, $scheme) === 0) {
@@ -15,21 +13,17 @@
             }
         }
 
-        // Allow scheme aman: http, https, mailto, tel, relative path, anchor
         if (preg_match('#^(https?:|mailto:|tel:|/|\#)#i', $url)) {
             return $url;
         }
 
-        // Tolak scheme lain yang tidak dikenal
         if (preg_match('#^[a-z][a-z0-9+.-]*:#i', $url)) {
             return $fallback;
         }
 
-        // Relative path
         return $url;
     };
 
-    // ===== Helper: Safe Input (translatable) =====
     $safeInput = function ($block, $field, $default = null) {
         if (!method_exists($block, 'input')) {
             return $default;
@@ -51,23 +45,20 @@
         return filled($value) ? $value : $default;
     };
 
-    // ===== Ambil Data =====
     $badgeText           = $safeInput($block, 'badge_text');
     $title               = $safeInput($block, 'title');
     $highlightText       = $safeInput($block, 'highlight_text');
     $subtitle            = $safeInput($block, 'subtitle');
-    $buttonPrimaryText   = $safeInput($block, 'button_primary_text', 'Daftar Sekarang');
+    $buttonPrimaryText   = $safeInput($block, 'button_primary_text');
     $buttonSecondaryText = $safeInput($block, 'button_secondary_text');
-    $style               = $block->input('style') ?: 'gradient-emerald';
-    $alignment           = $block->input('alignment') ?: 'center';
-    $size                = $block->input('size') ?: 'normal';
+    $style               = $safeInput($block, 'style', 'gradient-emerald');
+    $alignment           = $safeInput($block, 'alignment', 'center');
+    $size                = $safeInput($block, 'size', 'normal');
     $showPattern         = (bool) $block->input('show_pattern');
 
-    // ===== ✅ SANITASI URL =====
     $buttonPrimaryUrl   = $safeUrl($block->input('button_primary_url'), '#');
     $buttonSecondaryUrl = $safeUrl($block->input('button_secondary_url'), '#');
 
-    // ===== Background Image (aman dari Twill) =====
     $backgroundImage = null;
     try {
         if (method_exists($block, 'hasImage') && $block->hasImage('background_image')) {
@@ -80,66 +71,74 @@
         $backgroundImage = null;
     }
 
-    // ===== Style Mapping =====
+    $pastelPreset = [
+        'bg' => 'bg-gradient-to-br from-[#f7f0ac] via-[#acf7f0] to-[#f0acf7] border border-slate-950/15',
+        'text' => 'text-slate-950',
+        'subtext' => 'text-slate-800',
+        'badge_bg' => 'bg-white/85',
+        'badge_text' => 'text-slate-950',
+        'badge_border' => 'border-slate-950/15',
+        'highlight' => 'inline-block px-3 py-0.5 rounded-xl bg-white/80 text-slate-950 border border-slate-950/10',
+        'btn_primary' => 'bg-slate-950 text-white hover:bg-white hover:text-slate-950 border border-slate-950/20',
+        'btn_secondary' => 'bg-white/75 hover:bg-white text-slate-950 border border-slate-950/20',
+    ];
+
     $styles = [
-        'gradient-emerald' => [
-            'bg' => 'bg-gradient-to-br from-[#f7f0ac] via-[#acf7f0] to-[#f0acf7]',
-            'text' => 'text-white',
-            'subtext' => 'text-[#f7f0ac]',
-            'badge_bg' => 'bg-white/20',
-            'badge_text' => 'text-white',
-            'badge_border' => 'border-white/30',
-            'highlight' => 'text-amber-300',
-        ],
+        'gradient-emerald' => $pastelPreset,
         'gradient-blue' => [
-            'bg' => 'bg-gradient-to-br from-[#acf7f0] via-[#acf7f0] to-[#f0acf7]',
-            'text' => 'text-white',
-            'subtext' => 'text-blue-50',
-            'badge_bg' => 'bg-white/20',
-            'badge_text' => 'text-white',
-            'badge_border' => 'border-white/30',
-            'highlight' => 'text-amber-300',
+            'bg' => 'bg-gradient-to-tr from-[#acf7f0] via-[#f7f0ac] to-[#f0acf7] border border-slate-950/15',
+            'text' => 'text-slate-950',
+            'subtext' => 'text-slate-800',
+            'badge_bg' => 'bg-white/85',
+            'badge_text' => 'text-slate-950',
+            'badge_border' => 'border-slate-950/15',
+            'highlight' => 'inline-block px-3 py-0.5 rounded-xl bg-white/80 text-slate-950 border border-slate-950/10',
+            'btn_primary' => 'bg-slate-950 text-white hover:bg-white hover:text-slate-950 border border-slate-950/20',
+            'btn_secondary' => 'bg-white/75 hover:bg-white text-slate-950 border border-slate-950/20',
         ],
         'gradient-amber' => [
-            'bg' => 'bg-gradient-to-br from-amber-500 via-orange-500 to-amber-600',
-            'text' => 'text-white',
-            'subtext' => 'text-amber-50',
-            'badge_bg' => 'bg-white/20',
-            'badge_text' => 'text-white',
-            'badge_border' => 'border-white/30',
-            'highlight' => 'text-white',
+            'bg' => 'bg-gradient-to-br from-[#f7f0ac] via-[#acf7f0] to-[#f0acf7] border border-slate-950/15',
+            'text' => 'text-slate-950',
+            'subtext' => 'text-slate-800',
+            'badge_bg' => 'bg-white/85',
+            'badge_text' => 'text-slate-950',
+            'badge_border' => 'border-slate-950/15',
+            'highlight' => 'inline-block px-3 py-0.5 rounded-xl bg-white/80 text-slate-950 border border-slate-950/10',
+            'btn_primary' => 'bg-slate-950 text-white hover:bg-white hover:text-slate-950 border border-slate-950/20',
+            'btn_secondary' => 'bg-white/75 hover:bg-white text-slate-950 border border-slate-950/20',
         ],
         'gradient-dark' => [
-            'bg' => 'bg-gradient-to-br from-slate-800 via-slate-900 to-black',
+            'bg' => 'bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 border border-slate-800',
             'text' => 'text-white',
             'subtext' => 'text-slate-300',
             'badge_bg' => 'bg-white/10',
-            'badge_text' => 'text-white',
+            'badge_text' => 'text-[#acf7f0]',
             'badge_border' => 'border-white/20',
-            'highlight' => 'text-[#acf7f0]',
+            'highlight' => 'inline-block px-3 py-0.5 rounded-xl bg-gradient-to-r from-[#f7f0ac] via-[#acf7f0] to-[#f0acf7] text-slate-950',
+            'btn_primary' => 'bg-gradient-to-r from-[#f7f0ac] via-[#acf7f0] to-[#f0acf7] text-slate-950 hover:brightness-105',
+            'btn_secondary' => 'bg-white/10 hover:bg-white/20 text-white border border-white/25',
         ],
         'solid-white' => [
-            'bg' => 'bg-white border border-slate-200',
-            'text' => 'text-slate-900',
+            'bg' => 'bg-white border border-slate-200/90',
+            'text' => 'text-slate-950',
             'subtext' => 'text-slate-600',
-            'badge_bg' => 'bg-[#acf7f0]/30',
-            'badge_text' => 'text-slate-900',
-            'badge_border' => 'border-[#f0acf7]',
-            'highlight' => 'text-slate-900',
+            'badge_bg' => 'bg-gradient-to-r from-[#f7f0ac]/60 via-[#acf7f0]/60 to-[#f0acf7]/60',
+            'badge_text' => 'text-slate-950',
+            'badge_border' => 'border-slate-950/15',
+            'highlight' => 'inline-block px-3 py-0.5 rounded-xl bg-gradient-to-r from-[#f7f0ac]/65 via-[#acf7f0]/65 to-[#f0acf7]/65 text-slate-950',
+            'btn_primary' => 'bg-slate-950 text-white hover:bg-slate-800',
+            'btn_secondary' => 'bg-slate-100 hover:bg-slate-200 text-slate-950 border border-slate-200',
         ],
     ];
 
-    // Fallback kalau style tidak dikenal
-    $s = $styles[$style] ?? $styles['gradient-emerald'];
+    $s = $styles[$style] ?? $pastelPreset;
 
-    // ===== Inner Padding =====
     $innerPadding = match($size) {
         'compact' => 'py-8 sm:py-10',
-        'large' => 'py-16 sm:py-24 lg:py-28',
+        'large' => 'py-14 sm:py-20 lg:py-24',
         default => 'py-12 sm:py-16 lg:py-20',
     };
 
-    // ===== Alignment =====
     $isSplit = $alignment === 'split';
     $alignClass = match($alignment) {
         'left' => 'text-left items-start',
@@ -148,135 +147,129 @@
     };
 @endphp
 
-<section class="py-8 sm:py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative overflow-hidden" data-block-reveal>
+<section class="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative overflow-hidden [content-visibility:auto] [contain-intrinsic-size:460px]" data-block-reveal>
 
-    <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl shadow-slate-900/20 {{ $s['bg'] }} {{ $innerPadding }}">
+    <div class="relative rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 {{ $s['bg'] }} {{ $innerPadding }} motion-reduce:transition-none">
 
-        {{-- Background Image --}}
         @if($backgroundImage)
             <div class="absolute inset-0 z-0">
-                {!! twill_proxy_img($block, 'background_image', [640, 1024, 1920], '100vw', strip_tags($title ?? ''), [], null, ['class' => 'w-full h-full object-cover']) !!}
-                <div class="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/70"></div>
+                {!! twill_proxy_img($block, 'background_image', [640, 1024, 1920], '100vw', strip_tags($title ?? ''), [], 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80', ['class' => 'w-full h-full object-cover']) !!}
+                <div class="absolute inset-0 bg-gradient-to-br from-slate-950/75 via-slate-950/55 to-slate-950/75"></div>
             </div>
         @endif
 
-        {{-- Pattern Dekoratif --}}
-        @if($showPattern)
-            <div class="absolute inset-0 z-0 pointer-events-none opacity-20" aria-hidden="true">
-                <svg class="absolute top-0 right-0 w-64 h-64 text-white" fill="currentColor" viewBox="0 0 200 200">
-                    <circle cx="150" cy="50" r="80" />
-                </svg>
-                <svg class="absolute bottom-0 left-0 w-80 h-80 text-white" fill="currentColor" viewBox="0 0 200 200">
-                    <circle cx="50" cy="150" r="100" />
-                </svg>
-            </div>
+        {{-- Decorative collaborative circles (#f7f0ac, #acf7f0, #f0acf7) --}}
+        <div class="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
+            <span class="absolute -top-20 -right-16 w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-[#f0acf7]/35 border border-white/40"></span>
+            <span class="absolute top-12 right-12 w-36 h-36 sm:w-44 sm:h-44 rounded-full bg-[#acf7f0]/40 border border-white/40"></span>
+            <span class="absolute -bottom-24 -left-16 w-72 h-72 sm:w-88 sm:h-88 rounded-full bg-[#f7f0ac]/45 border border-white/40"></span>
+            <span class="absolute bottom-10 left-14 w-28 h-28 sm:w-36 sm:h-36 rounded-full bg-[#acf7f0]/35 border border-white/40"></span>
+        </div>
 
-            <div class="absolute inset-0 z-0 opacity-5"
-                 style="background-size: 32px 32px; background-image: linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px);"></div>
+        @if($showPattern)
+            <div class="pointer-events-none absolute inset-0 z-0 opacity-20"
+                 style="background-size: 32px 32px; background-image: linear-gradient(to right, rgba(15, 23, 42, 0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(15, 23, 42, 0.08) 1px, transparent 1px);"
+                 aria-hidden="true"></div>
         @endif
 
         <div class="relative z-10 px-5 sm:px-8 lg:px-12">
             @if($isSplit)
-                {{-- ===== Layout Split: Text kiri, Tombol kanan ===== --}}
                 <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 sm:gap-8">
-
                     <div class="flex-1 space-y-3 sm:space-y-4">
-                        @if($badgeText)
-                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full {{ $s['badge_bg'] }} {{ $s['badge_text'] }} {{ $s['badge_border'] }} border text-xs font-bold uppercase tracking-wider">
-                                {{ $badgeText }}
+                        @if(filled($badgeText))
+                            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full {{ $s['badge_bg'] }} {{ $s['badge_text'] }} {{ $s['badge_border'] }} border text-xs font-extrabold uppercase tracking-wider shadow-2xs">
+                                <span class="w-2 h-2 rounded-full bg-current" aria-hidden="true"></span>
+                                <span>{{ $badgeText }}</span>
                             </div>
                         @endif
 
-                        @if($title)
-                            <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold {{ $s['text'] }} tracking-tight leading-tight">
+                        @if(filled($title))
+                            <h2 class="text-2xl sm:text-3xl md:text-4xl font-black {{ $s['text'] }} tracking-tight leading-tight [text-wrap:balance]">
                                 {{ $title }}
                             </h2>
                         @endif
 
-                        @if($highlightText)
-                            <p class="text-lg sm:text-xl font-bold {{ $s['highlight'] }}">
+                        @if(filled($highlightText))
+                            <p class="text-base sm:text-lg md:text-xl font-extrabold {{ $s['highlight'] }}">
                                 {{ $highlightText }}
                             </p>
                         @endif
 
-                        @if($subtitle)
-                            <p class="text-sm sm:text-base {{ $s['subtext'] }} leading-relaxed">
+                        @if(filled($subtitle))
+                            <p class="text-sm sm:text-base {{ $s['subtext'] }} leading-relaxed max-w-2xl">
                                 {{ $subtitle }}
                             </p>
                         @endif
                     </div>
 
-                    <div class="flex flex-col sm:flex-row gap-3 sm:flex-shrink-0">
-                        @if($buttonPrimaryText)
-                            <a href="{{ $buttonPrimaryUrl }}"
-                               class="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full bg-white text-slate-900 hover:bg-slate-100 font-bold shadow-lg transition-all transform hover:-translate-y-1 text-sm sm:text-base">
-                                {{ $buttonPrimaryText }}
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                                </svg>
-                            </a>
-                        @endif
+                    @if(filled($buttonPrimaryText) || (filled($buttonSecondaryText) && $buttonSecondaryUrl !== '#'))
+                        <div class="flex flex-col sm:flex-row gap-3 sm:flex-shrink-0">
+                            @if(filled($buttonPrimaryText))
+                                <a href="{{ $buttonPrimaryUrl }}"
+                                   class="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 rounded-full {{ $s['btn_primary'] }} font-extrabold shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5 text-sm sm:text-base motion-reduce:transition-none motion-reduce:hover:translate-y-0">
+                                    <span>{{ $buttonPrimaryText }}</span>
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                    </svg>
+                                </a>
+                            @endif
 
-                        @if($buttonSecondaryText && $buttonSecondaryUrl && $buttonSecondaryUrl !== '#')
-                            <a href="{{ $buttonSecondaryUrl }}"
-                               class="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full border-2 border-white/30 hover:bg-white/10 {{ $s['text'] }} font-bold backdrop-blur-sm transition-all transform hover:-translate-y-1 text-sm sm:text-base">
-                                {{ $buttonSecondaryText }}
-                            </a>
-                        @endif
-                    </div>
+                            @if(filled($buttonSecondaryText) && $buttonSecondaryUrl !== '#')
+                                <a href="{{ $buttonSecondaryUrl }}"
+                                   class="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 rounded-full {{ $s['btn_secondary'] }} font-bold transition-all duration-200 transform hover:-translate-y-0.5 text-sm sm:text-base motion-reduce:transition-none motion-reduce:hover:translate-y-0">
+                                    <span>{{ $buttonSecondaryText }}</span>
+                                </a>
+                            @endif
+                        </div>
+                    @endif
                 </div>
             @else
-                {{-- ===== Layout Center / Left ===== --}}
                 <div class="flex flex-col {{ $alignClass }} gap-4 sm:gap-5 max-w-3xl {{ $alignment === 'center' ? 'mx-auto' : '' }}">
-
-                    @if($badgeText)
-                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full {{ $s['badge_bg'] }} {{ $s['badge_text'] }} {{ $s['badge_border'] }} border text-xs font-bold uppercase tracking-wider shadow-sm">
-                            <span class="w-2 h-2 rounded-full bg-current animate-pulse motion-reduce:animate-none"></span>
-                            {{ $badgeText }}
+                    @if(filled($badgeText))
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full {{ $s['badge_bg'] }} {{ $s['badge_text'] }} {{ $s['badge_border'] }} border text-xs font-extrabold uppercase tracking-wider shadow-2xs">
+                            <span class="w-2 h-2 rounded-full bg-current" aria-hidden="true"></span>
+                            <span>{{ $badgeText }}</span>
                         </div>
                     @endif
 
-                    @if($title)
-                        <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold {{ $s['text'] }} tracking-tight leading-tight">
+                    @if(filled($title))
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black {{ $s['text'] }} tracking-tight leading-tight [text-wrap:balance]">
                             {{ $title }}
                         </h2>
                     @endif
 
-                    @if($highlightText)
-                        <p class="text-lg sm:text-xl md:text-2xl font-bold {{ $s['highlight'] }}">
+                    @if(filled($highlightText))
+                        <p class="text-base sm:text-lg md:text-xl font-extrabold {{ $s['highlight'] }}">
                             {{ $highlightText }}
                         </p>
                     @endif
 
-                    @if($subtitle)
+                    @if(filled($subtitle))
                         <p class="text-sm sm:text-base md:text-lg {{ $s['subtext'] }} leading-relaxed">
                             {{ $subtitle }}
                         </p>
                     @endif
 
-                    @if($buttonPrimaryText || $buttonSecondaryText)
+                    @if(filled($buttonPrimaryText) || (filled($buttonSecondaryText) && $buttonSecondaryUrl !== '#'))
                         <div class="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 pt-2 {{ $alignment === 'center' ? 'justify-center' : '' }}">
-
-                            @if($buttonPrimaryText)
+                            @if(filled($buttonPrimaryText))
                                 <a href="{{ $buttonPrimaryUrl }}"
-                                   class="inline-flex items-center justify-center gap-2 px-7 sm:px-9 py-4 rounded-full bg-white text-slate-900 hover:bg-slate-100 font-extrabold shadow-xl shadow-black/10 transition-all transform hover:-translate-y-1 hover:scale-[1.02] text-sm sm:text-base">
-                                    {{ $buttonPrimaryText }}
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                   class="inline-flex items-center justify-center gap-2 px-7 sm:px-9 py-3.5 sm:py-4 rounded-full {{ $s['btn_primary'] }} font-extrabold shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5 text-sm sm:text-base motion-reduce:transition-none motion-reduce:hover:translate-y-0">
+                                    <span>{{ $buttonPrimaryText }}</span>
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                                     </svg>
                                 </a>
                             @endif
 
-                            @if($buttonSecondaryText && $buttonSecondaryUrl && $buttonSecondaryUrl !== '#')
+                            @if(filled($buttonSecondaryText) && $buttonSecondaryUrl !== '#')
                                 <a href="{{ $buttonSecondaryUrl }}"
-                                   class="inline-flex items-center justify-center gap-2 px-7 sm:px-9 py-4 rounded-full border-2 border-white/40 hover:bg-white/10 {{ $s['text'] }} font-bold backdrop-blur-sm transition-all transform hover:-translate-y-1 text-sm sm:text-base">
-                                    {{ $buttonSecondaryText }}
+                                   class="inline-flex items-center justify-center gap-2 px-7 sm:px-9 py-3.5 sm:py-4 rounded-full {{ $s['btn_secondary'] }} font-bold transition-all duration-200 transform hover:-translate-y-0.5 text-sm sm:text-base motion-reduce:transition-none motion-reduce:hover:translate-y-0">
+                                    <span>{{ $buttonSecondaryText }}</span>
                                 </a>
                             @endif
-
                         </div>
                     @endif
-
                 </div>
             @endif
         </div>

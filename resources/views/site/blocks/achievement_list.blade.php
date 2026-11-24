@@ -63,7 +63,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
                 @foreach($items as $item)
                     @php
-                        $cover = $item->hasImage('cover') ? $item->image('cover', 'default') : null;
+                        $cover = ($item->hasImage('cover') ? $item->image('cover', 'default') : null) ?: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80';
                         $slug = $item->slug
                             ?? optional($item->slugs->where('locale', app()->getLocale())->first())->slug
                             ?? optional($item->slugs->first())->slug;
@@ -103,8 +103,7 @@
                                     [400, 800, 1200],
                                     '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw',
                                     $item->title,
-                                    [],
-                                    null,
+                                    [], 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80',
                                     [
                                         'class' => 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-500',
                                         'width' => '1200',
@@ -112,7 +111,8 @@
                                         'decoding' => 'async',
                                         'loading' => $isFirst ? 'eager' : 'lazy',
                                         'fetchpriority' => $isFirst ? 'high' : 'auto',
-                                    ]
+                                          'onerror' => "this.removeAttribute('srcset');if(!this.dataset.fbStep){this.dataset.fbStep='1';this.src='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80';}else if(this.dataset.fbStep==='1'){this.dataset.fbStep='2';this.src='https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80';}else{this.onerror=null;this.style.display='none';}",
+                                      ]
                                 ) !!}
                             </div>
                         @else

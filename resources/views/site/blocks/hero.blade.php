@@ -78,23 +78,41 @@
     {{-- Background Layer --}}
     <div class="absolute inset-0 z-0">
         {{-- Background Image — LCP, eager + high priority, sync decode ═══ --}}
-        {!! twill_proxy_img(
-            $block,
-            'background_image',
-            [640, 1024, 1920],
-            '100vw',
-            $bgAlt,
-            [],
-            $fallbackImage,
-            [
-                'class' => 'w-full h-full object-cover',
-                'width' => '1920',
-                'height' => '1080',
-                'loading' => 'eager',
-                'fetchpriority' => 'high',
-                'decoding' => 'sync',
-            ]
-        ) !!}
+        @php
+                $heroBgHtml = twill_proxy_img(
+                    $block,
+                    'background_image',
+                    [640, 1024, 1920],
+                    '100vw',
+                    $bgAlt,
+                    [],
+                    $fallbackImage,
+                    [
+                        'class' => 'w-full h-full object-cover',
+                        'width' => '1920',
+                        'height' => '1080',
+                        'loading' => 'eager',
+                        'fetchpriority' => 'high',
+                        'decoding' => 'sync',
+                        'onerror' => "this.onerror=null;this.removeAttribute('srcset');this.src='" . $fallbackImage . "';",
+                    ]
+                );
+            @endphp
+            @if(filled(trim($heroBgHtml)))
+                {!! $heroBgHtml !!}
+            @else
+                <img
+                    src="{{ $fallbackImage }}"
+                    alt="{{ $bgAlt }}"
+                    class="w-full h-full object-cover"
+                    width="1920"
+                    height="1080"
+                    loading="eager"
+                    fetchpriority="high"
+                    decoding="sync"
+                    onerror="this.onerror=null;this.style.display='none';"
+                >
+            @endif
 
         {{-- Overlay --}}
         <div class="absolute inset-0 bg-slate-950/80 mix-blend-multiply" aria-hidden="true"></div>
@@ -111,8 +129,8 @@
 
         {{-- Badge --}}
         @if($badge)
-            <div class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/10 border border-[#acf7f0]/50 text-[#f7f0ac] text-xs sm:text-sm font-semibold backdrop-blur-md shadow-sm">
-                <span class="w-2 h-2 rounded-full bg-[#acf7f0] animate-ping motion-reduce:animate-none" aria-hidden="true"></span>
+            <div class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white border border-slate-200/90 text-slate-950 text-xs sm:text-sm font-bold shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-[#acf7f0]" aria-hidden="true"></span>
                 {{ $badge }}
             </div>
         @endif

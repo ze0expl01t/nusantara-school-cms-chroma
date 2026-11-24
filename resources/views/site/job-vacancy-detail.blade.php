@@ -26,7 +26,7 @@
     $title = $jobVacancy->title ?: 'Detail Lowongan';
     $imageAlt = trim(strip_tags($title)) ?: 'Cover lowongan';
 
-    $coverImage = $jobVacancy->hasImage('cover') ? $jobVacancy->image('cover', 'default') : null;
+    $coverImage = ($jobVacancy->hasImage('cover') ? $jobVacancy->image('cover', 'default') : null) ?: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80';
     $logoImage = $jobVacancy->hasImage('company_logo') ? $jobVacancy->image('company_logo', 'default') : null;
 
     $typeLabels = [
@@ -72,7 +72,7 @@
             @if($jobVacancy->company_name)
                 <div class="flex items-center gap-3">
                     @if($logoImage)
-                        <img src="{{ $logoImage }}" alt="{{ $jobVacancy->company_name }}"
+                        <img src="{{ $logoImage }}" alt="{{ $jobVacancy->company_name }}" onerror="this.removeAttribute('srcset');if(!this.dataset.fbStep){this.dataset.fbStep='1';this.src='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80';}else if(this.dataset.fbStep==='1'){this.dataset.fbStep='2';this.src='https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80';}else{this.onerror=null;this.style.display='none';}""
                              class="w-14 h-14 rounded-xl object-contain bg-white border border-slate-200 p-1.5 flex-shrink-0">
                     @endif
                     <div>
@@ -93,7 +93,7 @@
 
         @if($coverImage)
             <div class="rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200 shadow-sm bg-slate-100 aspect-[16/9]">
-                <img src="{{ $coverImage }}" alt="{{ $imageAlt }}" loading="eager" fetchpriority="high" decoding="async" class="w-full h-full object-cover">
+                <img src="{{ $coverImage }}" alt="{{ $imageAlt }}" loading="eager" fetchpriority="high" decoding="async" class="w-full h-full object-cover" onerror="this.removeAttribute('srcset');if(!this.dataset.fbStep){this.dataset.fbStep='1';this.src='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80';}else if(this.dataset.fbStep==='1'){this.dataset.fbStep='2';this.src='https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80';}else{this.onerror=null;this.style.display='none';}">
             </div>
         @endif
 
@@ -194,7 +194,7 @@
                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
                     @foreach($jobVacancy->images('gallery', 'default') as $image)
                         <div class="aspect-video rounded-xl overflow-hidden bg-slate-100">
-                            <img src="{{ $image }}" alt="Galeri {{ $title }}" loading="lazy" decoding="async" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                            <img src="{{ $image }}" alt="Galeri {{ $title }}" loading="lazy" decoding="async" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" onerror="this.removeAttribute('srcset');if(!this.dataset.fbStep){this.dataset.fbStep='1';this.src='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80';}else if(this.dataset.fbStep==='1'){this.dataset.fbStep='2';this.src='https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80';}else{this.onerror=null;this.style.display='none';}">
                         </div>
                     @endforeach
                 </div>

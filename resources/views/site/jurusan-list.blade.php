@@ -43,7 +43,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
                 @foreach($jurusans as $item)
                     @php
-                        $cover = $item->hasImage('cover') ? $item->image('cover', 'default') : null;
+                        $cover = ($item->hasImage('cover') ? $item->image('cover', 'default') : null) ?: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80';
                         $slug = $item->slug
                             ?? optional($item->slugs->where('locale', app()->getLocale())->first())->slug
                             ?? optional($item->slugs->first())->slug;
@@ -57,7 +57,7 @@
 
                         @if($cover)
                             <div class="aspect-video overflow-hidden bg-slate-100">
-                                <img src="{{ $cover }}" alt="{{ $item->title }}"
+                                <img src="{{ $cover }}" alt="{{ $item->title }}" onerror="this.removeAttribute('srcset');if(!this.dataset.fbStep){this.dataset.fbStep='1';this.src='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80';}else if(this.dataset.fbStep==='1'){this.dataset.fbStep='2';this.src='https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80';}else{this.onerror=null;this.style.display='none';}"
                                      loading="lazy" decoding="async"
                                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             </div>
