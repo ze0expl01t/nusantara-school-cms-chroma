@@ -20,7 +20,7 @@
     <div class="relative z-10 space-y-10 sm:space-y-12">
 
         <div class="flex flex-col items-center text-center space-y-3">
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200/90 shadow-2xs text-xs font-bold text-slate-900">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-slate-200/90 shadow-2xs text-xs font-extrabold text-slate-950 tracking-wide uppercase">
                 <span class="w-2 h-2 rounded-full bg-[#acf7f0]" aria-hidden="true"></span>
                 <span>{{ $badgeText }}</span>
             </div>

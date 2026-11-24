@@ -9,10 +9,10 @@
         return filled($value) ? $value : $default;
     };
 
-    $badgeText      = $safeInput($block, 'badge_text');
-    $titleMain      = $safeInput($block, 'title_main');
-    $titleHighlight = $safeInput($block, 'title_highlight');
-    $subtitle       = $safeInput($block, 'subtitle');
+    $badgeText      = $safeInput($block, 'badge_text', 'Fasilitas & Sarana');
+    $titleMain      = $safeInput($block, 'title_main', 'Sarana');
+    $titleHighlight = $safeInput($block, 'title_highlight', '& Prasarana');
+    $subtitle       = $safeInput($block, 'subtitle', 'Berbagai fasilitas pendukung kegiatan belajar mengajar dan praktik siswa.');
     $limit          = (int) $safeInput($block, 'limit', 6);
     $showBtn        = (bool) $safeInput($block, 'show_button', false);
     $btnText        = $safeInput($block, 'button_text');
@@ -36,7 +36,7 @@
         @if(filled($badgeText) || filled($titleMain) || filled($titleHighlight) || filled($subtitle))
             <div class="flex flex-col items-center text-center space-y-3">
                 @if(filled($badgeText))
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200/90 shadow-2xs text-xs font-bold text-slate-900">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-slate-200/90 shadow-2xs text-xs font-extrabold text-slate-950 tracking-wide uppercase">
                         <span class="w-2 h-2 rounded-full bg-[#acf7f0]" aria-hidden="true"></span>
                         <span>{{ $badgeText }}</span>
                     </div>

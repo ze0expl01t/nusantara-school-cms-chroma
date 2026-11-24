@@ -60,8 +60,8 @@
         <div class="flex flex-col items-center text-center space-y-3 pb-4 sm:pb-6">
 
             @if($badgeText)
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm text-xs font-medium text-slate-700">
-                    <span class="w-2 h-2 rounded-full bg-[#acf7f0] animate-pulse motion-reduce:animate-none" aria-hidden="true"></span>
+                <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-slate-200/90 shadow-2xs text-xs font-extrabold text-slate-950 tracking-wide uppercase">
+                    <span class="w-2 h-2 rounded-full bg-[#acf7f0]" aria-hidden="true"></span>
                     {{ $badgeText }}
                 </div>
             @endif
@@ -72,7 +72,7 @@
                 </h2>
             @endif
 
-            <div class="w-20 h-1 bg-gradient-to-r from-transparent via-[#acf7f0] to-transparent rounded-full" aria-hidden="true"></div>
+            <div class="w-20 h-1 mx-auto rounded-full bg-gradient-to-r from-[#f7f0ac] via-[#acf7f0] to-[#f0acf7]" aria-hidden="true"></div>
 
             @if($subtitle)
                 <p class="text-slate-500 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed px-2 pt-1">
@@ -134,7 +134,7 @@
 
                                 <div class="relative w-full h-full rounded-full overflow-hidden bg-slate-100 border-4 border-white shadow-lg group-hover:scale-105 transition-transform duration-300 motion-reduce:transition-none motion-reduce:group-hover:scale-100 [transform:translateZ(0)]">
                                     @if($photo)
-                                        {!! twill_proxy_img($member, 'photo', [160, 320, 480], '(max-width: 768px) 128px, 144px', $name, [], 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80', ['class' => 'w-full h-full object-cover', 'width' => '480', 'height' => '480', 'loading' => 'lazy', 'decoding' => 'async']) !!}
+                                        {!! twill_proxy_img($member, 'photo', [160, 320, 480], '(max-width: 768px) 128px, 144px', $name, [], 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80', ['class' => 'w-full h-full object-cover', 'width' => '480', 'height' => '480', 'loading' => 'lazy', 'decoding' => 'async', 'onerror' => "this.removeAttribute('srcset');if(!this.dataset.fbStep){this.dataset.fbStep='1';this.src='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80';}else if(this.dataset.fbStep==='1'){this.dataset.fbStep='2';this.src='https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80';}else{this.onerror=null;this.style.display='none';}"]) !!}
                                     @else
                                         <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#f7f0ac] to-[#f0acf7] text-slate-900 font-bold text-3xl sm:text-4xl select-none" aria-hidden="true">
                                             {{ $initial }}
@@ -143,8 +143,8 @@
                                 </div>
 
                                 @if($member->is_leadership)
-                                    <div class="absolute -bottom-1 -right-1 w-8 h-8 rounded-full bg-amber-400 border-2 border-white flex items-center justify-center shadow-md">
-                                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <div class="absolute -bottom-1 -right-1 w-8 h-8 rounded-full bg-[#f7f0ac] border-2 border-white flex items-center justify-center shadow-md text-slate-950">
+                                        <svg class="w-4 h-4 text-slate-950" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                             <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4-6.2-4.6-6.2 4.6 2.4-7.4L2 9.4h7.6z"/>
                                         </svg>
                                     </div>
@@ -290,7 +290,7 @@
                                             <div class="relative">
                                                 <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border-4 border-white shadow-xl bg-slate-100">
                                                     @if($photo)
-                                                        {!! twill_proxy_img($member, 'photo', [160, 320, 480], '(max-width: 768px) 96px', $name, [], 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80', ['class' => 'w-full h-full object-cover', 'width' => '480', 'height' => '480', 'loading' => 'lazy', 'decoding' => 'async']) !!}
+                                                        {!! twill_proxy_img($member, 'photo', [160, 320, 480], '(max-width: 768px) 96px', $name, [], 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80', ['class' => 'w-full h-full object-cover', 'width' => '480', 'height' => '480', 'loading' => 'lazy', 'decoding' => 'async', 'onerror' => "this.removeAttribute('srcset');if(!this.dataset.fbStep){this.dataset.fbStep='1';this.src='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80';}else if(this.dataset.fbStep==='1'){this.dataset.fbStep='2';this.src='https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80';}else{this.onerror=null;this.style.display='none';}"]) !!}
                                                     @else
                                                         <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#f7f0ac] to-[#f0acf7] text-slate-900 font-bold text-3xl select-none" aria-hidden="true">
                                                             {{ $initial }}
@@ -299,8 +299,8 @@
                                                 </div>
 
                                                 @if($member->is_leadership)
-                                                    <div class="absolute -bottom-1 -right-1 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-amber-400 border-2 border-white flex items-center justify-center shadow-lg">
-                                                        <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                                    <div class="absolute -bottom-1 -right-1 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#f7f0ac] border-2 border-white flex items-center justify-center shadow-lg text-slate-950">
+                                                        <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-slate-950" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                                             <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4-6.2-4.6-6.2 4.6 2.4-7.4L2 9.4h7.6z"/>
                                                         </svg>
                                                     </div>

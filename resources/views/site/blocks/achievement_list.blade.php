@@ -41,9 +41,9 @@
     <div class="relative z-10 space-y-8 sm:space-y-10">
 
         <div class="flex flex-col items-center text-center space-y-3 pb-4 sm:pb-6">
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm text-xs font-medium text-slate-700">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-slate-200/90 shadow-2xs text-xs font-extrabold text-slate-950 tracking-wide uppercase">
                 {{-- animate-pulse: motion-reduce untuk aksesibilitas --}}
-                <span class="w-2 h-2 rounded-full bg-[#acf7f0] animate-pulse motion-reduce:animate-none" aria-hidden="true"></span>
+                <span class="w-2 h-2 rounded-full bg-[#acf7f0]" aria-hidden="true"></span>
                 {{ $badgeText }}
             </div>
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight px-2">
@@ -52,7 +52,7 @@
                     <span class="text-slate-900">{{ $titleHighlight }}</span>
                 @endif
             </h2>
-            <div class="w-20 h-1 bg-gradient-to-r from-transparent via-[#acf7f0] to-transparent rounded-full" aria-hidden="true"></div>
+            <div class="w-20 h-1 mx-auto rounded-full bg-gradient-to-r from-[#f7f0ac] via-[#acf7f0] to-[#f0acf7]" aria-hidden="true"></div>
 
             @if($subtitle)
                 <p class="text-base md:text-lg text-slate-600 max-w-2xl px-2 pt-2">{{ $subtitle }}</p>
