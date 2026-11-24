@@ -903,9 +903,30 @@
             <div class="w-1/3 h-full bg-[#f7f0ac]"></div>
         </div>
 
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#f0acf7]/10 blur-[80px] rounded-full pointer-events-none [transform:translate3d(-50%,0,0)]" aria-hidden="true"></div>
+        @php
+            $fgTop1  = random_int(5, 65);
+            $fgLeft1 = random_int(5, 75);
+            $fgSize1 = random_int(280, 460);
 
-        <div class="relative z-10 max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+            $fgTop2  = random_int(15, 70);
+            $fgLeft2 = random_int(15, 80);
+            $fgSize2 = random_int(260, 440);
+
+            $fgTop3  = random_int(10, 75);
+            $fgLeft3 = random_int(10, 75);
+            $fgSize3 = random_int(280, 450);
+        @endphp
+        {{-- Randomized Global Pastel Ambient Glows --}}
+        <div class="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
+            <div class="absolute rounded-full bg-[#f7f0ac]/15 blur-[95px]"
+                 style="top: {{ $fgTop1 }}%; left: {{ $fgLeft1 }}%; width: {{ $fgSize1 }}px; height: {{ $fgSize1 }}px; transform: translate(-50%, -50%);"></div>
+            <div class="absolute rounded-full bg-[#acf7f0]/15 blur-[95px]"
+                 style="top: {{ $fgTop2 }}%; left: {{ $fgLeft2 }}%; width: {{ $fgSize2 }}px; height: {{ $fgSize2 }}px; transform: translate(-50%, -50%);"></div>
+            <div class="absolute rounded-full bg-[#f0acf7]/15 blur-[95px]"
+                 style="top: {{ $fgTop3 }}%; left: {{ $fgLeft3 }}%; width: {{ $fgSize3 }}px; height: {{ $fgSize3 }}px; transform: translate(-50%, -50%);"></div>
+        </div>
+
+<div class="relative z-10 max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
 
                 {{-- Kolom 1: Logo + Info --}}

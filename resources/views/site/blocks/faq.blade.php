@@ -107,8 +107,8 @@
         {{-- ===== Header Section ===== --}}
         <div class="flex flex-col items-center text-center space-y-3 pb-4 sm:pb-6">
             @if($badgeText)
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm text-xs font-medium text-slate-700">
-                    <span class="w-2 h-2 rounded-full bg-[#acf7f0] animate-pulse motion-reduce:animate-none" aria-hidden="true"></span>
+                <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-slate-200/90 shadow-2xs text-xs font-extrabold text-slate-950 tracking-wide uppercase">
+                    <span class="w-2 h-2 rounded-full bg-[#acf7f0]" aria-hidden="true"></span>
                     {{ $badgeText }}
                 </div>
             @endif
@@ -120,7 +120,7 @@
                 @endif
             </h2>
 
-            <div class="w-20 h-1 bg-gradient-to-r from-transparent via-[#acf7f0] to-transparent rounded-full" aria-hidden="true"></div>
+            <div class="w-20 h-1 mx-auto rounded-full bg-gradient-to-r from-[#f7f0ac] via-[#acf7f0] to-[#f0acf7]" aria-hidden="true"></div>
 
             @if($subtitle)
                 <p class="text-base md:text-lg text-slate-600 max-w-2xl px-2 pt-2">
