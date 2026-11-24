@@ -440,7 +440,7 @@
     </div>
 
     <!-- ================== HEADER ================== -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-slate-900/90 backdrop-blur-xl border-b-2 border-[#acf7f0]/40 shadow-md transition-all duration-300"
+    <header class="fixed top-0 left-0 right-0 z-50 bg-slate-900/90 backdrop-blur-xl border-b-0 shadow-md transition-all duration-300"
             x-data="{ mobileMenu: false, searchOpen: false }"
             @keydown.escape.window="mobileMenu = false; searchOpen = false">
 
@@ -896,7 +896,7 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="relative bg-slate-900 text-slate-300 mt-auto overflow-hidden border-t-2 border-[#f0acf7]/40">
+    <footer class="relative bg-slate-900 text-slate-300 mt-auto overflow-hidden border-t-0">
         <div class="absolute top-0 left-0 right-0 h-1.5 flex z-20" aria-hidden="true">
             <div class="w-1/3 h-full bg-[#f0acf7]"></div>
             <div class="w-1/3 h-full bg-[#acf7f0]"></div>

@@ -120,8 +120,37 @@
     {{-- Ambient Glow --}}
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] bg-[#acf7f0]/10 blur-[150px] rounded-full pointer-events-none"></div>
 
-    <div class="relative z-10">
-        <div class="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm grid grid-cols-1 lg:grid-cols-2 items-stretch">
+    <div class="relative z-10 space-y-6 sm:space-y-8">
+        @php
+            $sectionBadge = $safeInput(
+                $block,
+                'badge_text',
+                $safeInput($block, 'section_badge', 'Kontak & Lokasi')
+            );
+            $sectionTitle = $safeInput(
+                $block,
+                'section_title',
+                $safeInput($block, 'title', 'Hubungi Kami')
+            );
+        @endphp
+
+        {{-- Section Header: Badge + Heading + Accent Bar (dari field Twill) --}}
+        <div class="flex flex-col items-center text-center space-y-3">
+            @if($sectionBadge)
+                <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-slate-200/90 shadow-2xs text-xs font-extrabold text-slate-950 tracking-wide uppercase">
+                    <span class="w-2 h-2 rounded-full bg-[#acf7f0]" aria-hidden="true"></span>
+                    {{ $sectionBadge }}
+                </div>
+            @endif
+            @if($sectionTitle)
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+                    {{ $sectionTitle }}
+                </h2>
+            @endif
+            <div class="w-24 h-1 mx-auto rounded-full bg-gradient-to-r from-[#f7f0ac] via-[#acf7f0] to-[#f0acf7]" aria-hidden="true"></div>
+        </div>
+
+        <div class="bg-white border-2 border-[#acf7f0]/70 rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm grid grid-cols-1 lg:grid-cols-2 items-stretch">
 
             {{-- ═══ Kolom Kiri: Informasi Kontak ═══ --}}
             <div class="p-6 sm:p-8 lg:p-10 bg-gradient-to-br from-[#f7f0ac]/35 via-white to-slate-50 flex flex-col justify-between gap-6 sm:gap-8 relative overflow-hidden">
@@ -134,6 +163,7 @@
                             {{ $title }}
                         </h2>
                     @endif
+                        <div class="w-20 h-1 rounded-full bg-gradient-to-r from-[#f7f0ac] via-[#acf7f0] to-[#f0acf7]" aria-hidden="true"></div>
 
                     @if($subtitle)
                         <div class="text-sm sm:text-base text-slate-600 leading-relaxed prose prose-sm max-w-none prose-p:my-0 prose-p:leading-relaxed">

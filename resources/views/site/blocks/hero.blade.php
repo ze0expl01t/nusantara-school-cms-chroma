@@ -117,10 +117,8 @@
         {{-- Overlay --}}
         <div class="absolute inset-0 bg-slate-950/80 mix-blend-multiply" aria-hidden="true"></div>
 
-        {{-- Grid pattern --}}
-        <div class="absolute inset-0 bg-grid-pattern opacity-40" aria-hidden="true"></div>
 
-        {{-- Glow decoratif — animasi DIPERTAHANKAN --}}
+{{-- Glow decoratif — animasi DIPERTAHANKAN --}}
         <div class="absolute top-1/4 left-1/4 w-56 h-56 sm:w-96 sm:h-96 bg-[#acf7f0] rounded-full mix-blend-screen blur-[120px] opacity-20 animate-pulse motion-reduce:animate-none pointer-events-none" aria-hidden="true"></div>
     </div>
 

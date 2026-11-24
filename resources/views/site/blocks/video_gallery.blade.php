@@ -241,16 +241,32 @@
                 style="background-image: radial-gradient(rgba(172, 247, 240, 0.22) 1px, transparent 1px); background-size: 24px 24px; -webkit-mask-image: radial-gradient(ellipse at 70% 50%, #000 10%, transparent 72%); mask-image: radial-gradient(ellipse at 70% 50%, #000 10%, transparent 72%);"
             ></div>
 
-            <svg class="hidden sm:block absolute top-7 right-9 w-24 h-24 text-[#acf7f0]/20" viewBox="0 0 96 96" fill="none">
+            {{-- Scattered ring ornaments placed across open spaces without crowding left controls --}}
+            <svg class="hidden sm:block absolute top-7 right-9 w-24 h-24 text-[#4ef5e6]/22" viewBox="0 0 96 96" fill="none">
                 <circle cx="48" cy="48" r="44" stroke="currentColor" stroke-width="1" stroke-dasharray="4 6"/>
-                <circle cx="48" cy="48" r="28" stroke="url(#vgRingGrad)" stroke-width="1" stroke-opacity="0.45"/>
+                <circle cx="48" cy="48" r="28" stroke="url(#vgRingGrad)" stroke-width="1.2" stroke-opacity="0.45"/>
                 <defs>
                     <linearGradient id="vgRingGrad" x1="0" y1="0" x2="96" y2="96" gradientUnits="userSpaceOnUse">
-                        <stop offset="0%" stop-color="#f7f0ac"/>
-                        <stop offset="50%" stop-color="#acf7f0"/>
-                        <stop offset="100%" stop-color="#f0acf7"/>
+                        <stop offset="0%" stop-color="#ffe659"/>
+                        <stop offset="50%" stop-color="#4ef5e6"/>
+                        <stop offset="100%" stop-color="#ff7cf2"/>
                     </linearGradient>
                 </defs>
+            </svg>
+
+            <svg class="hidden lg:block absolute top-6 left-[35%] w-20 h-20 text-[#ffe659]/20" viewBox="0 0 80 80" fill="none">
+                <circle cx="40" cy="40" r="34" stroke="currentColor" stroke-width="1" stroke-dasharray="4 6"/>
+                <circle cx="40" cy="40" r="18" stroke="#ff7cf2" stroke-width="1" stroke-opacity="0.3"/>
+            </svg>
+
+            <svg class="hidden md:block absolute bottom-3 left-[47%] w-20 h-20 text-[#4ef5e6]/20" viewBox="0 0 80 80" fill="none">
+                <circle cx="40" cy="40" r="34" stroke="currentColor" stroke-width="1" stroke-dasharray="3 6"/>
+                <circle cx="40" cy="40" r="18" stroke="#ffe659" stroke-width="1" stroke-opacity="0.3"/>
+            </svg>
+
+            <svg class="hidden sm:block absolute bottom-4 right-10 w-22 h-22 text-[#ff7cf2]/20" viewBox="0 0 88 88" fill="none">
+                <circle cx="44" cy="44" r="38" stroke="currentColor" stroke-width="1" stroke-dasharray="4 6"/>
+                <circle cx="44" cy="44" r="20" stroke="url(#vgRingGrad)" stroke-width="1.1" stroke-opacity="0.38"/>
             </svg>
         </div>
 
@@ -288,13 +304,13 @@
                     @if($totalPages > 1)
                         <div class="flex items-center gap-3 pt-2 justify-center lg:justify-start">
                             <button @click="prev(); startAutoplay()" type="button" aria-label="Previous"
-                                class="w-11 h-11 rounded-full bg-slate-900/90 border border-slate-700/90 flex items-center justify-center text-slate-200 hover:bg-gradient-to-r hover:from-[#f7f0ac] hover:via-[#acf7f0] hover:to-[#f0acf7] hover:text-slate-950 hover:border-transparent transition-all duration-300 shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#acf7f0] motion-reduce:transition-none">
+                                class="w-11 h-11 rounded-full bg-slate-900/90 border border-slate-700/90 flex items-center justify-center text-slate-200 hover:bg-[#4ef5e6] hover:text-slate-950 hover:border-[#4ef5e6] transition-all duration-300 shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#acf7f0] motion-reduce:transition-none">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M15 19l-7-7 7-7"/>
                                 </svg>
                             </button>
                             <button @click="next(); startAutoplay()" type="button" aria-label="Next"
-                                class="w-11 h-11 rounded-full bg-slate-900/90 border border-slate-700/90 flex items-center justify-center text-slate-200 hover:bg-gradient-to-r hover:from-[#f7f0ac] hover:via-[#acf7f0] hover:to-[#f0acf7] hover:text-slate-950 hover:border-transparent transition-all duration-300 shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#acf7f0] motion-reduce:transition-none">
+                                class="w-11 h-11 rounded-full bg-slate-900/90 border border-slate-700/90 flex items-center justify-center text-slate-200 hover:bg-[#4ef5e6] hover:text-slate-950 hover:border-[#4ef5e6] transition-all duration-300 shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#acf7f0] motion-reduce:transition-none">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 5l7 7-7 7"/>
                                 </svg>
