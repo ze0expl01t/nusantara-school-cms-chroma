@@ -139,6 +139,11 @@ APP_DEBUG=true
 APP_URL=[http://127.0.0.1:8000](http://127.0.0.1:8000)
 ADMIN_APP_PATH=panel-maintenance
 
+# LOCALE & BAHASA
+APP_LOCALE=id
+APP_FALLBACK_LOCALE=en
+APP_FAKER_LOCALE=id_ID
+
 # DATABASE
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -333,6 +338,18 @@ nusantara-school-cms/
 - **GA4 Event Tracking & Brosur Fix:** Perbaikan resolusi file `fileObject('download_file')` dan pelacakan klik unduhan otomatis.
 - **Smart Backup & Security Scan:** Kompresi arsip ringan tanpa `vendor`/`node_modules` serta pemindaian keamanan terjadwal via Symfony Process.
 
+---
+
+## <img src="https://api.iconify.design/heroicons/clock-solid.svg?color=%2310b981&width=22&height=22" width="22" height="22" align="absmiddle" /> Changelog
+
+### Unreleased
+- **UI/UX & Block Refinements:** Penyempurnaan *hover border* dan gradasi latar pada blok *Visi & Misi* (`hero_6.blade.php`), penambahan ornamen *overlay* di pojok kanan atas dan bawah pada blok *Kompetensi Pedagogik* (`stat_2.blade.php`), serta peningkatan responsivitas tombol CTA dan *hover state* pada blok *Kontak & Lokasi* (`contact.blade.php`).
+- **Dokumentasi & Locale:** Penambahan dokumentasi `APP_LOCALE`, `APP_FALLBACK_LOCALE`, dan `APP_FAKER_LOCALE` pada panduan `.env` serta penambahan bagian `Changelog` di `README.md`.
+
+### `v1.0.0`
+- **Standardisasi Modul Jurusan:** Migrasi istilah *"divisi"* menjadi *"jurusan"* pada *view*, Twill *repeaters*, blok kontak, dan rute publik (`/jurusan` & `/jurusan/{slug}`).
+- **Clean Migration & Live Seeder:** Pemisahan 47 tabel modul *custom* dari migrasi *vendor* Twill CMS serta dukungan `LiveDatabaseSeeder`.
+- **CLI Auto-Installer & Security:** Penambahan `setup.php`, sanitasi `safe_html`, *Smart Backup* tanpa `vendor`/`node_modules`, pelacakan *event* GA4, dan pemindaian keamanan terjadwal (`checkpoint:scan`).
 ---
 
 <div align="center">
