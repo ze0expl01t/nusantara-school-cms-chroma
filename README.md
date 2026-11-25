@@ -330,16 +330,6 @@ nusantara-school-cms/
 
 ---
 
-## <img src="https://api.iconify.design/heroicons/tag-solid.svg?color=%2310b981&width=22&height=22" width="22" height="22" align="absmiddle" /> Release Notes (`v1.0.0`)
-
-- **Standardisasi Modul Jurusan:** Migrasi menyeluruh istilah *"divisi"* menjadi *"jurusan"* di seluruh tampilan (`jurusan-list.blade.php`, `jurusan-detail.blade.php`), Twill repeaters, blok kontak, serta rute (`/jurusan` & `/jurusan/{slug}`).
-- **Clean Migration & Live Seeder:** Pemisahan penuh 47 tabel modul custom dari migrasi vendor Twill CMS (`2026_11_16_000001_create_nusantara_tables.php`) + `LiveDatabaseSeeder`.
-- **CLI Auto-Installer (`setup.php`):** Otomatisasi instalasi satu perintah setelah `git clone`.
-- **GA4 Event Tracking & Brosur Fix:** Perbaikan resolusi file `fileObject('download_file')` dan pelacakan klik unduhan otomatis.
-- **Smart Backup & Security Scan:** Kompresi arsip ringan tanpa `vendor`/`node_modules` serta pemindaian keamanan terjadwal via Symfony Process.
-
----
-
 ## <img src="https://api.iconify.design/heroicons/clock-solid.svg?color=%2310b981&width=22&height=22" width="22" height="22" align="absmiddle" /> Changelog
 
 ### Unreleased
