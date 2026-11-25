@@ -157,13 +157,19 @@
                 <div class="absolute inset-0 bg-gradient-to-br from-slate-950/75 via-slate-950/55 to-slate-950/75"></div>
             </div>
         @endif
-
-        {{-- Decorative collaborative circles (#f7f0ac, #acf7f0, #f0acf7) --}}
+        {{-- Unified Chroma soft glow & subtle corner ornaments --}}
         <div class="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
-            <span class="absolute -top-20 -right-16 w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-[#f0acf7]/35 border border-white/40"></span>
-            <span class="absolute top-12 right-12 w-36 h-36 sm:w-44 sm:h-44 rounded-full bg-[#acf7f0]/40 border border-white/40"></span>
-            <span class="absolute -bottom-24 -left-16 w-72 h-72 sm:w-88 sm:h-88 rounded-full bg-[#f7f0ac]/45 border border-white/40"></span>
-            <span class="absolute bottom-10 left-14 w-28 h-28 sm:w-36 sm:h-36 rounded-full bg-[#acf7f0]/35 border border-white/40"></span>
+            <div class="pointer-events-none absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-[#ffe659] via-[#4ef5e6] to-[#ff7cf2] opacity-80 group-hover:h-1.5 group-hover:opacity-100 transition-all duration-300 motion-reduce:transition-none"></div>
+            <div class="pointer-events-none select-none absolute -top-16 -right-16 w-56 h-56 sm:w-72 sm:h-72 rounded-full bg-gradient-to-bl from-[#f0acf7]/30 via-[#acf7f0]/25 to-transparent blur-2xl"></div>
+            <div class="pointer-events-none select-none absolute -bottom-16 -left-16 w-56 h-56 sm:w-72 sm:h-72 rounded-full bg-gradient-to-tr from-[#f7f0ac]/35 via-[#acf7f0]/25 to-transparent blur-2xl"></div>
+            <svg class="pointer-events-none select-none hidden sm:block absolute top-3 right-3 w-24 h-24 sm:w-28 sm:h-28 text-slate-900/[0.06]" viewBox="0 0 120 120" fill="none">
+                <path d="M24 12H108V96" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M52 24H96V68" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <svg class="pointer-events-none select-none hidden sm:block absolute bottom-3 left-3 w-24 h-24 sm:w-28 sm:h-28 text-slate-900/[0.06]" viewBox="0 0 120 120" fill="none">
+                <path d="M12 24V108H96" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M24 52V96H68" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
         </div>
 
         @if($showPattern)
