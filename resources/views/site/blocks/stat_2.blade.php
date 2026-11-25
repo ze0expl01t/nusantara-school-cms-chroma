@@ -34,6 +34,32 @@
         {{-- Top 3-color global accent strip --}}
         <div class="h-1.5 w-full bg-gradient-to-r from-[#f7f0ac] via-[#acf7f0] to-[#f0acf7]" aria-hidden="true"></div>
 
+        {{-- Ornamen Overlay Pojok Kanan Atas --}}
+        <div class="pointer-events-none select-none absolute -top-16 -right-16 z-0 w-56 h-56 sm:w-72 sm:h-72 rounded-full bg-gradient-to-bl from-[#f0acf7]/30 via-[#acf7f0]/25 to-transparent blur-2xl" aria-hidden="true"></div>
+        <svg class="pointer-events-none select-none absolute top-3 right-3 z-0 w-24 h-24 sm:w-28 sm:h-28 text-slate-900/[0.06]" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+            <circle cx="88" cy="32" r="44" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 4" />
+            <circle cx="96" cy="24" r="18" fill="url(#stat2TopRightGrad)" fill-opacity="0.35" />
+            <defs>
+                <linearGradient id="stat2TopRightGrad" x1="78" y1="6" x2="114" y2="42" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#acf7f0" />
+                    <stop offset="1" stop-color="#f0acf7" />
+                </linearGradient>
+            </defs>
+        </svg>
+
+        {{-- Ornamen Overlay Pojok Kanan Bawah --}}
+        <div class="pointer-events-none select-none absolute -bottom-16 -right-14 z-0 w-56 h-56 sm:w-72 sm:h-72 rounded-full bg-gradient-to-tl from-[#f7f0ac]/35 via-[#acf7f0]/25 to-transparent blur-2xl" aria-hidden="true"></div>
+        <svg class="pointer-events-none select-none absolute bottom-3 right-3 z-0 w-24 h-24 sm:w-28 sm:h-28 text-slate-900/[0.06]" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+            <path d="M28 104C28 65.34 59.34 34 98 34" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 5" />
+            <circle cx="92" cy="92" r="22" fill="url(#stat2BottomRightGrad)" fill-opacity="0.35" />
+            <defs>
+                <linearGradient id="stat2BottomRightGrad" x1="70" y1="70" x2="114" y2="114" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#f7f0ac" />
+                    <stop offset="1" stop-color="#acf7f0" />
+                </linearGradient>
+            </defs>
+        </svg>
+
         <div class="relative z-10 p-6 sm:p-8 md:p-10 lg:p-12">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
 
