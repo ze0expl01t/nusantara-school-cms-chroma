@@ -320,6 +320,10 @@
             <div class="chroma-meta">{{ $extraInfo }}</div>
         @endif
 
+        @if(!empty($contactEmail))
+            <p class="chroma-desc" style="margin-top: -0.75rem; margin-bottom: 1.5rem; font-size: 0.875rem;">Kontak: <a href="mailto:{{ $contactEmail }}" style="font-weight: 700; color: #0f172a; text-decoration: underline;">{{ $contactEmail }}</a></p>
+        @endif
+
         <div class="chroma-actions">
             @if($isSessionExpired)
                 <button type="button" onclick="window.location.reload()" class="chroma-btn-primary">
