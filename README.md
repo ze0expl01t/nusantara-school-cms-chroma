@@ -343,3 +343,9 @@ Didistribusikan di bawah lisensi **MIT License**.
        <img width="1024" height="254" alt="image" src="https://github.com/user-attachments/assets/a42ace11-601b-4a29-90bc-c12106f2aded" />
   </a>
 </div>
+
+<img width="1274" height="641" alt="image" src="https://github.com/user-attachments/assets/a34e29f9-6ae6-4411-9fc1-276905794fc0" />
+<img width="1273" height="640" alt="image" src="https://github.com/user-attachments/assets/3dd19498-1543-4eea-bb67-9f8f064afe4b" />
+<img width="1274" height="638" alt="image" src="https://github.com/user-attachments/assets/ac40513e-bf23-4023-91f0-ea35b4174849" />
+
+
