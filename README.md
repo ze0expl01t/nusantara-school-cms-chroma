@@ -133,44 +133,27 @@ Pastikan parameter inti berikut terisi dengan benar pada file `.env` Anda:
 
 ```env
 APP_NAME="Nusantara School CMS"
-APP_ENV=production
-APP_KEY=base64:wSNt7WtzqBTOjQl2jjZsl9qmhfHdE4t94KiRcIoFIGA=
-APP_DEBUG=false
-APP_URL=https://v2.smkmuh1blora.sch.id
+APP_ENV=local
+APP_KEY=
+APP_DEBUG=true
+APP_URL=[http://127.0.0.1:8000](http://127.0.0.1:8000)
+ADMIN_APP_PATH=backend
+
+# LOCALE & BAHASA
 APP_LOCALE=en
 APP_FALLBACK_LOCALE=en
-APP_FAKER_LOCALE=id_ID
-APP_MAINTENANCE_DRIVER=file
-ADMIN_APP_PATH=panel-maintenance
-
-HORIZON_PATH=horizon
-
-BCRYPT_ROUNDS=12
-
-LOG_CHANNEL=stack
-LOG_STACK=single
-LOG_DEPRECATIONS_CHANNEL=null
-LOG_LEVEL=debug
+APP_FAKER_LOCALE=en_EN
 
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=v2_v2
-DB_USERNAME=v2_v2
-DB_PASSWORD=KDmgmvx&sKNr8Pze
+DB_DATABASE=
+DB_USERNAME=
+DB_PASSWORD=
 
-BROADCAST_CONNECTION=log
-CACHE_STORE=file
-CACHE_PREFIX=nusantara_cache_
-FILESYSTEM_DISK=local
-QUEUE_CONNECTION=sync
-
-SESSION_DRIVER=file
-SESSION_LIFETIME=120
-SESSION_ENCRYPT=false
-SESSION_PATH=/
-SESSION_DOMAIN=.smkmuh1blora.sch.id
-SESSION_SAME_SITE=lax
+# REDIS & SESSION (Gunakan DB index berbeda jika 1 server berbagi banyak project)
+SESSION_DRIVER=
+SESSION_DOMAIN=
 SESSION_SECURE_COOKIE=false
 
 REDIS_CLIENT=phpredis
@@ -182,33 +165,10 @@ REDIS_CACHE_DB=1
 REDIS_PREFIX=nusantara_redis_
 REDIS_CACHE_PREFIX=nusantara_cache_
 
-MEMCACHED_HOST=127.0.0.1
-
-MAIL_MAILER=log
-MAIL_HOST=127.0.0.1
-MAIL_PORT=1025
-MAIL_USERNAME=null
-MAIL_PASSWORD=null
-MAIL_ENCRYPTION=null
-MAIL_SCHEME=null
-MAIL_FROM_ADDRESS="no-reply@example.sch.id"
-MAIL_FROM_NAME="${APP_NAME}"
-
-BACKUP_MAIL_TO="admin@example.sch.id"
-
-AWS_ACCESS_KEY_ID=
-AWS_SECRET_ACCESS_KEY=
-AWS_DEFAULT_REGION=ap-southeast-1
-AWS_BUCKET=
-AWS_USE_PATH_STYLE_ENDPOINT=false
-
-IMAGE_PROXY_DRIVER=gd
-IMAGE_PROXY_SOURCE_DISK=public
-IMAGE_PROXY_CACHE_DISK=local
-IMAGE_PROXY_PATH=img
-IMAGE_PROXY_SIGNING_ENABLED=false
-IMAGE_PROXY_LOG=false
-IMAGE_PROXY_LOG_CHANNEL=stack
+# QUEUE & HORIZON
+QUEUE_CONNECTION=
+HORIZON_PATH=
+HORIZON_PREFIX=
 
 ANALYTICS_PROPERTY_ID=
 
@@ -394,3 +354,9 @@ Didistribusikan di bawah lisensi **MIT License**.
        <img width="1024" height="254" alt="image" src="https://github.com/user-attachments/assets/a42ace11-601b-4a29-90bc-c12106f2aded" />
   </a>
 </div>
+
+<img width="1274" height="641" alt="image" src="https://github.com/user-attachments/assets/a34e29f9-6ae6-4411-9fc1-276905794fc0" />
+<img width="1273" height="640" alt="image" src="https://github.com/user-attachments/assets/3dd19498-1543-4eea-bb67-9f8f064afe4b" />
+<img width="1274" height="638" alt="image" src="https://github.com/user-attachments/assets/ac40513e-bf23-4023-91f0-ea35b4174849" />
+
+
