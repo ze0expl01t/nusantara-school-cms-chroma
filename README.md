@@ -100,7 +100,7 @@ Gunakan **CLI Auto-Installer (`setup.php`)** untuk menyiapkan seluruh dependensi
 
 ```bash
 # 1. Clone repository
-git clone [https://github.com/ze0expl01t/nusantara-school-cms.git](https://github.com/ze0expl01t/nusantara-school-cms.git)
+git clone https://github.com/ze0expl01t/nusantara-school-cms.git
 cd nusantara-school-cms
 
 # 2. Jalankan Auto-Installer CLI
@@ -133,46 +133,98 @@ Pastikan parameter inti berikut terisi dengan benar pada file `.env` Anda:
 
 ```env
 APP_NAME="Nusantara School CMS"
-APP_ENV=local
-APP_KEY=
-APP_DEBUG=true
-APP_URL=[http://127.0.0.1:8000](http://127.0.0.1:8000)
-ADMIN_APP_PATH=panel-maintenance
-
-# LOCALE & BAHASA
+APP_ENV=production
+APP_KEY=base64:wSNt7WtzqBTOjQl2jjZsl9qmhfHdE4t94KiRcIoFIGA=
+APP_DEBUG=false
+APP_URL=https://v2.smkmuh1blora.sch.id
 APP_LOCALE=en
 APP_FALLBACK_LOCALE=en
+APP_FAKER_LOCALE=id_ID
+APP_MAINTENANCE_DRIVER=file
+ADMIN_APP_PATH=panel-maintenance
 
-# DATABASE
+HORIZON_PATH=horizon
+
+BCRYPT_ROUNDS=12
+
+LOG_CHANNEL=stack
+LOG_STACK=single
+LOG_DEPRECATIONS_CHANNEL=null
+LOG_LEVEL=debug
+
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=nusantara_school
-DB_USERNAME=root
-DB_PASSWORD=
+DB_DATABASE=v2_v2
+DB_USERNAME=v2_v2
+DB_PASSWORD=KDmgmvx&sKNr8Pze
 
-# REDIS & SESSION (Gunakan DB index berbeda jika 1 server berbagi banyak project)
-SESSION_DRIVER=redis
-SESSION_DOMAIN=
+BROADCAST_CONNECTION=log
+CACHE_STORE=file
+CACHE_PREFIX=nusantara_cache_
+FILESYSTEM_DISK=local
+QUEUE_CONNECTION=sync
+
+SESSION_DRIVER=file
+SESSION_LIFETIME=120
+SESSION_ENCRYPT=false
+SESSION_PATH=/
+SESSION_DOMAIN=.smkmuh1blora.sch.id
+SESSION_SAME_SITE=lax
 SESSION_SECURE_COOKIE=false
 
+REDIS_CLIENT=phpredis
 REDIS_HOST=127.0.0.1
 REDIS_PASSWORD=null
 REDIS_PORT=6379
-REDIS_DB=2
-REDIS_CACHE_DB=3
+REDIS_DB=0
+REDIS_CACHE_DB=1
+REDIS_PREFIX=nusantara_redis_
+REDIS_CACHE_PREFIX=nusantara_cache_
 
-# QUEUE & HORIZON
-QUEUE_CONNECTION=redis
-HORIZON_PATH=horizon
-HORIZON_PREFIX=nusantara_school_horizon:
+MEMCACHED_HOST=127.0.0.1
 
-# GOOGLE ANALYTICS 4 (Opsional)
+MAIL_MAILER=log
+MAIL_HOST=127.0.0.1
+MAIL_PORT=1025
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
+MAIL_SCHEME=null
+MAIL_FROM_ADDRESS="no-reply@example.sch.id"
+MAIL_FROM_NAME="${APP_NAME}"
+
+BACKUP_MAIL_TO="admin@example.sch.id"
+
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_DEFAULT_REGION=ap-southeast-1
+AWS_BUCKET=
+AWS_USE_PATH_STYLE_ENDPOINT=false
+
+IMAGE_PROXY_DRIVER=gd
+IMAGE_PROXY_SOURCE_DISK=public
+IMAGE_PROXY_CACHE_DISK=local
+IMAGE_PROXY_PATH=img
+IMAGE_PROXY_SIGNING_ENABLED=false
+IMAGE_PROXY_LOG=false
+IMAGE_PROXY_LOG_CHANNEL=stack
+
 ANALYTICS_PROPERTY_ID=
+
+COMPOSER_HOME=~/.config/composer
+
+VITE_APP_NAME="${APP_NAME}"
 ```
 
 > [!IMPORTANT]
 > **Aturan `HORIZON_PATH`:** Nilai `HORIZON_PATH` **wajib 1 level** (contoh: `HORIZON_PATH=horizon`). Jangan gunakan *nested path* seperti `panel-maintenance/horizon` karena akan bertabrakan dengan *catch-all route* modul admin Twill CMS.
+
+> [!WARNING]
+> **Konfigurasi Dummy — Wajib Diganti Sebelum Produksi:** Nilai `APP_KEY`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`, `APP_URL`, dan `SESSION_DOMAIN` di atas adalah **contoh/dummy** untuk keperluan dokumentasi. Jangan gunakan kredensial ini secara langsung di server produksi. Jalankan `php artisan key:generate` untuk membuat `APP_KEY` baru, dan gunakan kredensial database yang sesuai. Pastikan file `.env` **tidak pernah** di-commit ke repositori.
+
+> [!NOTE]
+> **Catatan `QUEUE_CONNECTION`:** Contoh di atas memakai `QUEUE_CONNECTION=sync` (tanpa worker). Untuk mengaktifkan fitur *Drag-and-Drop Nested Menu* di Twill CMS, ubah menjadi `QUEUE_CONNECTION=redis` dan jalankan `php artisan horizon` di bawah Supervisor/systemd (lihat bagian [Deployment Produksi](#production-deploy)).
 
 ---
 
@@ -282,7 +334,7 @@ nusantara-school-cms/
    ```env
    APP_ENV=production
    APP_DEBUG=false
-   APP_URL=[https://domain-sekolah-anda.sch.id](https://domain-sekolah-anda.sch.id)
+   APP_URL=https://domain-sekolah-anda.sch.id
    SESSION_DOMAIN=domain-sekolah-anda.sch.id
    SESSION_SECURE_COOKIE=true
    ```
