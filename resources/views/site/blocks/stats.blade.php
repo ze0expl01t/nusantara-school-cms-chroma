@@ -52,8 +52,8 @@
     $ornRotate2 = random_int(-25, 25);
 @endphp
 
-<section class="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto [content-visibility:auto] [contain-intrinsic-size:420px]" data-block-reveal>
-    <div class="bg-white border border-slate-200/90 rounded-2xl sm:rounded-3xl overflow-hidden shadow-xs hover:shadow-md transition-shadow duration-300 relative [contain:layout_style]">
+<section class="py-8 sm:py-16 lg:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto [content-visibility:auto] [contain-intrinsic-size:420px]" data-block-reveal>
+    <div class="bg-white border border-slate-200/90 rounded-2xl sm:rounded-2xl overflow-hidden shadow-xs hover:shadow-md transition-shadow duration-300 relative [contain:layout_style]">
 
         {{-- Top 3-color global accent strip --}}
         <div class="h-1.5 w-full bg-gradient-to-r from-[#f7f0ac] via-[#acf7f0] to-[#f0acf7]" aria-hidden="true"></div>

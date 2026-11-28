@@ -50,7 +50,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch">
 
             {{-- KOTAK KIRI: VISI --}}
-            <div class="bg-white hover:bg-gradient-to-br hover:from-white hover:via-[#4ef5e6]/15 hover:to-[#ffe659]/20 border border-slate-200 hover:border-[#4ef5e6] rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-sm hover:shadow-xl hover:shadow-[#4ef5e6]/15 flex flex-col justify-between relative overflow-hidden group transition-all duration-300 motion-reduce:transition-none">
+            <div class="bg-white hover:bg-gradient-to-br hover:from-white hover:via-[#4ef5e6]/15 hover:to-[#ffe659]/20 border border-slate-200 hover:border-[#4ef5e6] rounded-2xl sm:rounded-2xl p-6 sm:p-8 md:p-10 shadow-sm hover:shadow-xl hover:shadow-[#4ef5e6]/15 flex flex-col justify-between relative overflow-hidden group transition-all duration-300 motion-reduce:transition-none">
 
                 {{-- Top accent strip (Kuning -> Cyan) --}}
                 <div class="pointer-events-none absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-[#ffe659] to-[#4ef5e6] opacity-80 group-hover:h-1.5 group-hover:opacity-100 transition-all duration-300" aria-hidden="true"></div>
@@ -88,7 +88,7 @@
             </div>
 
             {{-- KOTAK KANAN: MISI --}}
-            <div class="bg-white hover:bg-gradient-to-br hover:from-white hover:via-[#ff7cf2]/15 hover:to-[#4ef5e6]/20 border border-slate-200 hover:border-[#e855db] hover:ring-2 hover:ring-[#ff7cf2]/35 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-sm hover:shadow-xl hover:shadow-[#ff7cf2]/15 flex flex-col justify-between relative overflow-hidden group transition-all duration-300 motion-reduce:transition-none">
+            <div class="bg-white hover:bg-gradient-to-br hover:from-white hover:via-[#ff7cf2]/15 hover:to-[#4ef5e6]/20 border border-slate-200 hover:border-[#e855db] hover:ring-2 hover:ring-[#ff7cf2]/35 rounded-2xl sm:rounded-2xl p-6 sm:p-8 md:p-10 shadow-sm hover:shadow-xl hover:shadow-[#ff7cf2]/15 flex flex-col justify-between relative overflow-hidden group transition-all duration-300 motion-reduce:transition-none">
 
                 {{-- Top accent strip (Cyan -> Magenta) --}}
                 <div class="pointer-events-none absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-[#4ef5e6] to-[#ff7cf2] opacity-80 group-hover:h-1.5 group-hover:opacity-100 transition-all duration-300" aria-hidden="true"></div>

@@ -150,7 +150,7 @@
             <div class="w-24 h-1 mx-auto rounded-full bg-gradient-to-r from-[#f7f0ac] via-[#acf7f0] to-[#f0acf7]" aria-hidden="true"></div>
         </div>
 
-        <div class="bg-white border-2 border-[#acf7f0]/70 rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm grid grid-cols-1 lg:grid-cols-2 items-stretch">
+        <div class="bg-white border-2 border-[#acf7f0]/70 rounded-2xl sm:rounded-2xl overflow-hidden shadow-sm grid grid-cols-1 lg:grid-cols-2 items-stretch">
 
             {{-- ═══ Kolom Kiri: Informasi Kontak ═══ --}}
             <div class="p-6 sm:p-8 lg:p-10 bg-gradient-to-br from-[#f7f0ac]/35 via-white to-slate-50 flex flex-col justify-between gap-6 sm:gap-8 relative overflow-hidden">

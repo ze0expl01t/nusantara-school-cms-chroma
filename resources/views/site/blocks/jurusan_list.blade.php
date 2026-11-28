@@ -147,7 +147,7 @@
                 </div>
             @endif
         @else
-            <div class="text-center py-8 sm:py-10 bg-white border border-slate-200 rounded-3xl shadow-sm">
+            <div class="text-center py-8 sm:py-10 bg-white border border-slate-200 rounded-2xl shadow-sm">
                 <p class="text-slate-500 text-sm font-medium">Belum ada jurusan yang dipublikasikan.</p>
             </div>
         @endif

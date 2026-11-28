@@ -29,7 +29,7 @@
 @endphp
 
 <section class="py-10 sm:py-14 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden [content-visibility:auto] [contain-intrinsic-size:800px]" data-block-reveal>
-    <div class="bg-white border border-slate-200/90 rounded-3xl overflow-hidden shadow-xs hover:shadow-md transition-shadow duration-300 relative [contain:layout_style]">
+    <div class="bg-white border border-slate-200/90 rounded-2xl overflow-hidden shadow-xs hover:shadow-md transition-shadow duration-300 relative [contain:layout_style]">
 
         {{-- Top 3-color global accent strip --}}
         <div class="h-1.5 w-full bg-gradient-to-r from-[#f7f0ac] via-[#acf7f0] to-[#f0acf7]" aria-hidden="true"></div>
@@ -157,7 +157,7 @@
                                 $imgKey   = $firstImg->id ?? 1;
                                 $fbUrl    = 'https://picsum.photos/seed/smkmuh1-stat2-' . $imgKey . '/1200/900.webp';
                             @endphp
-                            <div class="relative rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 group aspect-[4/3] bg-gradient-to-br {{ $cardGrad }} motion-reduce:transition-none">
+                            <div class="relative rounded-2xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 group aspect-[4/3] bg-gradient-to-br {{ $cardGrad }} motion-reduce:transition-none">
                                 <img
                                     src="{{ $fbUrl }}"
                                     alt="{{ $pageTitle }}"
@@ -198,7 +198,7 @@
                                         $imgKey   = $imgItem->id ?? ($index + 1);
                                         $fbUrl    = 'https://picsum.photos/seed/smkmuh1-stat2-' . $imgKey . '/1200/675.webp';
                                     @endphp
-                                    <div class="relative rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 group aspect-[16/9] bg-gradient-to-br {{ $cardGrad }} motion-reduce:transition-none">
+                                    <div class="relative rounded-2xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 group aspect-[16/9] bg-gradient-to-br {{ $cardGrad }} motion-reduce:transition-none">
                                         <img
                                             src="{{ $fbUrl }}"
                                             alt="{{ trim($pageTitle . ' ' . ($index + 1)) }}"
@@ -245,7 +245,7 @@
                                         $fbUrl    = 'https://picsum.photos/seed/smkmuh1-stat2-' . $imgKey . '/' . $wPx . '/' . $hPx . '.webp';
                                     @endphp
 
-                                    <div class="relative rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 group w-full h-full {{ $isLarge ? 'col-span-2 aspect-[16/9]' : 'col-span-1 aspect-[4/3]' }} bg-gradient-to-br {{ $cardGrad }} motion-reduce:transition-none">
+                                    <div class="relative rounded-2xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 group w-full h-full {{ $isLarge ? 'col-span-2 aspect-[16/9]' : 'col-span-1 aspect-[4/3]' }} bg-gradient-to-br {{ $cardGrad }} motion-reduce:transition-none">
                                         <img
                                             src="{{ $fbUrl }}"
                                             alt="{{ trim($pageTitle . ' ' . ($index + 1)) }}"

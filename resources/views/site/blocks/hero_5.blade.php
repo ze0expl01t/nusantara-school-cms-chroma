@@ -124,7 +124,7 @@
 
             {{-- Kolom Foto (Kanan - 5 Kolom) --}}
             <div class="lg:col-span-5">
-                <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden aspect-[4/3] bg-slate-100 border border-slate-200 shadow-xl shadow-slate-950/10 hover:shadow-slate-950/20 transition-[box-shadow] duration-500 group motion-reduce:transition-none [contain:layout_style] [transform:translateZ(0)]">
+                <div class="relative rounded-2xl sm:rounded-2xl overflow-hidden aspect-[4/3] bg-slate-100 border border-slate-200 shadow-xl shadow-slate-950/10 hover:shadow-slate-950/20 transition-[box-shadow] duration-500 group motion-reduce:transition-none [contain:layout_style] [transform:translateZ(0)]">
 
                     @php
                             $heroImgHtml = $hasHeroImage

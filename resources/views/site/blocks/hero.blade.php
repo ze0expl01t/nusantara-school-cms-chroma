@@ -73,7 +73,7 @@
     @endpush
 @endif
 
-<section class="relative min-h-[70vh] sm:min-h-[80vh] flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8 py-12 sm:py-16 [contain:layout_style]" data-block-reveal>
+<section class="relative min-h-[76vh] lg:min-h-[84vh] flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-10 py-14 sm:py-20 [contain:layout_style]" data-block-reveal>
 
     {{-- Background Layer --}}
     <div class="absolute inset-0 z-0">
@@ -115,7 +115,7 @@
             @endif
 
         {{-- Overlay --}}
-        <div class="absolute inset-0 bg-slate-950/80 mix-blend-multiply" aria-hidden="true"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-slate-950/75 via-slate-950/70 to-slate-950/85" aria-hidden="true"></div>
 
 
 {{-- Glow decoratif — animasi DIPERTAHANKAN --}}
@@ -123,7 +123,7 @@
     </div>
 
     {{-- Content --}}
-    <div class="relative z-10 text-center w-full max-w-5xl mx-auto space-y-6 sm:space-y-8">
+    <div class="relative z-10 text-center w-full max-w-5xl mx-auto space-y-5 sm:space-y-7">
 
         {{-- Badge --}}
         @if($badge)

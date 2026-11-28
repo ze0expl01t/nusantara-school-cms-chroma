@@ -176,7 +176,7 @@
                         data-post-id="{{ $leadPost->id }}"
                         data-post-title="{{ $leadImageAlt }}"
                         aria-label="{{ $leadImageAlt }}"
-                        class="bg-white border border-slate-200/90 hover:border-slate-950/20 rounded-3xl overflow-hidden transition-all duration-300 shadow-2xs hover:shadow-xl hover:-translate-y-1 group flex flex-col justify-between w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[#acf7f0] focus-visible:ring-offset-2 motion-reduce:transition-none motion-reduce:hover:translate-y-0 [contain:layout_style]"
+                        class="bg-white border border-slate-200/90 hover:border-slate-950/20 rounded-2xl overflow-hidden transition-all duration-300 shadow-2xs hover:shadow-xl hover:-translate-y-1 group flex flex-col justify-between w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[#acf7f0] focus-visible:ring-offset-2 motion-reduce:transition-none motion-reduce:hover:translate-y-0 [contain:layout_style]"
                     >
                         <div>
                             <div class="relative w-full aspect-[16/10] overflow-hidden bg-gradient-to-br from-[#f7f0ac]/60 via-[#acf7f0]/50 to-[#f0acf7]/60 border-b border-slate-200/80">

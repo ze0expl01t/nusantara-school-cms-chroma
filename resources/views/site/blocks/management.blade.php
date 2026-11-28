@@ -79,7 +79,7 @@
                         $publicFallbackUrl = 'https://picsum.photos/seed/smkmuh1-mgmt-' . $itemKey . '/600/800.webp';
                     @endphp
 
-                    <article class="group relative w-full aspect-[3/4] rounded-3xl overflow-hidden bg-white border border-slate-200/90 hover:border-slate-950/25 shadow-xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 motion-reduce:transition-none motion-reduce:hover:translate-y-0 [contain:layout_style] [transform:translateZ(0)]">
+                    <article class="group relative w-full aspect-[3/4] rounded-2xl overflow-hidden bg-white border border-slate-200/90 hover:border-slate-950/25 shadow-xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 motion-reduce:transition-none motion-reduce:hover:translate-y-0 [contain:layout_style] [transform:translateZ(0)]">
 
                         {{-- Layer 0: Pastel gradient safety surface --}}
                         <div class="absolute inset-0 z-0 flex flex-col items-center justify-center bg-gradient-to-br {{ $gradClass }} text-slate-950 select-none px-4 pb-16" aria-hidden="true">

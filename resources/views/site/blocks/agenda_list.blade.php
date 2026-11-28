@@ -66,13 +66,13 @@
 
     <div
         x-data="{ agendaFilter: 'all' }"
-        class="relative bg-gradient-to-br from-[#fffef9] via-[#f3fbfa] to-[#fcf7fc] text-slate-900 border border-slate-200/90 rounded-3xl px-5 sm:px-8 lg:px-10 py-8 sm:py-10 lg:py-14 shadow-lg overflow-hidden [contain:layout_style]"
+        class="relative bg-gradient-to-br from-[#fffef9] via-[#f3fbfa] to-[#fcf7fc] text-slate-900 border border-slate-200/90 rounded-2xl px-5 sm:px-8 lg:px-10 py-8 sm:py-10 lg:py-14 shadow-lg overflow-hidden [contain:layout_style]"
     >
         {{-- Top 3-color global accent line --}}
         <div class="pointer-events-none absolute top-0 inset-x-8 h-1 rounded-b-full bg-gradient-to-r from-[#f7f0ac] via-[#acf7f0] to-[#f0acf7]" aria-hidden="true"></div>
 
         {{-- Soft global color washes & subtle geometric ornaments --}}
-        <div class="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none" aria-hidden="true">
+        <div class="absolute inset-0 overflow-hidden rounded-2xl pointer-events-none" aria-hidden="true">
             <div class="absolute -top-24 -left-20 w-72 h-72 sm:w-[400px] sm:h-[400px] bg-[#f7f0ac]/45 blur-[80px] rounded-full"></div>
             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 sm:w-[420px] sm:h-[420px] bg-[#acf7f0]/40 blur-[90px] rounded-full"></div>
             <div class="absolute -bottom-24 -right-16 w-72 h-72 sm:w-[400px] sm:h-[400px] bg-[#f0acf7]/35 blur-[80px] rounded-full"></div>
@@ -204,7 +204,7 @@
                             data-analytics="agenda-click"
                             data-agenda-id="{{ $agenda->id }}"
                             data-agenda-title="{{ $agenda->title }}"
-                            class="relative bg-white/95 border border-slate-200/90 hover:border-[#acf7f0] rounded-2xl sm:rounded-3xl p-5 sm:p-6 overflow-hidden transition-all duration-300 group flex flex-col justify-between space-y-5 shadow-sm hover:-translate-y-1 hover:shadow-xl motion-reduce:transition-none motion-reduce:hover:translate-y-0 [contain:layout_style] [transform:translateZ(0)]"
+                            class="relative bg-white/95 border border-slate-200/90 hover:border-[#acf7f0] rounded-2xl sm:rounded-2xl p-5 sm:p-6 overflow-hidden transition-all duration-300 group flex flex-col justify-between space-y-5 shadow-sm hover:-translate-y-1 hover:shadow-xl motion-reduce:transition-none motion-reduce:hover:translate-y-0 [contain:layout_style] [transform:translateZ(0)]"
                         >
                             <span class="pointer-events-none absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-[#f7f0ac] via-[#acf7f0] to-[#f0acf7] opacity-80 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true"></span>
 
@@ -310,7 +310,7 @@
                     @endforeach
                 </div>
             @else
-                <div class="text-center py-16 bg-white/90 border border-slate-200 rounded-3xl shadow-sm">
+                <div class="text-center py-16 bg-white/90 border border-slate-200 rounded-2xl shadow-sm">
                     <svg class="w-12 h-12 mx-auto text-slate-400 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                     </svg>

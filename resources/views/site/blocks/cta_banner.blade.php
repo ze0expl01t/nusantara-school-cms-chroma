@@ -147,9 +147,9 @@
     };
 @endphp
 
-<section class="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative overflow-hidden [content-visibility:auto] [contain-intrinsic-size:460px]" data-block-reveal>
+<section class="py-8 sm:py-16 lg:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative overflow-hidden [content-visibility:auto] [contain-intrinsic-size:460px]" data-block-reveal>
 
-    <div class="relative rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 {{ $s['bg'] }} {{ $innerPadding }} motion-reduce:transition-none">
+    <div class="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 {{ $s['bg'] }} {{ $innerPadding }} motion-reduce:transition-none">
 
         @if($backgroundImage)
             <div class="absolute inset-0 z-0">

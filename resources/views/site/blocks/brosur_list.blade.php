@@ -242,13 +242,13 @@
         @touchend.passive="startAutoplay()"
         @focusin="stopAutoplay()"
         @focusout="startAutoplay()"
-        class="relative bg-gradient-to-br from-[#fffef9] via-[#f3fbfa] to-[#fcf7fc] text-slate-900 border border-slate-200/90 rounded-3xl px-5 sm:px-8 lg:px-10 py-8 sm:py-10 lg:py-14 shadow-lg overflow-hidden [contain:layout_style]"
+        class="relative bg-gradient-to-br from-[#fffef9] via-[#f3fbfa] to-[#fcf7fc] text-slate-900 border border-slate-200/90 rounded-2xl px-5 sm:px-8 lg:px-10 py-8 sm:py-10 lg:py-14 shadow-lg overflow-hidden [contain:layout_style]"
     >
         {{-- Top 3-color global accent line --}}
         <div class="pointer-events-none absolute top-0 inset-x-8 h-1 rounded-b-full bg-gradient-to-r from-[#f7f0ac] via-[#acf7f0] to-[#f0acf7]" aria-hidden="true"></div>
 
         {{-- Soft global color washes & subtle geometric ornaments --}}
-        <div class="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none" aria-hidden="true">
+        <div class="absolute inset-0 overflow-hidden rounded-2xl pointer-events-none" aria-hidden="true">
             <div class="absolute -top-24 -left-20 w-72 h-72 sm:w-[400px] sm:h-[400px] bg-[#f7f0ac]/45 blur-[80px] rounded-full"></div>
             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 sm:w-[420px] sm:h-[420px] bg-[#acf7f0]/40 blur-[90px] rounded-full"></div>
             <div class="absolute -bottom-24 -right-16 w-72 h-72 sm:w-[400px] sm:h-[400px] bg-[#f0acf7]/35 blur-[80px] rounded-full"></div>
@@ -318,7 +318,7 @@
 
                                 <div class="w-[80vw] max-w-[320px] sm:w-auto sm:max-w-none sm:min-w-[calc(50%-12px)] md:min-w-[calc(33.333%-16px)] lg:min-w-[calc(25%-18px)] snap-start shrink-0">
 
-                                    <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg group/card flex flex-col justify-between h-[390px] sm:h-[430px] p-5 sm:p-6 border border-slate-800/80 hover:border-[#acf7f0] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl bg-gradient-to-br from-[#090d1a] via-[#0c1324] to-[#120d22] motion-reduce:transition-none motion-reduce:hover:translate-y-0">
+                                    <div class="relative rounded-2xl sm:rounded-2xl overflow-hidden shadow-lg group/card flex flex-col justify-between h-[390px] sm:h-[430px] p-5 sm:p-6 border border-slate-800/80 hover:border-[#acf7f0] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl bg-gradient-to-br from-[#090d1a] via-[#0c1324] to-[#120d22] motion-reduce:transition-none motion-reduce:hover:translate-y-0">
 
                                         <span class="pointer-events-none absolute top-0 inset-x-0 z-20 h-1 bg-gradient-to-r from-[#f7f0ac] via-[#acf7f0] to-[#f0acf7]" aria-hidden="true"></span>
 
@@ -448,7 +448,7 @@
                     @endif
                 </div>
             @else
-                <div class="text-center py-16 bg-white/90 border border-slate-200 rounded-3xl shadow-sm">
+                <div class="text-center py-16 bg-white/90 border border-slate-200 rounded-2xl shadow-sm">
                     <p class="text-slate-600 text-sm font-medium">Belum ada brosur yang dipublikasikan saat ini.</p>
                 </div>
             @endif

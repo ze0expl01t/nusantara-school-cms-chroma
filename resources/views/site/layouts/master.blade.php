@@ -440,11 +440,11 @@
     </div>
 
     <!-- ================== HEADER ================== -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-slate-900/90 backdrop-blur-xl border-b-0 shadow-md transition-all duration-300"
+    <header class="fixed top-0 left-0 right-0 z-50 bg-slate-950/95 backdrop-blur-md border-b border-slate-800/80 shadow-sm transition-all duration-300"
             x-data="{ mobileMenu: false, searchOpen: false }"
             @keydown.escape.window="mobileMenu = false; searchOpen = false">
 
-        <div class="absolute bottom-0 left-0 right-0 h-1.5 flex z-20" aria-hidden="true">
+        <div class="absolute bottom-0 left-0 right-0 h-1 flex z-20 opacity-90" aria-hidden="true">
             <div class="w-1/3 h-full bg-[#f0acf7]"></div>
             <div class="w-1/3 h-full bg-[#acf7f0]"></div>
             <div class="w-1/3 h-full bg-[#f7f0ac]"></div>
@@ -464,7 +464,7 @@
                         fetchpriority="high"
                         decoding="async"
                         class="h-10 w-auto max-w-[60px] sm:max-w-[80px] object-contain flex-shrink-0 group-hover:scale-105 transition-transform motion-reduce:transition-none motion-reduce:group-hover:scale-100"
-                     onerror="this.removeAttribute('srcset');if(!this.dataset.fbStep){this.dataset.fbStep='1';this.src='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80';}else if(this.dataset.fbStep==='1'){this.dataset.fbStep='2';this.src='https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80';}else{this.onerror=null;this.style.display='none';}">
+                     onerror="this.onerror=null;this.style.display='none';">
                     <div class="flex flex-col leading-tight min-w-0">
                         <span class="text-sm sm:text-base md:text-lg font-extrabold tracking-tight text-white leading-none truncate max-w-[140px] sm:max-w-[220px] md:max-w-[300px]">
                             {{ $headerOrgName }}
@@ -897,7 +897,7 @@
 
     <!-- FOOTER -->
     <footer class="relative bg-slate-900 text-slate-300 mt-auto overflow-hidden border-t-0">
-        <div class="absolute top-0 left-0 right-0 h-1.5 flex z-20" aria-hidden="true">
+        <div class="absolute top-0 left-0 right-0 h-1 flex z-20 opacity-90" aria-hidden="true">
             <div class="w-1/3 h-full bg-[#f0acf7]"></div>
             <div class="w-1/3 h-full bg-[#acf7f0]"></div>
             <div class="w-1/3 h-full bg-[#f7f0ac]"></div>
@@ -934,7 +934,7 @@
                     @if($logoWhiteUrl)
                         <div class="flex items-center gap-3">
                             <img src="{{ $logoWhiteUrl }}" alt="{{ $footerOrgName }}" width="80" height="48" loading="lazy" decoding="async"
-                                 class="h-12 w-auto max-w-[80px] object-contain flex-shrink-0" onerror="this.removeAttribute('srcset');if(!this.dataset.fbStep){this.dataset.fbStep='1';this.src='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80';}else if(this.dataset.fbStep==='1'){this.dataset.fbStep='2';this.src='https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80';}else{this.onerror=null;this.style.display='none';}">
+                                 class="h-12 w-auto max-w-[80px] object-contain flex-shrink-0" onerror="this.onerror=null;this.style.display='none';">
                             <div class="flex flex-col leading-tight">
                                 <span class="text-base sm:text-lg font-bold text-white tracking-tight">{{ $footerOrgName }}</span>
                                 @if($footerOrgSubtitle)

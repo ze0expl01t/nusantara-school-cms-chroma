@@ -202,13 +202,13 @@
         role="region"
         aria-label="{{ $label ?? 'Partners' }}"
         aria-roledescription="carousel"
-        class="relative bg-gradient-to-br from-[#090d1a] via-[#0c1324] to-[#120d22] text-slate-100 border border-slate-800/90 rounded-3xl px-5 sm:px-8 lg:px-10 py-8 sm:py-10 lg:py-14 shadow-2xl [contain:layout_style]"
+        class="relative bg-gradient-to-br from-[#090d1a] via-[#0c1324] to-[#120d22] text-slate-100 border border-slate-800/90 rounded-2xl px-5 sm:px-8 lg:px-10 py-8 sm:py-10 lg:py-14 shadow-2xl [contain:layout_style]"
     >
         {{-- Top 3-color global accent bar --}}
         <div class="pointer-events-none absolute top-0 inset-x-8 h-1 rounded-b-full bg-gradient-to-r from-[#ffe659] via-[#4ef5e6] to-[#ff7cf2]" aria-hidden="true"></div>
 
         {{-- Gradient washes & subtle geometric dot ornaments using #ffe659, #4ef5e6, #ff7cf2 --}}
-        <div class="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none" aria-hidden="true">
+        <div class="absolute inset-0 overflow-hidden rounded-2xl pointer-events-none" aria-hidden="true">
             <div class="absolute -top-24 -left-20 w-72 h-72 sm:w-[420px] sm:h-[420px] bg-gradient-to-br from-[#ffe659]/14 via-[#4ef5e6]/10 to-transparent blur-[85px] rounded-full"></div>
             <div class="absolute top-1/2 left-1/3 -translate-y-1/2 w-64 h-64 sm:w-[360px] sm:h-[360px] bg-[#4ef5e6]/10 blur-[90px] rounded-full"></div>
             <div class="absolute -bottom-24 -right-16 w-72 h-72 sm:w-[440px] sm:h-[440px] bg-gradient-to-tl from-[#ff7cf2]/16 via-[#4ef5e6]/10 to-transparent blur-[85px] rounded-full"></div>

@@ -67,7 +67,7 @@
                         $iconStyle  = $iconStyles[$loop->index % count($iconStyles)];
                     @endphp
 
-                    <div class="group relative bg-white border border-slate-200/90 hover:border-slate-950/20 rounded-3xl p-6 sm:p-7 shadow-xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col h-full overflow-hidden motion-reduce:transition-none motion-reduce:hover:translate-y-0 [contain:layout_style] [transform:translateZ(0)]">
+                    <div class="group relative bg-white border border-slate-200/90 hover:border-slate-950/20 rounded-2xl p-6 sm:p-7 shadow-xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col h-full overflow-hidden motion-reduce:transition-none motion-reduce:hover:translate-y-0 [contain:layout_style] [transform:translateZ(0)]">
 
                         {{-- Smooth 3-color pastel gradient reveal on hover --}}
                         <span class="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#f7f0ac]/75 via-[#acf7f0]/75 to-[#f0acf7]/75 opacity-0 group-hover:opacity-100 transition-opacity duration-300 motion-reduce:transition-none" aria-hidden="true"></span>
